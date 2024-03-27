@@ -1,8 +1,10 @@
 import { Redirect, SplashScreen, Stack } from 'expo-router';
 
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync(); // ! temp
 
 const StackLayout: React.FC = () => {
+  SplashScreen.hideAsync(); // ! temp
+
   return (
     <>
       <Redirect href="/welcome" />
