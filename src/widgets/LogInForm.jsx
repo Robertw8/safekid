@@ -67,6 +67,9 @@ export const LogInForm = () => {
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
+        <Link href="/password-reset" style={[stylesLogin.visiblePassword, {marginBottom: 20}]}>
+          Забули пароль?
+        </Link>
         <Pressable style={stylesLogin.button}
           onPress={onSubmitForm}
         >
