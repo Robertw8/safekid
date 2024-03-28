@@ -2,15 +2,13 @@ import { StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import { LogInForm } from '@/widgets/LogInForm';
 
-export const LoginScreen = () => {
-    
+export const LoginScreen: React.FC = () => {
     return (
         <View style={styles.container}>
             <LogInForm />    
         </View>
     )
 };
-
 
 export const styles = StyleSheet.create({
     container: {
@@ -20,5 +18,9 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontStyle: 'normal',
         color: '#212121',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
