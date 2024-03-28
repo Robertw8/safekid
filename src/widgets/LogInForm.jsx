@@ -11,7 +11,7 @@ import {
     Keyboard
 } from 'react-native';
 import { useState } from 'react';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 export const LogInForm = () => {
   const [email, setEmail] = useState('');
@@ -27,6 +27,7 @@ export const LogInForm = () => {
     console.log('password =>', password);
     setEmail('');
     setPassword('');
+    router.replace('/(tabs)/dashboard')
   };
 
   const onFocusToggle = (inputName) => { setIsFocus({ [inputName]: true }) };
