@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { View, Text } from 'react-native';
 
-const DashboardScreen: React.FC = () => {
+const Dashboard: React.FC = () => {
   return (
     <View
       style={{
@@ -19,4 +19,4 @@ const DashboardScreen: React.FC = () => {
   );
 };
 
-export default DashboardScreen;
+export default Dashboard;

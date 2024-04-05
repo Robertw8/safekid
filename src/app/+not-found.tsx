@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-const NotFoundScreen: React.FC = () => {
+const NotFound: React.FC = () => {
   return (
     <View>
       <Text>Not found</Text>
@@ -8,4 +8,4 @@ const NotFoundScreen: React.FC = () => {
   );
 };
 
-export default NotFoundScreen;
+export default NotFound;

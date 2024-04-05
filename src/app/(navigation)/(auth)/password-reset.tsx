@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { View, Text } from 'react-native';
 
-const PasswordResetScreen: React.FC = () => {
+const PasswordReset: React.FC = () => {
   return (
     <View
       style={{
@@ -25,4 +25,4 @@ const PasswordResetScreen: React.FC = () => {
   );
 };
 
-export default PasswordResetScreen;
+export default PasswordReset;
