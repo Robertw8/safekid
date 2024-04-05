@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { View, Text } from 'react-native';
 
-const LoginScreen: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <View
       style={{
@@ -25,4 +25,4 @@ const LoginScreen: React.FC = () => {
   );
 };
 
-export default LoginScreen;
+export default Login;

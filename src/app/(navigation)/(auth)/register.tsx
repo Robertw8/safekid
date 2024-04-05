@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { View, Text } from 'react-native';
 
-const RegisterScreen: React.FC = () => {
+const Register: React.FC = () => {
   return (
     <View
       style={{
@@ -25,4 +25,4 @@ const RegisterScreen: React.FC = () => {
   );
 };
 
-export default RegisterScreen;
+export default Register;
