@@ -1,28 +1,19 @@
+import { WelcomeScreen } from '@/screens/auth';
 import { Link } from 'expo-router';
-import { View, Text } from 'react-native';
+import { styled } from 'nativewind';
+import { View } from 'react-native';
 
-const WelcomeScreen: React.FC = () => {
+const Wrapper = styled(View);
+
+const Welcome: React.FC = () => {
   return (
-    <View
-      style={{
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text>Welcome screen</Text>
-      <Link href="/login" style={{ marginTop: 20, color: 'red' }}>
-        Login tut
-      </Link>
-      <Link href="/register" style={{ marginTop: 20, color: 'yellow' }}>
-        Register tut
-      </Link>
+    <Wrapper className="px-4 h-full flex justify-center items-center">
+      <WelcomeScreen />
       <Link href="/dashboard" style={{ marginTop: 20, color: 'green' }}>
-        Dashboard tut
+        Dashboard
       </Link>
-    </View>
+    </Wrapper>
   );
 };
 
-export default WelcomeScreen;
+export default Welcome;
