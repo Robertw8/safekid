@@ -12,6 +12,13 @@ module.exports = {
     preflight: false,
   },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'black-primary': '#1A1A1C',
+        'black-20': '#00160A33',
+        'gray-primary': '#464749',
+        purple: '#3D33E2',
+      },
+    },
   },
 };
