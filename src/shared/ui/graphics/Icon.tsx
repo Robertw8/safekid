@@ -9,7 +9,7 @@ interface IconProps {
 const StyledSvg = styled(SvgXml);
 
 const Icon: React.FC<IconProps> = ({ xml, classNames }) => {
-  return <StyledSvg xml={xml} className={` ${classNames}`} />;
+  return <StyledSvg xml={xml} className={`${classNames}`} />;
 };
 
 export default Icon;
