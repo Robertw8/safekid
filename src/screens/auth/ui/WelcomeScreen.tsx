@@ -1,14 +1,15 @@
+import { View } from 'react-native';
+import { Link, router } from 'expo-router';
 import { ClickableRoleCard } from '@/widgets/auth';
 import { SecondaryTitle, adultIcon, kidIcon } from '@/shared/ui';
-import { View } from 'react-native';
 import { styled } from 'nativewind';
-import { router } from 'expo-router';
 
+const Wrapper = styled(View);
 const CardsWrapper = styled(View);
 
 const WelcomeScreen: React.FC = () => {
   return (
-    <View>
+    <Wrapper className="px-4 h-full flex justify-center items-center">
       <SecondaryTitle text="Виберіть свою роль" />
       <CardsWrapper className="mt-8">
         <ClickableRoleCard
@@ -25,7 +26,10 @@ const WelcomeScreen: React.FC = () => {
           onPress={() => router.replace('/login')}
         />
       </CardsWrapper>
-    </View>
+      <Link href="/dashboard" style={{ marginTop: 20, color: 'green' }}>
+        Dashboard
+      </Link>
+    </Wrapper>
   );
 };
 
