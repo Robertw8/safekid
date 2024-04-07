@@ -9,7 +9,11 @@ const StackLayout: React.FC = () => {
   return (
     <StoreProvider>
       <Redirect href="/welcome" />
-      <Stack />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </StoreProvider>
   );
 };
