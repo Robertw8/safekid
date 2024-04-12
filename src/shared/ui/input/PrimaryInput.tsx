@@ -1,45 +1,44 @@
 import { styled } from 'nativewind';
-import { TextInput } from 'react-native';
+import { KeyboardTypeOptions, TextInput } from 'react-native';
 
 interface PrimaryInputProps {
-    onFocus: () => void;
-    onBlur: () => void;
-    onChangeText: () => void;
+    // onFocus: () => void;
+    // onBlur: () => void;
+    onChangeText: (text: string) => void;
     value: string;
     autoFocus?: boolean;
     placeholder?: string;
-    keyboardType?: string;
+    keyboardType?: KeyboardTypeOptions;
     classNames?: string;
+    secureTextEntry?: boolean;
 }
 
 const StyledInput = styled(TextInput)
 
 const PrimaryInput: React.FC<PrimaryInputProps> = ({
-    onFocus,
-    onBlur,
+    // onFocus,
+    // onBlur,
     onChangeText,
     value,
     autoFocus,
     placeholder,
     keyboardType,
     classNames,
+    secureTextEntry,
 }) => {
     return (
-    <StyledInput
-            //   style={[
-            //     stylesLogin.input,
-            //     isFocus.email ? stylesLogin.inputFocus : stylesLogin.inputBlur,
-            //   ]}
-              autoFocus={autoFocus || true}
-              onFocus={() => onFocus}
-              onBlur={() => onBlur}
-              onChangeText={onChangeText}
-              value={value}
-              placeholder={placeholder || ''}
-            keyboardType={keyboardType || "email-address"}
-                  className={` ${classNames}`}
-            />
-)
+        <StyledInput
+            autoFocus={autoFocus || false}
+            // onFocus={() => onFocus}
+            // onBlur={() => onBlur}
+            onChangeText={onChangeText}
+            value={value}
+            placeholder={placeholder || ''}
+            keyboardType={keyboardType || "default"}
+            className={`h-12 w-full py-3 px-4 rounded-lg bg-gray-input ${classNames}`}
+            secureTextEntry={secureTextEntry || false}
+        />
+    )
 };
 
 export default PrimaryInput;

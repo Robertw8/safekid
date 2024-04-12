@@ -4,95 +4,90 @@ import {
     TouchableOpacity,
     View,
     Pressable,
-    TouchableWithoutFeedback,
-    Keyboard,
     KeyboardAvoidingView,
     Platform,
-    TextInput
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
+import { PrimaryInput } from '@/shared/ui';
 
 
 const RegisterForm: React.FC = () => {
-        const [login, setLogin] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(true);
-    const [isFocus, setIsFocus] = useState({
-        login: false,
-        email: false,
-        password: false
-    });
-
+    // const [isFocus, setIsFocus] = useState({
+    //     email: false,
+    //     password: false
+    // });
 
     const onSubmitForm = () => {
-        console.log('login =>', login);
         console.log('email =>', email);
         console.log('password =>', password);
-        setLogin('');
         setEmail('');
         setPassword('');
-        router.replace('/(tabs)/dashboard');
+        router.replace('/(tabs)/dashboard' as `${string}:${string}`);
     };
 
-    const onFocusToggle = (inputName) => { setIsFocus({ [inputName]: true }) };
-    const onBlurToggle = (inputName) => { setIsFocus({ [inputName]: false }) };
+    // const onFocusToggle = (inputName) => { setIsFocus({ [inputName]: true }) };
+    // const onBlurToggle = (inputName) => { setIsFocus({ [inputName]: false }) };
 
     return (
-            <View >
+        <View >
                 
-                <KeyboardAvoidingView
-                    behavior={Platform.OS == "ios" ? "padding" : "height"}>
-                    <View style={stylesRegister.formWrap}>
-                        <TextInput
-                            style={[stylesRegister.input, (isFocus.login ? stylesRegister.inputFocus : stylesRegister.inputBlur)]}
-                            autoFocus
-                            onFocus={() => onFocusToggle('login')}
-                            onBlur={() => onBlurToggle('login')}
-                            onChangeText={setLogin}
-                            value={login}
-                            placeholder="Логін"
-                            keyboardType="default"
-                        />
-                        <TextInput
-                            style={[stylesRegister.input, (isFocus.email ? stylesRegister.inputFocus : stylesRegister.inputBlur)]}
-                            onFocus={() => onFocusToggle('email')}
-                            onBlur={() => onBlurToggle('email')}
-                            
-                            onChangeText={setEmail}
-                            value={email}
-                            placeholder="Адреса електронної пошти"
-                            keyboardType="email-address"
-                        />
-                        <TextInput
-                            style={[stylesRegister.input, (isFocus.password ? stylesRegister.inputFocus : stylesRegister.inputBlur)]}
-                            onFocus={() => onFocusToggle('password')}
-                            onBlur={() => onBlurToggle('password')}
-                            onChangeText={setPassword}
-                            value={password}
-                            placeholder="Пароль"
-                            secureTextEntry={showPassword}
-                        />
-                        <TouchableOpacity
-                            style={stylesRegister.touchWrapForm}
-                            onPress={() => setShowPassword(!showPassword)}>
-                            <Text style={stylesRegister.visiblePassword}>
-                                {showPassword ? 'Показати' : 'Приховати'}
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                </KeyboardAvoidingView>
-                <Pressable style={stylesRegister.button}
-                    onPress={onSubmitForm}
-                >
-                    <Text style={stylesRegister.textButton}>Зареєструватися</Text>
-                </Pressable>
-
-                <Link href="/login" style={stylesRegister.visiblePassword}>
-          Вже є акаунт? Увійти
-        </Link>
-            </View>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "height"}>
+                <View style={stylesRegister.formWrap}>
+                    <PrimaryInput
+                        // onFocus={() => onFocusToggle('login')}
+                        // onBlur={() => onBlurToggle('login')}
+                        onChangeText={setEmail}
+                        value={email}
+                        placeholder='example@email.com'
+                        autoFocus
+                        keyboardType="email-address"
+                    />
+                    <PrimaryInput
+                        // onFocus={() => onFocusToggle('password')}
+                        // onBlur={() => onBlurToggle('password')}
+                        onChangeText={setPassword}
+                        value={password}
+                        placeholder='password'
+                        secureTextEntry={showPassword}
+                    />
+                    <TouchableOpacity
+                        style={stylesRegister.touchWrapForm}
+                        onPress={() => setShowPassword(!showPassword)}>
+                        <Text style={stylesRegister.visiblePassword}>
+                            {showPassword ? 'Показати' : 'Приховати'}
+                        </Text>
+                    </TouchableOpacity>
+                    <PrimaryInput
+                        // onFocus={() => onFocusToggle('password')}
+                        // onBlur={() => onBlurToggle('password')}
+                        onChangeText={setPassword}
+                        value={password}
+                        placeholder='password'
+                        secureTextEntry={showPassword}
+                    />
+                    <TouchableOpacity
+                        style={stylesRegister.touchWrapForm}
+                        onPress={() => setShowPassword(!showPassword)}>
+                        <Text style={stylesRegister.visiblePassword}>
+                            {showPassword ? 'Показати' : 'Приховати'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </KeyboardAvoidingView>
+            <Pressable style={stylesRegister.button}
+                onPress={onSubmitForm}
+            >
+                <Text style={stylesRegister.textButton}>Зареєструватися</Text>
+            </Pressable>
+            <Link href="/login" style={stylesRegister.visiblePassword}>
+                Вже є акаунт? Увійти
+            </Link>
+        </View>
     )
 };
 
@@ -125,7 +120,6 @@ export const stylesRegister = StyleSheet.create({
     borderRadius: 10,
     padding: 16,
     paddingBottom: 15,
-    borderWidth: 1,
     color: '#212121',
   },
   inputFocus: {
