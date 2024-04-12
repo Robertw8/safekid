@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
-import { PrimaryInput } from '@/shared/ui';
+import { LabelInput, PrimaryInput } from '@/shared/ui';
 
 
 const RegisterForm: React.FC = () => {
@@ -38,6 +38,7 @@ const RegisterForm: React.FC = () => {
             <KeyboardAvoidingView
                 behavior={Platform.OS == "ios" ? "padding" : "height"}>
                 <View style={stylesRegister.formWrap}>
+                    <LabelInput text='Електронна пошта'/>
                     <PrimaryInput
                         // onFocus={() => onFocusToggle('login')}
                         // onBlur={() => onBlurToggle('login')}
@@ -47,6 +48,7 @@ const RegisterForm: React.FC = () => {
                         autoFocus
                         keyboardType="email-address"
                     />
+                                        <LabelInput text='Пароль'/>
                     <PrimaryInput
                         // onFocus={() => onFocusToggle('password')}
                         // onBlur={() => onBlurToggle('password')}
@@ -56,12 +58,12 @@ const RegisterForm: React.FC = () => {
                         secureTextEntry={showPassword}
                     />
                     <TouchableOpacity
-                        style={stylesRegister.touchWrapForm}
                         onPress={() => setShowPassword(!showPassword)}>
                         <Text style={stylesRegister.visiblePassword}>
                             {showPassword ? 'Показати' : 'Приховати'}
                         </Text>
                     </TouchableOpacity>
+                                                            <LabelInput text='Повторіть пароль'/>
                     <PrimaryInput
                         // onFocus={() => onFocusToggle('password')}
                         // onBlur={() => onBlurToggle('password')}
@@ -79,6 +81,7 @@ const RegisterForm: React.FC = () => {
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
+            <Text>Згоден з умовами та політикою конфіденційності</Text>
             <Pressable style={stylesRegister.button}
                 onPress={onSubmitForm}
             >

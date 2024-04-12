@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
+import { LabelInput } from '@/shared/ui';
 
 const LogInForm = () => {
   const [email, setEmail] = useState('');
@@ -45,6 +46,7 @@ const LogInForm = () => {
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         >
           <View style={stylesLogin.formWrap}>
+                                <LabelInput text='Електронна пошта'/>
             <TextInput
               style={[
                 stylesLogin.input,
@@ -58,6 +60,7 @@ const LogInForm = () => {
               placeholder="Адреса електронної пошти"
               keyboardType="email-address"
             />
+                                <LabelInput text='Пароль'/>
             <TextInput
               style={[
                 stylesLogin.input,
