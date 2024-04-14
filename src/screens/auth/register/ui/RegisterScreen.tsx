@@ -8,18 +8,21 @@ const Wrapper = styled(View);
 
 const RegisterScreen: React.FC = () => {
   return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <Wrapper className="px-4 h-full flex justify-center items-center">
-      <PrimaryTitle text="Реєстрація" />
-      <RegisterForm/>
-      <Link href="/dashboard" style={{ marginTop: 20, color: 'green' }}>
-        Dashboard
-          </Link>
-          <Link href="/login" style={{ marginTop: 20, color: 'green' }}>
-        Login
-      </Link>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Wrapper className="px-4 pt-11 h-full bg-white flex justify-center items-center">
+        <PrimaryTitle text="Реєстрація" classNames="mb-8"/>
+        <RegisterForm />
+        <Link href="/dashboard" style={{color: 'green' }}>
+          Dashboard
+        </Link>
+        <Link href="/welcome" style={{color: 'red' }}>
+          Welcome
+        </Link>
+        <Link href="/login" style={{color: 'green' }}>
+          Login
+        </Link>
       </Wrapper>
-      </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback>
   );
 };
 

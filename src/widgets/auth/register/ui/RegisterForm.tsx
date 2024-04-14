@@ -10,7 +10,9 @@ import {
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import { LabelInput, PrimaryInput } from '@/shared/ui';
+import { styled } from 'nativewind';
 
+const WrapperInputs = styled(View);
 
 const RegisterForm: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -34,52 +36,57 @@ const RegisterForm: React.FC = () => {
 
     return (
         <View >
-                
             <KeyboardAvoidingView
                 behavior={Platform.OS == "ios" ? "padding" : "height"}>
-                <View style={stylesRegister.formWrap}>
-                    <LabelInput text='Електронна пошта'/>
-                    <PrimaryInput
-                        // onFocus={() => onFocusToggle('login')}
-                        // onBlur={() => onBlurToggle('login')}
-                        onChangeText={setEmail}
-                        value={email}
-                        placeholder='example@email.com'
-                        autoFocus
-                        keyboardType="email-address"
-                    />
-                                        <LabelInput text='Пароль'/>
-                    <PrimaryInput
-                        // onFocus={() => onFocusToggle('password')}
-                        // onBlur={() => onBlurToggle('password')}
-                        onChangeText={setPassword}
-                        value={password}
-                        placeholder='password'
-                        secureTextEntry={showPassword}
-                    />
-                    <TouchableOpacity
-                        onPress={() => setShowPassword(!showPassword)}>
-                        <Text style={stylesRegister.visiblePassword}>
-                            {showPassword ? 'Показати' : 'Приховати'}
-                        </Text>
-                    </TouchableOpacity>
-                                                            <LabelInput text='Повторіть пароль'/>
-                    <PrimaryInput
-                        // onFocus={() => onFocusToggle('password')}
-                        // onBlur={() => onBlurToggle('password')}
-                        onChangeText={setPassword}
-                        value={password}
-                        placeholder='password'
-                        secureTextEntry={showPassword}
-                    />
-                    <TouchableOpacity
-                        style={stylesRegister.touchWrapForm}
-                        onPress={() => setShowPassword(!showPassword)}>
-                        <Text style={stylesRegister.visiblePassword}>
-                            {showPassword ? 'Показати' : 'Приховати'}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+                <WrapperInputs className="flex justify-center gap-4 mb-6">
+                    <View>
+                        <LabelInput text='Електронна пошта' />
+                        <PrimaryInput
+                            // onFocus={() => onFocusToggle('login')}
+                            // onBlur={() => onBlurToggle('login')}
+                            onChangeText={setEmail}
+                            value={email}
+                            placeholder='example@email.com'
+                            autoFocus
+                            keyboardType="email-address"
+                        />
+                    </View>
+                    <View>
+                        <LabelInput text='Пароль'/>
+                        <PrimaryInput
+                            // onFocus={() => onFocusToggle('password')}
+                            // onBlur={() => onBlurToggle('password')}
+                            onChangeText={setPassword}
+                            value={password}
+                            placeholder='password'
+                            secureTextEntry={showPassword}
+                        />
+                        <TouchableOpacity
+                            onPress={() => setShowPassword(!showPassword)}>
+                            <Text style={stylesRegister.visiblePassword}>
+                                {showPassword ? 'Показати' : 'Приховати'}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <LabelInput text='Повторіть пароль' />
+                        <PrimaryInput
+                            // onFocus={() => onFocusToggle('password')}
+                            // onBlur={() => onBlurToggle('password')}
+                            onChangeText={setPassword}
+                            value={password}
+                            placeholder='password'
+                            secureTextEntry={showPassword}
+                        />
+                        <TouchableOpacity
+                            style={stylesRegister.touchWrapForm}
+                            onPress={() => setShowPassword(!showPassword)}>
+                            <Text style={stylesRegister.visiblePassword}>
+                                {showPassword ? 'Показати' : 'Приховати'}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </WrapperInputs>
             </KeyboardAvoidingView>
             <Text>Згоден з умовами та політикою конфіденційності</Text>
             <Pressable style={stylesRegister.button}

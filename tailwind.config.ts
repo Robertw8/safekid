@@ -19,6 +19,7 @@ module.exports = {
         'gray-primary': '#464749',
         'gray-input': '#E8E8E8',
         'purple': '#3D33E2',
+        'white': '#FFFFFF',
       },
     },
   },
