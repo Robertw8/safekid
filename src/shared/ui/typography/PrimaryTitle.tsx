@@ -2,16 +2,19 @@ import { styled } from 'nativewind';
 import { Text } from 'react-native';
 
 interface PrimaryTitleProps {
-  text: string;
+  children: React.ReactNode | string;
   classNames?: string;
 }
 
 const Title = styled(Text);
 
-const PrimaryTitle: React.FC<PrimaryTitleProps> = ({ text, classNames }) => {
+const PrimaryTitle: React.FC<PrimaryTitleProps> = ({
+  children,
+  classNames,
+}) => {
   return (
     <Title className={`font-semibold text-4xl text-black ${classNames}`}>
-      {text}
+      {children}
     </Title>
   );
 };

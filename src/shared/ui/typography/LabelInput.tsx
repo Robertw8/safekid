@@ -2,16 +2,16 @@ import { styled } from 'nativewind';
 import { Text } from 'react-native';
 
 interface LabelInputProps {
-  text: string;
+  children: React.ReactNode | string;
   classNames?: string;
 }
 
 const Label = styled(Text);
 
-const LabelInput: React.FC<LabelInputProps> = ({ text, classNames }) => {
+const LabelInput: React.FC<LabelInputProps> = ({ children, classNames }) => {
   return (
     <Label className={`font-medium text-base/5 text-black ${classNames}`}>
-      {text}
+      {children}
     </Label>
   );
 };
