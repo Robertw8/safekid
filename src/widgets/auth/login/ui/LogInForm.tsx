@@ -28,14 +28,14 @@ const LogInForm = () => {
     console.log('password =>', password);
     setEmail('');
     setPassword('');
-    router.replace('/(tabs)/dashboard');
+    router.replace('/dashboard');
   };
 
   const onFocusToggle = inputName => {
-    setIsFocus({ [inputName]: true });
+    setIsFocus(prevState => ({ ...prevState, [inputName]: true }));
   };
   const onBlurToggle = inputName => {
-    setIsFocus({ [inputName]: false });
+    setIsFocus(prevState => ({ ...prevState, [inputName]: false }));
   };
 
   return (
@@ -46,7 +46,7 @@ const LogInForm = () => {
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         >
           <View style={stylesLogin.formWrap}>
-                                <LabelInput text='Електронна пошта'/>
+            <LabelInput>Електронна пошта</LabelInput>
             <TextInput
               style={[
                 stylesLogin.input,
@@ -60,7 +60,7 @@ const LogInForm = () => {
               placeholder="Адреса електронної пошти"
               keyboardType="email-address"
             />
-                                <LabelInput text='Пароль'/>
+            <LabelInput>Пароль</LabelInput>
             <TextInput
               style={[
                 stylesLogin.input,
@@ -86,7 +86,7 @@ const LogInForm = () => {
           </View>
         </KeyboardAvoidingView>
         <Link
-          href="/password-reset"
+          href="/adult/password-reset"
           style={[stylesLogin.visiblePassword, { marginBottom: 20 }]}
         >
           Забули пароль?
@@ -95,7 +95,7 @@ const LogInForm = () => {
           <Text style={stylesLogin.textButton}>Увійти</Text>
         </Pressable>
 
-        <Link href="/register" style={stylesLogin.visiblePassword}>
+        <Link href="/adult/register" style={stylesLogin.visiblePassword}>
           Немає акаунту? Зареєструватися
         </Link>
       </View>
@@ -135,7 +135,6 @@ const stylesLogin = StyleSheet.create({
     borderRadius: 10,
     padding: 16,
     paddingBottom: 15,
-    borderWidth: 1,
     color: '#212121',
   },
   inputFocus: {
