@@ -4,7 +4,7 @@ import { AccessibilityRole, Text, TouchableOpacity } from 'react-native';
 interface PrimaryButtonProps {
   text: string;
   onPress: () => void;
-  accessible: boolean;
+  accessible?: boolean;
   hint?: string;
   label?: string;
   role?: AccessibilityRole;
@@ -34,7 +34,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       accessibilityRole={role || 'button'}
       accessible={accessible || true}
       onPress={onPress}
-      className={`bg-gray-500 px-4 py-2 rounded-lg flex flex-row justify-center items-center ${classNames}`}
+      className={`bg-gray-500 px-4 py-2 rounded-lg flex justify-center items-center ${classNames}`}
       activeOpacity={activeOpacity || 0.75}
     >
       <StyledText className={`font-semibold text-base ${textClassNames}`}>
