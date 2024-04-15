@@ -1,4 +1,4 @@
-import { WelcomeScreen } from '@/screens/auth';
+import { WelcomeScreen } from '@/screens/adult/auth';
 
 const Welcome: React.FC = () => {
   return <WelcomeScreen />;
