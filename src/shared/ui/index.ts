@@ -1,6 +1,7 @@
 export { default as PrimaryButton } from './buttons/PrimaryButton';
 export { default as IconButton } from './buttons/IconButton';
 export { default as BackButton } from './buttons/BackButton';
+export { default as Switch } from './buttons/Switch';
 export { default as PrimaryTitle } from './typography/PrimaryTitle';
 export { default as SecondaryTitle } from './typography/SecondaryTitle';
 export { default as LabelInput } from './typography/LabelInput';
