@@ -37,7 +37,9 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       className={`h-10 bg-gray-button px-4 py-2 rounded-lg flex flex-row justify-center items-center ${classNames}`}
       activeOpacity={activeOpacity || 0.75}
     >
-      <StyledText className={`font-semibold text-base text-black-primary ${textClassNames}`}>
+      <StyledText
+        className={`font-semibold text-base text-black-primary ${textClassNames}`}
+      >
         {text}
       </StyledText>
     </StyledButton>

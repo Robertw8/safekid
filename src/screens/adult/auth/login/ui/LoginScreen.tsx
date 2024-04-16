@@ -1,23 +1,23 @@
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
+import { LogInForm } from '@/widgets/auth';
+import { styled } from 'nativewind';
 import { Link } from 'expo-router';
 import { HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
-import { styled } from 'nativewind';
-import { RegisterForm } from '@/widgets/auth';
 
 const Wrapper = styled(View);
 
-const RegisterScreen: React.FC = () => {
+const LoginScreen: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Wrapper className="px-4 pt-11 pb-13 h-full bg-white flex items-center">
-        <PrimaryTitle text="Реєстрація" classNames="mb-8" />
-        <RegisterForm />
-        <Link href="/login">
-          <NormalText text='Вже є акаунт?'/> <HyperText text='Увійти'/>
+        <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
+        <LogInForm />
+        <Link href="/register">
+          <NormalText text="Не маєте акаунту?" /> <HyperText text="Створити" />
         </Link>
       </Wrapper>
     </TouchableWithoutFeedback>
   );
 };
 
-export default RegisterScreen;
+export default LoginScreen;

@@ -2,21 +2,21 @@ import { styled } from 'nativewind';
 import { Text } from 'react-native';
 
 interface SecondaryTitleProps {
-  text: string;
+  children: React.ReactNode | string;
   classNames?: string;
 }
 
 const Title = styled(Text);
 
 const SecondaryTitle: React.FC<SecondaryTitleProps> = ({
-  text,
+  children,
   classNames,
 }) => {
   return (
     <Title
       className={`font-semibold text-2xl text-black-primary ${classNames}`}
     >
-      {text}
+      {children}
     </Title>
   );
 };

@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
       }}
     >
       <Text>Dashboard page</Text>
-      <Link href="/login" style={{ marginTop: 20, color: 'green' }}>
+      <Link href="/adult/login" style={{ marginTop: 20, color: 'green' }}>
         Login tut
       </Link>
     </View>
