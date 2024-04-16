@@ -18,13 +18,15 @@ module.exports = {
         'black-20': '#00160A33',
         'gray-primary': '#464749',
         'gray-input': '#E8E8E8',
-        'gray-button':'#ACACAC',
-        'purple': '#3D33E2',
-        'white': '#FFFFFF',
+        'gray-button': '#ACACAC',
+        'gray-disabled': '#D9D9D9',
+        purple: '#3D33E2',
+        white: '#FFFFFF',
+        green: '#0D8065',
       },
       spacing: {
         '13': '50px',
-      }
+      },
     },
   },
 };
