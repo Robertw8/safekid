@@ -1,5 +1,5 @@
 import { Redirect, SplashScreen, Stack } from 'expo-router';
-import { StoreProvider } from './providers/StoreProvider/ui';
+import { StoreProvider } from './providers/StoreProvider';
 
 // SplashScreen.preventAutoHideAsync(); // ! temp
 
