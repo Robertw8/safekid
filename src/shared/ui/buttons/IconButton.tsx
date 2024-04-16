@@ -1,22 +1,23 @@
 import { AccessibilityRole, TouchableOpacity } from 'react-native';
 import Icon from '../graphics/Icon';
+import { styled } from 'nativewind';
 
 interface IconButtonProps {
   iconXml: string;
   onPress: () => void;
-  accessible: boolean;
   hint: string;
   label: string;
-  role: AccessibilityRole;
+  role?: AccessibilityRole;
   classNames?: string;
   iconClassNames?: string;
   activeOpacity?: number;
 }
 
+const StyledButton = styled(TouchableOpacity);
+
 const IconButton: React.FC<IconButtonProps> = ({
   iconXml,
   onPress,
-  accessible,
   hint,
   label,
   role,
@@ -25,9 +26,17 @@ const IconButton: React.FC<IconButtonProps> = ({
   activeOpacity,
 }) => {
   return (
-    <TouchableOpacity>
-      <Icon xml={iconXml} />
-    </TouchableOpacity>
+    <StyledButton
+      accessibilityLabel={label}
+      accessibilityHint={hint}
+      accessibilityRole={role || 'button'}
+      accessible={true}
+      onPress={onPress}
+      className={`${classNames}`}
+      activeOpacity={activeOpacity || 0.75}
+    >
+      <Icon xml={iconXml} classNames={iconClassNames} />
+    </StyledButton>
   );
 };
 
