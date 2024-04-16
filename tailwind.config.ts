@@ -18,9 +18,13 @@ module.exports = {
         'black-20': '#00160A33',
         'gray-primary': '#464749',
         'gray-input': '#E8E8E8',
+        'gray-button':'#ACACAC',
         'purple': '#3D33E2',
         'white': '#FFFFFF',
       },
+      spacing: {
+        '13': '50px',
+      }
     },
   },
 };
