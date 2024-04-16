@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { router } from 'expo-router';
+import { styled } from 'nativewind';
 
 import {
   BackButton,
@@ -8,7 +9,6 @@ import {
   SecondaryTitle,
 } from '@/shared/ui';
 import { Camera } from 'expo-camera';
-import { styled } from 'nativewind';
 
 const StyledCamera = styled(Camera);
 
@@ -29,11 +29,7 @@ const ScanScreen: React.FC = () => {
 
   return (
     <PrimaryContainer>
-      <BackButton
-        label="Go back"
-        hint="Go to the last page you visited"
-        onPress={() => router.replace('/welcome')}
-      />
+      <BackButton onPress={() => router.replace('/welcome')} />
       {!hasPermission ? (
         <>
           <SecondaryTitle>
