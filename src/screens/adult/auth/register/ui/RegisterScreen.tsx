@@ -12,7 +12,7 @@ const RegisterScreen: React.FC = () => {
       <Wrapper className="px-4 pt-11 pb-13 h-full bg-white flex items-center">
         <PrimaryTitle classNames="mb-8">Реєстрація</PrimaryTitle>
         <RegisterForm />
-        <Link href="/login">
+        <Link href="/adult/login">
           <NormalText text="Вже є акаунт?" /> <HyperText text="Увійти" />
         </Link>
       </Wrapper>

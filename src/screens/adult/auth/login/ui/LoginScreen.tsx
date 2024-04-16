@@ -12,7 +12,7 @@ const LoginScreen: React.FC = () => {
       <Wrapper className="px-4 pt-11 pb-13 h-full bg-white flex items-center">
         <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
         <LogInForm />
-        <Link href="/register">
+        <Link href="/adult/register">
           <NormalText text="Не маєте акаунту?" /> <HyperText text="Створити" />
         </Link>
       </Wrapper>

@@ -54,7 +54,7 @@ const RegisterForm: React.FC = () => {
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
           <View>
-            <LabelInput text="Електронна пошта" />
+            <LabelInput>Електронна пошта</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('login')}
               // onBlur={() => onBlurToggle('login')}
@@ -66,7 +66,7 @@ const RegisterForm: React.FC = () => {
             />
           </View>
           <View style={{ position: 'relative' }}>
-            <LabelInput text="Пароль" />
+            <LabelInput>Пароль</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('password')}
               // onBlur={() => onBlurToggle('password')}
@@ -87,7 +87,7 @@ const RegisterForm: React.FC = () => {
             </TouchableOpacityStyled>
           </View>
           <View style={{ position: 'relative' }}>
-            <LabelInput text="Повторіть пароль" />
+            <LabelInput>Повторіть пароль</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('password')}
               // onBlur={() => onBlurToggle('password')}
@@ -109,7 +109,7 @@ const RegisterForm: React.FC = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <Link href="/login">
+      <Link href="/adult/login">
         <NormalText
           text="Згоден з"
           classNames="font-normal text-xs leading-normal"

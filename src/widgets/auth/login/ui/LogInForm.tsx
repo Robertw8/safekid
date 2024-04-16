@@ -38,7 +38,7 @@ const LogInForm = () => {
     console.log('password =>', password);
     setEmail('');
     setPassword('');
-    router.replace('/(tabs)/dashboard');
+    router.replace('/dashboard');
   };
 
   // const onFocusToggle = inputName => {
@@ -55,7 +55,7 @@ const LogInForm = () => {
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
           <View>
-            <LabelInput text="Електронна пошта" />
+            <LabelInput>Електронна пошта</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('login')}
               // onBlur={() => onBlurToggle('login')}
@@ -67,7 +67,7 @@ const LogInForm = () => {
             />
           </View>
           <View style={{ position: 'relative' }}>
-            <LabelInput text="Пароль" />
+            <LabelInput>Пароль</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('password')}
               // onBlur={() => onBlurToggle('password')}
@@ -90,7 +90,7 @@ const LogInForm = () => {
         </WrapperInputs>
       </KeyboardAvoidingView>
       <Link
-        href="/password-reset"
+        href="/adult/password-reset"
         className="self-center font-normal text-sm leading-normal underline text-black"
       >
         Забули пароль?
