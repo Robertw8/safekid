@@ -1,9 +1,6 @@
 import {
-    StyleSheet,
-    Text,
     TouchableOpacity,
     View,
-    Pressable,
     KeyboardAvoidingView,
     Platform,
 } from 'react-native';
@@ -108,27 +105,3 @@ const RegisterForm: React.FC = () => {
 };
 
 export default RegisterForm;
-
-
-export const stylesRegister = StyleSheet.create({
-
-
-
-  inputFocus: {
-    borderColor: '#FF6C00',
-    backgroundColor: '#FFFFFF',
-  },
-  inputBlur: {
-    borderColor: '#E8E8E8',
-    backgroundColor: '#F6F6F6',
-  },
-  touchWrapForm: {
-    position: 'absolute',
-    bottom: 31,
-    right: 16,
-  },
-
-  visiblePassword: {
-    color: '#1B4371',
-  },
-});
