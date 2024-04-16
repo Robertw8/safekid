@@ -1,176 +1,110 @@
 import {
-  StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
   View,
-  Pressable,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
-  Keyboard,
+  Text,
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
-import { LabelInput } from '@/shared/ui';
+import { styled } from 'nativewind';
+import {
+  HyperText,
+  Icon,
+  LabelInput,
+  NormalText,
+  PrimaryButton,
+  PrimaryInput,
+  closedEyeIcon,
+  openEyeIcon,
+} from '@/shared/ui';
+
+const WrapperInputs = styled(View);
+const TouchableOpacityStyled = styled(TouchableOpacity);
+const WrapperForm = styled(View);
+const TextStyled = styled(Text);
 
 const LogInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
-  const [isFocus, setIsFocus] = useState({
-    email: false,
-    password: false,
-  });
+  // const [isFocus, setIsFocus] = useState({
+  //   email: false,
+  //   password: false,
+  // });
 
   const onSubmitForm = () => {
     console.log('email =>', email);
     console.log('password =>', password);
     setEmail('');
     setPassword('');
-    router.replace('/dashboard');
+    router.replace('/(tabs)/dashboard');
   };
 
-  const onFocusToggle = inputName => {
-    setIsFocus(prevState => ({ ...prevState, [inputName]: true }));
-  };
-  const onBlurToggle = inputName => {
-    setIsFocus(prevState => ({ ...prevState, [inputName]: false }));
-  };
+  // const onFocusToggle = inputName => {
+  //   setIsFocus({ [inputName]: true });
+  // };
+  // const onBlurToggle = inputName => {
+  //   setIsFocus({ [inputName]: false });
+  // };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={stylesLogin.container}>
-        <Text style={stylesLogin.title}>Увійти</Text>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-        >
-          <View style={stylesLogin.formWrap}>
-            <LabelInput>Електронна пошта</LabelInput>
-            <TextInput
-              style={[
-                stylesLogin.input,
-                isFocus.email ? stylesLogin.inputFocus : stylesLogin.inputBlur,
-              ]}
-              autoFocus
-              onFocus={() => onFocusToggle('email')}
-              onBlur={() => onBlurToggle('email')}
+    <WrapperForm className="grow mb-9 w-full">
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      >
+        <WrapperInputs className="flex justify-center gap-4 mb-6">
+          <View>
+            <LabelInput text="Електронна пошта" />
+            <PrimaryInput
+              // onFocus={() => onFocusToggle('login')}
+              // onBlur={() => onBlurToggle('login')}
               onChangeText={setEmail}
               value={email}
-              placeholder="Адреса електронної пошти"
+              placeholder="example@email.com"
+              autoFocus
               keyboardType="email-address"
             />
-            <LabelInput>Пароль</LabelInput>
-            <TextInput
-              style={[
-                stylesLogin.input,
-                isFocus.password
-                  ? stylesLogin.inputFocus
-                  : stylesLogin.inputBlur,
-              ]}
-              onFocus={() => onFocusToggle('password')}
-              onBlur={() => onBlurToggle('password')}
+          </View>
+          <View style={{ position: 'relative' }}>
+            <LabelInput text="Пароль" />
+            <PrimaryInput
+              // onFocus={() => onFocusToggle('password')}
+              // onBlur={() => onBlurToggle('password')}
               onChangeText={setPassword}
               value={password}
-              placeholder="Пароль"
+              placeholder="password"
               secureTextEntry={showPassword}
             />
-            <TouchableOpacity
-              style={stylesLogin.touchWrapForm}
+            <TouchableOpacityStyled
+              className="absolute bottom-3.5 right-3.5"
               onPress={() => setShowPassword(!showPassword)}
             >
-              <Text style={stylesLogin.visiblePassword}>
-                {showPassword ? 'Показати' : 'Приховати'}
-              </Text>
-            </TouchableOpacity>
+              {showPassword ? (
+                <Icon xml={closedEyeIcon} />
+              ) : (
+                <Icon xml={openEyeIcon} />
+              )}
+            </TouchableOpacityStyled>
           </View>
-        </KeyboardAvoidingView>
-        <Link
-          href="/adult/password-reset"
-          style={[stylesLogin.visiblePassword, { marginBottom: 20 }]}
-        >
-          Забули пароль?
-        </Link>
-        <Pressable style={stylesLogin.button} onPress={onSubmitForm}>
-          <Text style={stylesLogin.textButton}>Увійти</Text>
-        </Pressable>
-
-        <Link href="/adult/register" style={stylesLogin.visiblePassword}>
-          Немає акаунту? Зареєструватися
-        </Link>
-      </View>
-    </TouchableWithoutFeedback>
+        </WrapperInputs>
+      </KeyboardAvoidingView>
+      <Link
+        href="/password-reset"
+        className="self-center font-normal text-sm leading-normal underline text-black"
+      >
+        Забули пароль?
+      </Link>
+      <PrimaryButton
+        text="Увійти"
+        onPress={onSubmitForm}
+        hint="Увійти в свій акаунт"
+        label="Увійти"
+        role="button"
+        classNames="w-48 self-center mt-auto	"
+      />
+    </WrapperForm>
   );
 };
-
-const stylesLogin = StyleSheet.create({
-  container: {
-    position: 'relative',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingTop: 32,
-    paddingBottom: 144,
-    width: '100%',
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 25,
-  },
-  title: {
-    fontSize: 30,
-    // fontFamily: 'RobotoMedium',
-    letterSpacing: 0.3,
-    marginBottom: 33,
-  },
-  formWrap: {
-    width: 343,
-    gap: 16,
-    marginBottom: 43,
-    position: 'relative',
-  },
-  input: {
-    height: 50,
-    width: '100%',
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 16,
-    paddingBottom: 15,
-    color: '#212121',
-  },
-  inputFocus: {
-    borderColor: '#FF6C00',
-    backgroundColor: '#FFFFFF',
-  },
-  inputBlur: {
-    borderColor: '#E8E8E8',
-    backgroundColor: '#F6F6F6',
-  },
-  touchWrapForm: {
-    position: 'absolute',
-    bottom: 31,
-    right: 16,
-  },
-  button: {
-    width: 343,
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: 100,
-    backgroundColor: '#FF6C00',
-    marginBottom: 16,
-  },
-  textButton: {
-    color: '#FFF',
-    textAlign: 'center',
-  },
-  visiblePassword: {
-    color: '#1B4371',
-  },
-  textUnderButton: {
-    color: '#1B4371',
-    textShadowColor: 'rgba(0, 0, 0, 0.25)',
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 4,
-  },
-});
 
 export default LogInForm;

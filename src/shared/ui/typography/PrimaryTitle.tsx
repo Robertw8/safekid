@@ -13,7 +13,9 @@ const PrimaryTitle: React.FC<PrimaryTitleProps> = ({
   classNames,
 }) => {
   return (
-    <Title className={`font-semibold text-4xl text-black ${classNames}`}>
+    <Title
+      className={`font-semibold text-4xl text-black-primary ${classNames}`}
+    >
       {children}
     </Title>
   );

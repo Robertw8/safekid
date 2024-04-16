@@ -1,28 +1,23 @@
-import { StyleSheet } from 'react-native';
-import { View } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { LogInForm } from '@/widgets/auth';
+import { styled } from 'nativewind';
+import { Link } from 'expo-router';
+import { HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
+
+const Wrapper = styled(View);
 
 const LoginScreen: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <LogInForm />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Wrapper className="px-4 pt-11 pb-13 h-full bg-white flex items-center">
+        <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
+        <LogInForm />
+        <Link href="/register">
+          <NormalText text="Не маєте акаунту?" /> <HyperText text="Створити" />
+        </Link>
+      </Wrapper>
+    </TouchableWithoutFeedback>
   );
 };
-
-export const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '#fff',
-    // fontFamily: 'RobotoRegular',
-    fontSize: 16,
-    fontStyle: 'normal',
-    color: '#212121',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default LoginScreen;

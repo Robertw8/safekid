@@ -1,20 +1,34 @@
 import {
-  StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  Pressable,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
-import { LabelInput, PrimaryInput } from '@/shared/ui';
+import {
+  HyperText,
+  Icon,
+  LabelInput,
+  NormalText,
+  PrimaryButton,
+  PrimaryInput,
+  closedEyeIcon,
+  openEyeIcon,
+} from '@/shared/ui';
+import { styled } from 'nativewind';
+
+const WrapperInputs = styled(View);
+const TouchableOpacityStyled = styled(TouchableOpacity);
+const WrapperForm = styled(View);
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(true);
+  const [passwordFirst, setPasswordFirst] = useState('');
+  const [passwordSecond, setPasswordSecond] = useState('');
+  const [showPasswordFirst, setShowPasswordFirst] = useState(true);
+  const [showPasswordSecond, setShowPasswordSecond] = useState(true);
+
   // const [isFocus, setIsFocus] = useState({
   //     email: false,
   //     password: false
@@ -22,9 +36,11 @@ const RegisterForm: React.FC = () => {
 
   const onSubmitForm = () => {
     console.log('email =>', email);
-    console.log('password =>', password);
+    console.log('passwordFirst =>', passwordFirst);
+    console.log('passwordSecond =>', passwordSecond);
     setEmail('');
-    setPassword('');
+    setPasswordFirst('');
+    setPasswordSecond('');
     router.replace('/(tabs)/dashboard' as `${string}:${string}`);
   };
 
@@ -32,127 +48,87 @@ const RegisterForm: React.FC = () => {
   // const onBlurToggle = (inputName) => { setIsFocus({ [inputName]: false }) };
 
   return (
-    <View>
+    <WrapperForm className="grow mb-9 w-full">
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
-        <View style={stylesRegister.formWrap}>
-          <LabelInput>Електронна пошта</LabelInput>
-          <PrimaryInput
-            // onFocus={() => onFocusToggle('login')}
-            // onBlur={() => onBlurToggle('login')}
-            onChangeText={setEmail}
-            value={email}
-            placeholder="example@email.com"
-            autoFocus
-            keyboardType="email-address"
-          />
-          <LabelInput>Пароль</LabelInput>
-          <PrimaryInput
-            // onFocus={() => onFocusToggle('password')}
-            // onBlur={() => onBlurToggle('password')}
-            onChangeText={setPassword}
-            value={password}
-            placeholder="password"
-            secureTextEntry={showPassword}
-          />
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            <Text style={stylesRegister.visiblePassword}>
-              {showPassword ? 'Показати' : 'Приховати'}
-            </Text>
-          </TouchableOpacity>
-          <LabelInput>Повторіть пароль</LabelInput>
-          <PrimaryInput
-            // onFocus={() => onFocusToggle('password')}
-            // onBlur={() => onBlurToggle('password')}
-            onChangeText={setPassword}
-            value={password}
-            placeholder="password"
-            secureTextEntry={showPassword}
-          />
-          <TouchableOpacity
-            style={stylesRegister.touchWrapForm}
-            onPress={() => setShowPassword(!showPassword)}
-          >
-            <Text style={stylesRegister.visiblePassword}>
-              {showPassword ? 'Показати' : 'Приховати'}
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <WrapperInputs className="flex justify-center gap-4 mb-6">
+          <View>
+            <LabelInput text="Електронна пошта" />
+            <PrimaryInput
+              // onFocus={() => onFocusToggle('login')}
+              // onBlur={() => onBlurToggle('login')}
+              onChangeText={setEmail}
+              value={email}
+              placeholder="example@email.com"
+              autoFocus
+              keyboardType="email-address"
+            />
+          </View>
+          <View style={{ position: 'relative' }}>
+            <LabelInput text="Пароль" />
+            <PrimaryInput
+              // onFocus={() => onFocusToggle('password')}
+              // onBlur={() => onBlurToggle('password')}
+              onChangeText={setPasswordFirst}
+              value={passwordFirst}
+              placeholder="password"
+              secureTextEntry={showPasswordFirst}
+            />
+            <TouchableOpacityStyled
+              className="absolute bottom-3.5 right-3.5"
+              onPress={() => setShowPasswordFirst(!showPasswordFirst)}
+            >
+              {showPasswordFirst ? (
+                <Icon xml={closedEyeIcon} />
+              ) : (
+                <Icon xml={openEyeIcon} />
+              )}
+            </TouchableOpacityStyled>
+          </View>
+          <View style={{ position: 'relative' }}>
+            <LabelInput text="Повторіть пароль" />
+            <PrimaryInput
+              // onFocus={() => onFocusToggle('password')}
+              // onBlur={() => onBlurToggle('password')}
+              onChangeText={setPasswordSecond}
+              value={passwordSecond}
+              placeholder="password"
+              secureTextEntry={showPasswordSecond}
+            />
+            <TouchableOpacityStyled
+              className="absolute bottom-3.5 right-3.5"
+              onPress={() => setShowPasswordSecond(!showPasswordSecond)}
+            >
+              {showPasswordSecond ? (
+                <Icon xml={closedEyeIcon} />
+              ) : (
+                <Icon xml={openEyeIcon} />
+              )}
+            </TouchableOpacityStyled>
+          </View>
+        </WrapperInputs>
       </KeyboardAvoidingView>
-      <Text>Згоден з умовами та політикою конфіденційності</Text>
-      <Pressable style={stylesRegister.button} onPress={onSubmitForm}>
-        <Text style={stylesRegister.textButton}>Зареєструватися</Text>
-      </Pressable>
-      <Link href="/adult/login" style={stylesRegister.visiblePassword}>
-        Вже є акаунт? Увійти
+      <Link href="/login">
+        <NormalText
+          text="Згоден з"
+          classNames="font-normal text-xs leading-normal"
+        />{' '}
+        <HyperText
+          text="умовами та політикою конфіденційності"
+          classNames="font-normal	text-xs	leading-normal"
+        />
       </Link>
-    </View>
+      <PrimaryButton
+        text="Зареєструватися"
+        onPress={onSubmitForm}
+        hint="Зареєструвати ваш акаунт"
+        label="Зареєструватися"
+        role="button"
+        classNames="w-48 self-center mt-auto	"
+      />
+    </WrapperForm>
   );
 };
 
 export default RegisterForm;
-
-export const stylesRegister = StyleSheet.create({
-  container: {
-    position: 'relative',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    paddingTop: 92,
-    paddingBottom: 78,
-    width: '100%',
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 25,
-  },
-  formWrap: {
-    width: 343,
-    gap: 16,
-    marginBottom: 43,
-    position: 'relative',
-  },
-  input: {
-    height: 50,
-    width: '100%',
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 16,
-    paddingBottom: 15,
-    color: '#212121',
-  },
-  inputFocus: {
-    borderColor: '#FF6C00',
-    backgroundColor: '#FFFFFF',
-  },
-  inputBlur: {
-    borderColor: '#E8E8E8',
-    backgroundColor: '#F6F6F6',
-  },
-  touchWrapForm: {
-    position: 'absolute',
-    bottom: 31,
-    right: 16,
-  },
-  button: {
-    width: 343,
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: 100,
-    backgroundColor: '#FF6C00',
-    marginBottom: 16,
-  },
-  textButton: {
-    color: '#FFF',
-    textAlign: 'center',
-  },
-  visiblePassword: {
-    color: '#1B4371',
-  },
-  textUnderButton: {
-    color: '#1B4371',
-    textShadowColor: 'rgba(0, 0, 0, 0.25)',
-    textShadowOffset: { width: 0, height: 4 },
-    textShadowRadius: 4,
-  },
-});
