@@ -4,8 +4,8 @@ import { styled } from 'nativewind';
 import { AccessibilityRole, TouchableOpacity } from 'react-native';
 
 interface BackButtonProps {
-  hint: string;
-  label: string;
+  hint?: string;
+  label?: string;
   role?: AccessibilityRole;
   onPress?: () => void;
   classNames?: string;
@@ -24,8 +24,10 @@ const BackButton: React.FC<BackButtonProps> = ({
 }) => {
   return (
     <StyledButton
-      accessibilityLabel={label}
-      accessibilityHint={hint}
+      accessibilityLabel={label || 'Повернутись назад'}
+      accessibilityHint={
+        hint || 'Повернутись на останню сторінку яку ви відвідували'
+      }
       accessibilityRole={role || 'button'}
       accessible={true}
       onPress={onPress ? onPress : () => router.back()}
