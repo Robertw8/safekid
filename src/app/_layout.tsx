@@ -1,5 +1,5 @@
 import { Redirect, SplashScreen, Stack } from 'expo-router';
-import { StoreProvider } from './providers/StoreProvider';
+import { RootProvider } from './providers/RootProvider';
 
 // SplashScreen.preventAutoHideAsync(); // ! temp
 
@@ -7,14 +7,14 @@ const StackLayout: React.FC = () => {
   SplashScreen.hideAsync(); // ! temp
 
   return (
-    <StoreProvider>
+    <RootProvider>
       <Redirect href="/welcome" />
       <Stack
         screenOptions={{
           headerShown: false,
         }}
       />
-    </StoreProvider>
+    </RootProvider>
   );
 };
 
