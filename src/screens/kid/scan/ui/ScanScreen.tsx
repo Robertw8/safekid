@@ -9,6 +9,7 @@ import {
   SecondaryTitle,
 } from '@/shared/ui';
 import { Camera } from 'expo-camera';
+import { Link } from 'expo-router';
 
 const StyledCamera = styled(Camera);
 
@@ -24,12 +25,12 @@ const ScanScreen: React.FC = () => {
   const handleBarCodeScanned = ({}) => {
     setScanned(true);
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    router.replace('/dashboard');
+    router.navigate('/kid/home');
   };
 
   return (
     <PrimaryContainer>
-      <BackButton onPress={() => router.replace('/welcome')} />
+      <BackButton />
       {!hasPermission ? (
         <>
           <SecondaryTitle>
@@ -48,6 +49,9 @@ const ScanScreen: React.FC = () => {
           // barcodeScannerSettings={}
         />
       )}
+      <Link href="/kid/home" style={{ textAlign: 'center', marginTop: 56 }}>
+        Kid homepage
+      </Link>
     </PrimaryContainer>
   );
 };
