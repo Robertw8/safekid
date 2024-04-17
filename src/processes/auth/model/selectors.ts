@@ -1,3 +1,3 @@
-import { RootState } from '@/app/providers/StoreProvider/config';
+import { RootState } from '@/app/providers/StoreProvider';
 
 export const selectRole = (state: RootState) => state.auth.role;
