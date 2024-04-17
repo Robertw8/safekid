@@ -12,13 +12,16 @@ const PasswordReset: React.FC = () => {
       }}
     >
       <Text>Password reset screen</Text>
-      <Link href="/adult/login" style={{ marginTop: 20, color: 'red' }}>
+      <Link href="/auth/adult/login" style={{ marginTop: 20, color: 'red' }}>
         Login tut
       </Link>
-      <Link href="/adult/register" style={{ marginTop: 20, color: 'yellow' }}>
+      <Link
+        href="/auth/adult/register"
+        style={{ marginTop: 20, color: 'yellow' }}
+      >
         Register tut
       </Link>
-      <Link href="/dashboard" style={{ marginTop: 20, color: 'green' }}>
+      <Link href="/adult/dashboard" style={{ marginTop: 20, color: 'green' }}>
         Dashboard tut
       </Link>
     </View>

@@ -1,7 +1,8 @@
+import { BackButton } from '@/shared/ui';
 import { Link } from 'expo-router';
 import { View, Text } from 'react-native';
 
-const Dashboard: React.FC = () => {
+const AdultDashboard: React.FC = () => {
   return (
     <View
       style={{
@@ -11,12 +12,13 @@ const Dashboard: React.FC = () => {
         alignItems: 'center',
       }}
     >
+      <BackButton />
       <Text>Dashboard page</Text>
-      <Link href="/adult/login" style={{ marginTop: 20, color: 'green' }}>
+      <Link href="/auth/adult/login" style={{ marginTop: 20, color: 'green' }}>
         Login tut
       </Link>
     </View>
   );
 };
 
-export default Dashboard;
+export default AdultDashboard;
