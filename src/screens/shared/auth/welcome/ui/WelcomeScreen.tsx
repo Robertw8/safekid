@@ -21,13 +21,13 @@ const WelcomeScreen: React.FC = () => {
   const handleAdultSelect = () => {
     dispatch(setUserRole('adult'));
     console.log('USER ROLE:', role);
-    router.replace('/adult/login');
+    router.navigate('/auth/adult/login');
   };
 
   const handleKidSelect = () => {
     dispatch(setUserRole('kid'));
     console.log('USER ROLE:', role);
-    router.replace('/kid/scan');
+    router.navigate('/auth/kid/scan');
   };
 
   return (
@@ -37,19 +37,16 @@ const WelcomeScreen: React.FC = () => {
         <ClickableRoleCard
           iconXml={adultIcon}
           title="Дорослий"
-          description="Lorem ipsum dolor sit amet."
           onPress={handleAdultSelect}
         />
         <ClickableRoleCard
           iconXml={kidIcon}
           title="Дитина"
-          description="Lorem ipsum dolor sit amet."
           classNames="mt-4"
-          // onPress={() => router.replace('/kid/scan')}
           onPress={handleKidSelect}
         />
       </CardsWrapper>
-      <Link href="/dashboard" style={{ marginTop: 20, color: 'green' }}>
+      <Link href="/adult/dashboard" style={{ marginTop: 20, color: 'green' }}>
         Dashboard
       </Link>
     </PrimaryContainer>
