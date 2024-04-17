@@ -7,6 +7,7 @@ import {
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import {
+  CheckButton,
   HyperText,
   Icon,
   LabelInput,
@@ -21,6 +22,7 @@ import { styled } from 'nativewind';
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
+const WrapperPrivacyPolice = styled(View);
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -28,6 +30,7 @@ const RegisterForm: React.FC = () => {
   const [passwordSecond, setPasswordSecond] = useState('');
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
+  const [privacy, setPrivacy] = useState(false);
 
   // const [isFocus, setIsFocus] = useState({
   //     email: false,
@@ -38,9 +41,11 @@ const RegisterForm: React.FC = () => {
     console.log('email =>', email);
     console.log('passwordFirst =>', passwordFirst);
     console.log('passwordSecond =>', passwordSecond);
+    console.log('privacy-police =>', privacy);
     setEmail('');
     setPasswordFirst('');
     setPasswordSecond('');
+    setPrivacy(false);
     router.replace('/(tabs)/dashboard' as `${string}:${string}`);
   };
 
@@ -109,15 +114,18 @@ const RegisterForm: React.FC = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <Link href="/adult/login" className='mb-6'>
-        <NormalText classNames="font-normal text-xs leading-normal" >
-          Згоден з
-        </NormalText>
-        {' '}
-        <HyperText classNames="font-normal text-xs	leading-normal">
-          умовами та політикою конфіденційності
-        </HyperText>
-      </Link>
+      <WrapperPrivacyPolice className='flex flex-row gap-2 content-center mb-6'>
+        <CheckButton checked={privacy} onPress={() => setPrivacy(!privacy)} />
+        <Link href="/adult/login">
+          <NormalText classNames="font-normal text-xs leading-normal" >
+            Згоден з
+          </NormalText>
+          {' '}
+          <HyperText classNames="font-normal text-xs	leading-normal">
+            умовами та політикою конфіденційності
+          </HyperText>
+        </Link>
+      </WrapperPrivacyPolice>
       <PrimaryButton
         text="Зареєструватися"
         onPress={onSubmitForm}
