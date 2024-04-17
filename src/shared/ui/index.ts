@@ -1,12 +1,16 @@
 export { default as PrimaryButton } from './buttons/PrimaryButton';
 export { default as IconButton } from './buttons/IconButton';
 export { default as BackButton } from './buttons/BackButton';
+export { default as CheckButton} from './buttons/CheckButton';
 export { default as Switch } from './buttons/Switch';
 export { default as PrimaryTitle } from './typography/PrimaryTitle';
 export { default as SecondaryTitle } from './typography/SecondaryTitle';
+export { default as TertiaryTitle } from './typography/TertiaryTitle';
 export { default as LabelInput } from './typography/LabelInput';
 export { default as HyperText } from './typography/HyperText';
 export { default as NormalText } from './typography/NormalText';
+export { default as IntroductionText } from './typography/IntroductionText';
+export { default as InstructionText } from './typography/InstructionText';
 export { default as Icon } from './graphics/Icon';
 export { default as adultIcon } from './graphics/icons/adult-icon';
 export { default as kidIcon } from './graphics/icons/kid-icon';
