@@ -114,9 +114,9 @@ const RegisterForm: React.FC = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <WrapperPrivacyPolice className='flex flex-row gap-2 content-center mb-6'>
+      <WrapperPrivacyPolice className='flex flex-row gap-2 items-center	 mb-6'>
         <CheckButton checked={privacy} onPress={() => setPrivacy(!privacy)} />
-        <Link href="/adult/login">
+        <Link href="/adult/privacy-police">
           <NormalText classNames="font-normal text-xs leading-normal" >
             Згоден з
           </NormalText>
