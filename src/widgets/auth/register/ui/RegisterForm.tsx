@@ -109,15 +109,14 @@ const RegisterForm: React.FC = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <Link href="/adult/login">
-        <NormalText
-          text="Згоден з"
-          classNames="font-normal text-xs leading-normal"
-        />{' '}
-        <HyperText
-          text="умовами та політикою конфіденційності"
-          classNames="font-normal	text-xs	leading-normal"
-        />
+      <Link href="/adult/login" className='mb-6'>
+        <NormalText classNames="font-normal text-xs leading-normal" >
+          Згоден з
+        </NormalText>
+        {' '}
+        <HyperText classNames="font-normal text-xs	leading-normal">
+          умовами та політикою конфіденційності
+        </HyperText>
       </Link>
       <PrimaryButton
         text="Зареєструватися"
@@ -125,7 +124,7 @@ const RegisterForm: React.FC = () => {
         hint="Зареєструвати ваш акаунт"
         label="Зареєструватися"
         role="button"
-        classNames="w-48 self-center mt-auto	"
+        classNames="w-48 self-center mt-auto"
       />
     </WrapperForm>
   );

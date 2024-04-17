@@ -91,7 +91,7 @@ const LogInForm = () => {
       </KeyboardAvoidingView>
       <Link
         href="/adult/password-reset"
-        className="self-center font-normal text-sm leading-normal underline text-black"
+        className="self-center font-normal text-sm leading-normal underline text-black mb-6"
       >
         Забули пароль?
       </Link>
@@ -101,7 +101,7 @@ const LogInForm = () => {
         hint="Увійти в свій акаунт"
         label="Увійти"
         role="button"
-        classNames="w-48 self-center mt-auto	"
+        classNames="w-48 self-center mt-auto"
       />
     </WrapperForm>
   );

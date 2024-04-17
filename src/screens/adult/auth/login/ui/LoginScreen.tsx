@@ -9,12 +9,14 @@ const Wrapper = styled(View);
 const LoginScreen: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Wrapper className="px-4 pt-11 pb-13 h-full bg-white flex items-center">
+      <Wrapper className="px-4 pt-152px pb-13 h-full bg-white flex items-center">
         <BackButton onPress={() => router.replace('/welcome')} />
         <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
         <LogInForm />
         <Link href="/adult/register">
-          <NormalText text="Не маєте акаунту?" /> <HyperText text="Створити" />
+          <NormalText>Не маєте акаунту?</NormalText>
+          {' '}
+          <HyperText>Створити</HyperText>
         </Link>
       </Wrapper>
     </TouchableWithoutFeedback>
