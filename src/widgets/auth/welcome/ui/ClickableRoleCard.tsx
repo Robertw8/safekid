@@ -4,7 +4,6 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 interface ClickableRoleCardProps {
   title: string;
-  description: string;
   onPress: () => void;
   iconXml: string;
   classNames?: string;
@@ -15,11 +14,9 @@ interface ClickableRoleCardProps {
 const StyledButton = styled(TouchableOpacity);
 const TextWrapper = styled(View);
 const Title = styled(Text);
-const Description = styled(Text);
 
 const ClickableRoleCard: React.FC<ClickableRoleCardProps> = ({
   title,
-  description,
   iconXml,
   classNames,
   iconClassNames,
@@ -28,7 +25,7 @@ const ClickableRoleCard: React.FC<ClickableRoleCardProps> = ({
 }) => {
   return (
     <StyledButton
-      className={`border border-black-20 rounded-2xl px-2 py-4 flex-row w-full ${classNames}`}
+      className={`border border-black-20 rounded-2xl px-4 py-4 flex-row items-center justify-between w-full ${classNames}`}
       activeOpacity={activeOpacity || 0.75}
       onPress={onPress}
     >
@@ -36,9 +33,6 @@ const ClickableRoleCard: React.FC<ClickableRoleCardProps> = ({
         <Title className="font-medium text-xl text-black-primary">
           {title}
         </Title>
-        <Description className="text-base text-gray-primary">
-          {description}
-        </Description>
       </TextWrapper>
       <Icon xml={iconXml} classNames={`ml-2 ${iconClassNames}`} />
     </StyledButton>
