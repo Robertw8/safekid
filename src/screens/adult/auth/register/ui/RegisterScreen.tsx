@@ -10,13 +10,11 @@ const RegisterScreen: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Wrapper className="px-4 pt-152px pb-13 h-full bg-white flex items-center">
-        <BackButton onPress={() => router.replace('/welcome')} />
+        <BackButton />
         <PrimaryTitle classNames="mb-8">Реєстрація</PrimaryTitle>
         <RegisterForm />
-        <Link href="/adult/login">
-          <NormalText>Вже є акаунт?</NormalText>
-          {' '}
-          <HyperText>Увійти</HyperText>
+        <Link href="/auth/adult/login">
+          <NormalText>Вже є акаунт?</NormalText> <HyperText>Увійти</HyperText>
         </Link>
       </Wrapper>
     </TouchableWithoutFeedback>
