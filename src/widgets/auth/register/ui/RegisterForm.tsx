@@ -46,7 +46,7 @@ const RegisterForm: React.FC = () => {
     setPasswordFirst('');
     setPasswordSecond('');
     setPrivacy(false);
-    router.replace('/(tabs)/dashboard' as `${string}:${string}`);
+    router.navigate('/dashboard' as `${string}:${string}`);
   };
 
   // const onFocusToggle = (inputName) => { setIsFocus({ [inputName]: true }) };
@@ -114,13 +114,12 @@ const RegisterForm: React.FC = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <WrapperPrivacyPolice className='flex flex-row gap-2 items-center	 mb-6'>
+      <WrapperPrivacyPolice className="flex flex-row gap-2 items-center	 mb-6">
         <CheckButton checked={privacy} onPress={() => setPrivacy(!privacy)} />
-        <Link href="/adult/privacy-police">
-          <NormalText classNames="font-normal text-xs leading-normal" >
+        <Link href="/auth/adult/privacy-police">
+          <NormalText classNames="font-normal text-xs leading-normal">
             Згоден з
-          </NormalText>
-          {' '}
+          </NormalText>{' '}
           <HyperText classNames="font-normal text-xs	leading-normal">
             умовами та політикою конфіденційності
           </HyperText>

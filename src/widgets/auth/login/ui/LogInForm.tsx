@@ -38,7 +38,7 @@ const LogInForm = () => {
     console.log('password =>', password);
     setEmail('');
     setPassword('');
-    router.replace('/dashboard');
+    router.navigate('/dashboard');
   };
 
   // const onFocusToggle = inputName => {
@@ -90,7 +90,7 @@ const LogInForm = () => {
         </WrapperInputs>
       </KeyboardAvoidingView>
       <Link
-        href="/adult/password-reset"
+        href="/auth/adult/password-reset"
         className="self-center font-normal text-sm leading-normal underline text-black mb-6"
       >
         Забули пароль?
