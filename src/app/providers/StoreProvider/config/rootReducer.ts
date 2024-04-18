@@ -1,5 +1,5 @@
 import { authReducer } from '@/processes/auth';
-import { listeningReducer } from '@/processes/listening';
+import { listeningReducer } from '@/features/listening';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
