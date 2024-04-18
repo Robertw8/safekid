@@ -6,6 +6,7 @@ import { CheckField } from "@/features/ui";
 import { useState } from "react";
 
 const Wrapper = styled(View);
+const WrapperText = styled(View);
 
 const InstructionScreen: React.FC = () => {
     const [check, setCheck] = useState(false);
@@ -15,18 +16,18 @@ const InstructionScreen: React.FC = () => {
             router.navigate('/adult/dashboard' as `${string}:${string}`);
             return;
         }
-        console.log('Підтвердіть ознайомлення з інструкцією');
+        alert('Підтвердіть ознайомлення з інструкцією');
     };
 
     return (
         <Wrapper className="px-4 pt-76px pb-52px h-full bg-white flex items-center">
             <TertiaryTitle>
-                Реєстрація успішна,  вітаємо!
+                Реєстрація успішна, вітаємо!
             </TertiaryTitle>
             <IntroductionText>
                 При використанні додатку важливо попередити вашу дитину про такі моменти!
             </IntroductionText>
-            <View >
+            <WrapperText className="mb-7">
                 <InstructionText>
                     Попередьте дитину про функціонування додатку та сигнал, який дитина почує, коли додаток розпізнає тригерну фразу та виявить потенційно небезпечну ситуацію. Поясніть, як потрібно себе поводити у таких ситуаціях та у потенційно небезпечних ситуаціях.
                 </InstructionText>
@@ -36,7 +37,7 @@ const InstructionScreen: React.FC = () => {
                 <InstructionText>
                     Рекомендуємо перевірити процес роботи обох частин додатку на своєму пристрої. Щоб потренуватися промовте три умовні тригерні фрази: “жовто-полосата валізка”, “блакитний гвинтокрил”, “рожевий єдиноріг”, на які додаток буде реагувати. Так ви зрозумієте, як саме додаток реагує на небезпеку.
                 </InstructionText>
-            </View>
+            </WrapperText>
             <CheckField checked={check} onPress={() => setCheck(!check)} classNames="self-start">
                 <InstructionText classNames={` mb-0 ${check ? 'text-black-100' : 'text-red-0'}`}>Ознайомлений</InstructionText>
             </CheckField>

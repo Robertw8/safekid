@@ -7,7 +7,6 @@ import {
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import {
-  CheckButton,
   HyperText,
   Icon,
   LabelInput,
@@ -23,7 +22,6 @@ import { CheckField } from '@/features/ui';
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
-const WrapperPrivacyPolice = styled(View);
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');

@@ -21,7 +21,7 @@ module.exports = {
         'gray-input': '#E8E8E8',
         'gray-button': '#ACACAC',
         'gray-disabled': '#D9D9D9',
-        'red': '#E82929',
+        'red-0': '#E82929',
         'purple': '#3D33E2',
         'white': '#FFFFFF',
         'green': '#0D8065',
