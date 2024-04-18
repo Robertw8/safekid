@@ -1,15 +1,8 @@
 import { Icon, NormalText, PrimaryButton, SecondaryTitle } from '@/shared/ui';
-import partialPermissionIcon from './icons/partial-permission-icon';
 import noPermissionIcon from './icons/no-permission-icon';
 import { Audio } from 'expo-av';
 
-interface PermissionSettingsProps {
-  permission?: boolean; // ! string "x" | "y"
-}
-
-const PermissionSettings: React.FC<PermissionSettingsProps> = ({
-  permission,
-}) => {
+const PermissionSettings: React.FC = () => {
   const [permissionResponse, requestPermission] = Audio.usePermissions();
 
   const handleSettingsClick = async () => {
@@ -19,11 +12,9 @@ const PermissionSettings: React.FC<PermissionSettingsProps> = ({
 
   return (
     <>
-      <Icon xml={permission ? partialPermissionIcon : noPermissionIcon} />
+      <Icon xml={noPermissionIcon} />
       <SecondaryTitle classNames="text-center mt-8">
-        {permission
-          ? 'Моніторинг може працювати не завжди!'
-          : 'Додаток не працює!'}
+        Додаток не працює!
       </SecondaryTitle>
       <NormalText classNames="text-center mt-2 text-black-primary">
         Надайте постійний доступ до мікрофону!
