@@ -17,5 +17,6 @@ export { default as kidIcon } from './graphics/icons/kid-icon';
 export { default as messageIcon } from './graphics/icons/message-icon';
 export { default as openEyeIcon } from './graphics/icons/open-eye';
 export { default as closedEyeIcon } from './graphics/icons/closed-eye';
+export { default as chatIcon } from './graphics/icons/chat-icon'
 export { default as PrimaryInput } from './input/PrimaryInput';
 export { default as PrimaryContainer } from './containers/PrimaryContainer';
