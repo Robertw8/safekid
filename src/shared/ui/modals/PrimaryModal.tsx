@@ -1,10 +1,11 @@
 import { styled } from 'nativewind';
-import { Modal, View, Text, TouchableOpacity } from 'react-native';
+import { Modal, View } from 'react-native';
 
 interface ModalProps {
   visible: boolean;
-  onClose: () => void;
-  title?: React.ReactNode;
+  onCancel: () => void;
+  onConfirm: () => void;
+  header?: React.ReactNode;
   body?: React.ReactNode;
   footer?: React.ReactNode;
   classNames?: string;
@@ -12,12 +13,12 @@ interface ModalProps {
 
 const ModalContainer = styled(View);
 const ModalContent = styled(View);
-const ModalButton = styled(TouchableOpacity);
 
 const PrimaryModal: React.FC<ModalProps> = ({
   visible,
-  onClose,
-  title,
+  onCancel,
+  onConfirm,
+  header,
   body,
   footer,
   classNames,
@@ -28,19 +29,9 @@ const PrimaryModal: React.FC<ModalProps> = ({
         className={` rounded-lg ml-16 mt-20 bg-white w-64 h-64 ${classNames}`}
       >
         <ModalContent className={`items-center mt-4 ${classNames}`}>
-          {title && <View>{title}</View>}
+          {header && <View>{header}</View>}
           {body && <View>{body}</View>}
-          {footer && (
-            <View>
-              {footer}
-              <ModalButton
-                onPress={onClose}
-                className={`items-center ${classNames}`}
-              >
-                <Text>Close Modal</Text>
-              </ModalButton>
-            </View>
-          )}
+          {footer && <View>{footer}</View>}
         </ModalContent>
       </ModalContainer>
     </Modal>
