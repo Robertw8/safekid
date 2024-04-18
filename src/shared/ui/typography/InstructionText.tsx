@@ -14,7 +14,7 @@ const InstructionText: React.FC<InstructionTextProps> = ({
 }) => {
   return (
     <Instruction
-      className={`font-normal text-xs leading-normal text-black ${classNames}`}
+      className={`font-normal text-xs leading-normal text-black mb-4 ${classNames}`}
     >
       {children}
     </Instruction>

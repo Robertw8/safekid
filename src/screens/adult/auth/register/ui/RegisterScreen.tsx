@@ -1,6 +1,6 @@
 import { styled } from 'nativewind';
 import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
-import { Link, router } from 'expo-router';
+import { Link } from 'expo-router';
 import { BackButton, HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
 import { RegisterForm } from '@/widgets/auth';
 
