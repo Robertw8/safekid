@@ -4,11 +4,11 @@
     "slug": "safekid",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/shared/assets/images/icon.png",
+    "icon": "./src/shared/assets/images/logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/shared/assets/images/splash.png",
+      "image": "./src/shared/assets/images/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/shared/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/shared/assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.robertw8.safekid"

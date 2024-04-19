@@ -3,6 +3,7 @@ import { checkMicrophonePermission, useListening } from '@/shared/lib';
 import { BackButton, PrimaryContainer } from '@/shared/ui';
 import { Listening, PermissionSettings } from '@/widgets/kid';
 import { PermissionResponse } from 'expo-camera';
+import { getDeviceToken } from '@/features/listening';
 
 const KidHomeScreen: React.FC = () => {
   const [permission, setPermission] = useState<PermissionResponse | null>(null);
@@ -10,7 +11,8 @@ const KidHomeScreen: React.FC = () => {
 
   useEffect(() => {
     checkMicrophonePermission().then(res => setPermission(res));
-  }, [permission]);
+    getDeviceToken().then(token => console.log('DEVICE TOKEN:', token));
+  }, []);
 
   return (
     <PrimaryContainer classNames="items-center">

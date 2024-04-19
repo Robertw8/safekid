@@ -7,7 +7,7 @@ import {
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import {
-  CheckButton,
+  CheckField,
   HyperText,
   Icon,
   LabelInput,
@@ -22,7 +22,6 @@ import { styled } from 'nativewind';
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
-const WrapperPrivacyPolice = styled(View);
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -46,7 +45,7 @@ const RegisterForm: React.FC = () => {
     setPasswordFirst('');
     setPasswordSecond('');
     setPrivacy(false);
-    router.navigate('/dashboard' as `${string}:${string}`);
+    router.navigate('/adult/instruction' as `${string}:${string}`);
   };
 
   // const onFocusToggle = (inputName) => { setIsFocus({ [inputName]: true }) };
@@ -114,8 +113,7 @@ const RegisterForm: React.FC = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <WrapperPrivacyPolice className="flex flex-row gap-2 items-center	 mb-6">
-        <CheckButton checked={privacy} onPress={() => setPrivacy(!privacy)} />
+      <CheckField checked={privacy} onPress={() => setPrivacy(!privacy)}>
         <Link href="/auth/adult/privacy-police">
           <NormalText classNames="font-normal text-xs leading-normal">
             Згоден з
@@ -124,7 +122,7 @@ const RegisterForm: React.FC = () => {
             умовами та політикою конфіденційності
           </HyperText>
         </Link>
-      </WrapperPrivacyPolice>
+      </CheckField>
       <PrimaryButton
         text="Зареєструватися"
         onPress={onSubmitForm}
