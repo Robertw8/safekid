@@ -14,7 +14,7 @@ const TertiaryTitle: React.FC<TertiaryTitleProps> = ({
 }) => {
   return (
     <Title
-      className={`font-medium text-xl text-black mb-4 ${classNames}`}
+      className={`font-medium text-xl text-black ${classNames}`}
     >
       {children}
     </Title>

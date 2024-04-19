@@ -7,6 +7,7 @@ import {
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import {
+  CheckField,
   HyperText,
   Icon,
   LabelInput,
@@ -17,7 +18,6 @@ import {
   openEyeIcon,
 } from '@/shared/ui';
 import { styled } from 'nativewind';
-import { CheckField } from '@/features/ui';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);

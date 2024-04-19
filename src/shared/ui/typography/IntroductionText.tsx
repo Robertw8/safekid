@@ -14,7 +14,7 @@ const IntroductionText: React.FC<IntroductionTextProps> = ({
 }) => {
   return (
     <Introduction
-      className={`font-normal text-sm leading-normal text-black-primary mb-5 ${classNames}`}
+      className={`font-normal text-sm leading-normal text-black-primary ${classNames}`}
     >
       {children}
     </Introduction>

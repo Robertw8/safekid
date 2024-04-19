@@ -9,7 +9,7 @@ const Wrapper = styled(View);
 const RegisterScreen: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Wrapper className="px-4 pt-152px pb-13 h-full bg-white flex items-center">
+      <Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
         <BackButton />
         <PrimaryTitle classNames="mb-8">Реєстрація</PrimaryTitle>
         <RegisterForm />
