@@ -25,8 +25,7 @@ module.exports = {
         purple: '#3D33E2',
         white: '#FFFFFF',
         green: '#0D8065',
-      },
-      spacing: {
+        'dark-blue': '#344054',
       },
     },
   },
