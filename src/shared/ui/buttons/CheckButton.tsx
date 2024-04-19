@@ -36,8 +36,9 @@ const CheckButton: React.FC<CheckButtonProps> = ({
             activeOpacity={activeOpacity || 0.75}
         >
             {checked ?
-                (<Feather name="circle" size={20} color="#ACACAC" />)
-                : (<Ionicons name="checkmark-circle" size={20} color="#ACACAC" />)}
+                (<Ionicons name="checkmark-circle" size={20} color="#ACACAC" />)
+                : (<Feather name="circle" size={20} color="#ACACAC" />)
+            }
         </Check>
     );
 };

@@ -20,4 +20,5 @@ export { default as closedEyeIcon } from './graphics/icons/closed-eye';
 export { default as chatIcon } from './graphics/icons/chat-icon'
 export { default as PrimaryInput } from './input/PrimaryInput';
 export { default as PrimaryContainer } from './containers/PrimaryContainer';
+export { default as CheckField } from './containers/CheckField';
 export { default as PrimaryModal } from './modals/PrimaryModal';
