@@ -1,5 +1,5 @@
-import { selectEnabled } from '@/processes/listening';
 import { useSelector } from 'react-redux';
+import { selectEnabled } from '@/features/listening';
 
 const useListening = () => {
   const enabled = useSelector(selectEnabled);

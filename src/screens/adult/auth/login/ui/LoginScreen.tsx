@@ -9,7 +9,7 @@ const Wrapper = styled(View);
 const LoginScreen: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Wrapper className="px-4 pt-152px pb-13 h-full bg-white flex items-center">
+      <Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
         <BackButton />
         <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
         <LogInForm />
@@ -21,5 +21,5 @@ const LoginScreen: React.FC = () => {
     </TouchableWithoutFeedback>
   );
 };
-
+40
 export default LoginScreen;
