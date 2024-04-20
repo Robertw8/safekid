@@ -21,24 +21,11 @@ import {
 } from '@/shared/ui';
 import { Link } from 'expo-router';
 import { styled } from 'nativewind';
+import { validationRegisterSchema } from '@/entities/auth';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
-
-const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()_\-+={[}\]|\\:;"'<,>.?/]).{8,32}$/;
-const emailRegex: RegExp = /^(?=.{3,32}$)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-const schema = yup.object().shape({
-  email: yup.string().required("Email є обов'язковим").matches(emailRegex, 'Введіть валідний Email'),
-  password: yup
-    .string()
-    .required("Пароль є обов'язковим")
-    .min(8, 'Пароль має містити щонайменше з 8 символів')
-    .matches(passwordRegex, 'Пароль повинен включати великі та маленькі латинські літери, числа та символи')
-  .max(32, 'Пароль має містити не більше 32 символів'),
-  confirmPassword: yup.string().oneOf([yup.ref('password')], 'Паролі мають співпадати'),
-});
 
 const RegisterForm = () => {
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
@@ -50,7 +37,7 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(validationRegisterSchema),
     defaultValues: {
       email: '',
       password: '',
