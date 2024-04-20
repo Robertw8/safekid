@@ -1,3 +1,4 @@
+import { useForm, Controller } from 'react-hook-form';
 import {
   TouchableOpacity,
   View,
@@ -18,35 +19,32 @@ import {
   closedEyeIcon,
   openEyeIcon,
 } from '@/shared/ui';
+import { validationLoginSchema } from '@/entities/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
-const TextStyled = styled(Text);
 
 const LogInForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
-  // const [isFocus, setIsFocus] = useState({
-  //   email: false,
-  //   password: false,
-  // });
+  
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationLoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-  const onSubmitForm = () => {
-    console.log('email =>', email);
-    console.log('password =>', password);
-    setEmail('');
-    setPassword('');
-    router.navigate('/dashboard');
+  const onPressSend = (formData) => {
+    console.log(formData);
+    router.navigate('/adult/dashboard');
   };
-
-  // const onFocusToggle = inputName => {
-  //   setIsFocus({ [inputName]: true });
-  // };
-  // const onBlurToggle = inputName => {
-  //   setIsFocus({ [inputName]: false });
-  // };
 
   return (
     <WrapperForm className="grow mb-9 w-full">
@@ -55,37 +53,56 @@ const LogInForm = () => {
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
           <View>
-            <LabelInput>Електронна пошта</LabelInput>
-            <PrimaryInput
-              // onFocus={() => onFocusToggle('login')}
-              // onBlur={() => onBlurToggle('login')}
-              onChangeText={setEmail}
-              value={email}
-              placeholder="example@email.com"
-              autoFocus
-              keyboardType="email-address"
+            <LabelInput classNames='mb-2'>Електронна пошта</LabelInput>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <PrimaryInput
+                  value={value}
+                  onChangeText={onChange}
+                  placeholder="example@email.com"
+                  autoFocus
+                  keyboardType="email-address"
+                  classNames={`${errors.email && 'border border-rose-600 text-red'}`}
+                />
+              )}
+              name="email"
             />
+            {errors.email && <LabelInput classNames='text-red'>{errors.email.message}</LabelInput>}
           </View>
           <View style={{ position: 'relative' }}>
-            <LabelInput>Пароль</LabelInput>
-            <PrimaryInput
-              // onFocus={() => onFocusToggle('password')}
-              // onBlur={() => onBlurToggle('password')}
-              onChangeText={setPassword}
-              value={password}
-              placeholder="password"
-              secureTextEntry={showPassword}
-            />
-            <TouchableOpacityStyled
-              className="absolute bottom-3.5 right-3.5"
-              onPress={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <Icon xml={closedEyeIcon} />
-              ) : (
-                <Icon xml={openEyeIcon} />
-              )}
-            </TouchableOpacityStyled>
+            <LabelInput classNames='mb-2'>Пароль</LabelInput><View style={{ position: 'relative' }}>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <PrimaryInput
+                    value={value}
+                    onChangeText={onChange}
+                    placeholder="Password"
+                    secureTextEntry={showPassword}
+                    classNames={`${errors.password && 'border border-rose-600 text-red'}`}
+                  />
+                )}
+                name="password"
+              />
+              <TouchableOpacityStyled
+                className="absolute bottom-3.5 right-3.5"
+                onPress={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <Icon xml={closedEyeIcon} />
+                ) : (
+                  <Icon xml={openEyeIcon} />
+                )}
+              </TouchableOpacityStyled>
+            </View>
+            {errors.password && <LabelInput classNames='text-red'>{errors.password.message}</LabelInput>}
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
@@ -97,7 +114,7 @@ const LogInForm = () => {
       </Link>
       <PrimaryButton
         text="Увійти"
-        onPress={onSubmitForm}
+        onPress={handleSubmit(onPressSend)}
         hint="Увійти в свій акаунт"
         label="Увійти"
         role="button"
