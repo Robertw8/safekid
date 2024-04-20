@@ -55,7 +55,7 @@ const LogInForm = () => {
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
           <View>
-            <LabelInput>Електронна пошта</LabelInput>
+            <LabelInput classNames='mb-2'>Електронна пошта</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('login')}
               // onBlur={() => onBlurToggle('login')}
@@ -67,7 +67,7 @@ const LogInForm = () => {
             />
           </View>
           <View style={{ position: 'relative' }}>
-            <LabelInput>Пароль</LabelInput>
+            <LabelInput classNames='mb-2'>Пароль</LabelInput>
             <PrimaryInput
               // onFocus={() => onFocusToggle('password')}
               // onBlur={() => onBlurToggle('password')}
