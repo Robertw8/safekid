@@ -19,7 +19,7 @@ import {
   closedEyeIcon,
   openEyeIcon,
 } from '@/shared/ui';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 
@@ -48,6 +48,7 @@ const RegisterForm = () => {
   const onPressSend = (formData) => {
     if (check) {
       console.log(formData);
+      router.navigate('/adult/instruction' as `${string}:${string}`);
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності')
     }
@@ -70,7 +71,9 @@ const RegisterForm = () => {
                 <PrimaryInput
                   value={value}
                   onChangeText={onChange}
-                  placeholder="Email"
+                  placeholder="example@email.com"
+                  autoFocus
+                  keyboardType="email-address"
                   classNames={`${errors.email && 'border border-rose-600 text-red'}`}
                 />
               )}
