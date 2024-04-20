@@ -10,7 +10,7 @@ const Label = styled(Text);
 
 const LabelInput: React.FC<LabelInputProps> = ({ children, classNames }) => {
   return (
-    <Label className={`font-medium text-base/5 text-black border-rose-600 ${classNames}`}>
+    <Label className={`font-medium text-base/5 text-black ${classNames}`}>
       {children}
     </Label>
   );

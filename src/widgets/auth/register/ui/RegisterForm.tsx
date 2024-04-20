@@ -7,7 +7,6 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-  Text,
 } from 'react-native';
 import {
   CheckField,
@@ -27,19 +26,24 @@ const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
 
+const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()_\-+={[}\]|\\:;"'<,>.?/]).{8,32}$/;
+const emailRegex: RegExp = /^(?=.{3,32}$)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 const schema = yup.object().shape({
-  email: yup.string().required('Email is required').email('Invalid email'),
+  email: yup.string().required("Email є обов'язковим").matches(emailRegex, 'Введіть валідний Email'),
   password: yup
     .string()
-    .required('Password is required')
-    .min(8, 'Password must contain at least 8 characters'),
-  confirmPassword: yup.string().oneOf([yup.ref('password')], 'Passwords must match'),
+    .required("Пароль є обов'язковим")
+    .min(8, 'Пароль має містити щонайменше з 8 символів')
+    .matches(passwordRegex, 'Пароль повинен включати великі та маленькі латинські літери, числа та символи')
+  .max(32, 'Пароль має містити не більше 32 символів'),
+  confirmPassword: yup.string().oneOf([yup.ref('password')], 'Паролі мають співпадати'),
 });
 
 const RegisterForm = () => {
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
-  const [privacy, setPrivacy] = useState(false);
+  const [check, setCheck] = useState(false);
 
   const {
     control,
@@ -55,7 +59,11 @@ const RegisterForm = () => {
   });
 
   const onPressSend = (formData) => {
-    console.log(formData);
+    if (check) {
+      console.log(formData);
+    } else {
+      alert('Підтвердіть згоду з умовами конфіденційності')
+    }
   };
 
   return (
@@ -76,6 +84,7 @@ const RegisterForm = () => {
                   value={value}
                   onChangeText={onChange}
                   placeholder="Email"
+                  classNames={`${errors.email && 'border border-rose-600 text-red'}`}
                 />
               )}
               name="email"
@@ -96,6 +105,7 @@ const RegisterForm = () => {
                     onChangeText={onChange}
                     placeholder="Password"
                     secureTextEntry={showPasswordFirst}
+                    classNames={`${errors.password && 'border border-rose-600 text-red'}`}
                   />
                 )}
                 name="password"
@@ -111,7 +121,7 @@ const RegisterForm = () => {
                 )}
               </TouchableOpacityStyled>
             </View>
-                          {errors.password && <LabelInput classNames='text-red'>{errors.password.message}</LabelInput>}
+            {errors.password && <LabelInput classNames='text-red'>{errors.password.message}</LabelInput>}
 
           </View>
           <View>
@@ -124,11 +134,11 @@ const RegisterForm = () => {
                 }}
                 render={({ field: { onChange, value } }) => (
                   <PrimaryInput
-                    value={value}
+                    value={value || ''}
                     onChangeText={onChange}
                     placeholder="Confirm password"
                     secureTextEntry={showPasswordSecond}
-  classNames={`${errors.confirmPassword && 'border border-rose-600 text-red'}`}
+                    classNames={`${errors.confirmPassword && 'border border-rose-600 text-red'}`}
                   />
                 )}
                 name="confirmPassword"
@@ -146,14 +156,13 @@ const RegisterForm = () => {
               </TouchableOpacityStyled>
 
             </View>
-                                        {errors.confirmPassword && <LabelInput classNames='text-red'>{errors.confirmPassword.message}</LabelInput>}
-
+            {errors.confirmPassword && <LabelInput classNames='text-red'>{errors.confirmPassword.message}</LabelInput>}
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <CheckField checked={privacy} onPress={() => setPrivacy(!privacy)}>
+      <CheckField checked={check} onPress={() => setCheck(!check)}>
         <Link href="/auth/adult/privacy-police">
-          <NormalText classNames="font-normal text-xs leading-normal">
+          <NormalText classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}>
             Згоден з
           </NormalText>{' '}
           <HyperText classNames="font-normal text-xs  leading-normal">
