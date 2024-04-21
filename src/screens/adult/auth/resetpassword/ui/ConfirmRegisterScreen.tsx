@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
 import {
   BackButton,
-  HyperText,
   Icon,
   NormalText,
   PrimaryButton,
@@ -46,7 +45,7 @@ const ConfirmRegisterScreen = () => {
   const onSubmitForm = () => {
     const enteredCode = code.join('');
     console.log('Entered Code:', enteredCode);
-    router.navigate('/auth/adult/confirm-register');
+    router.navigate('/auth/adult');
   };
 
   const resendCode = () => {
