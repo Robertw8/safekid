@@ -1,4 +1,5 @@
 import { View, KeyboardAvoidingView, Platform } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { styled } from 'nativewind';
 import {
@@ -9,6 +10,8 @@ import {
   SecondaryTitle,
 } from '@/shared/ui';
 import { router } from 'expo-router';
+import { validationLoginSchema } from '@/entities/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const WrapperInputs = styled(View);
 const WrapperForm = styled(View);
@@ -16,6 +19,17 @@ const TextWrapper = styled(View);
 
 const ResetPasswordForm = () => {
   const [email, setEmail] = useState('');
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationLoginSchema),
+    defaultValues: {
+      email: '',
+    },
+  });
 
   const onSubmitForm = () => {
     console.log('email =>', email);
@@ -36,21 +50,36 @@ const ResetPasswordForm = () => {
         </TextWrapper>
         <WrapperInputs className="flex justify-center mb-40 ml-2">
           <View>
-            <LabelInput classNames="mb-3">Електронна пошта</LabelInput>
-            <PrimaryInput
-              onChangeText={setEmail}
-              value={email}
-              placeholder="example@email.com"
-              autoFocus
-              keyboardType="email-address"
+            <LabelInput classNames="mb-2">Електронна пошта</LabelInput>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <PrimaryInput
+                  value={value}
+                  onChangeText={onChange}
+                  placeholder="example@email.com"
+                  autoFocus
+                  keyboardType="email-address"
+                  classNames={`${errors.email && 'border border-rose-600 text-red'}`}
+                />
+              )}
+              name="email"
             />
+            {errors.email && (
+              <LabelInput classNames="text-red">
+                {errors.email.message}
+              </LabelInput>
+            )}
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
 
       <PrimaryButton
         text="Відновити пароль"
-        onPress={onSubmitForm}
+        onPress={handleSubmit(onSubmitForm)}
         hint="Відновити пароль"
         label="Відновити пароль"
         role="button"
