@@ -1,13 +1,18 @@
-import { View, KeyboardAvoidingView, Platform, Text } from 'react-native';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import { useState } from 'react';
 import { styled } from 'nativewind';
-import { LabelInput, PrimaryButton, PrimaryInput } from '@/shared/ui';
+import {
+  LabelInput,
+  NormalText,
+  PrimaryButton,
+  PrimaryInput,
+  SecondaryTitle,
+} from '@/shared/ui';
 import { router } from 'expo-router';
 
 const WrapperInputs = styled(View);
 const WrapperForm = styled(View);
 const TextWrapper = styled(View);
-const Title = styled(Text);
 
 const ResetPasswordForm = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +20,7 @@ const ResetPasswordForm = () => {
   const onSubmitForm = () => {
     console.log('email =>', email);
     setEmail('');
-    router.navigate('/dashboard');
+    router.navigate('/auth/adult/confirm-register');
   };
 
   return (
@@ -24,17 +29,14 @@ const ResetPasswordForm = () => {
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
         <TextWrapper>
-          <Title className="font-medium text-xl text-black-primary mb-2">
-            Забули пароль?
-          </Title>
-
-          <Title className=" text-black-primary mb-6">
+          <SecondaryTitle> Забули пароль?</SecondaryTitle>
+          <NormalText classNames="mt-2 mb-6 ml-2">
             Введіть вашу електронну пошту
-          </Title>
+          </NormalText>
         </TextWrapper>
-        <WrapperInputs className="flex justify-center mb-40">
+        <WrapperInputs className="flex justify-center mb-40 ml-2">
           <View>
-            <LabelInput>Електронна пошта</LabelInput>
+            <LabelInput classNames="mb-3">Електронна пошта</LabelInput>
             <PrimaryInput
               onChangeText={setEmail}
               value={email}
