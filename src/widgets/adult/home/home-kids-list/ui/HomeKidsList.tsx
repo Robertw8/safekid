@@ -7,7 +7,7 @@ const HomeKidsList: React.FC = () => {
   return (
     <View>
       {kids.map(({ key }, index) => (
-        <HomeKidsItem kidName={key} key={index} status={'active'} />
+        <HomeKidsItem kidName={key} key={index} status={'inactive'} />
       ))}
     </View>
   );

@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { styled } from 'nativewind';
+
 import { View } from 'react-native';
 import {
   KidAvatar,
@@ -18,6 +20,8 @@ const LeftColumn = styled(View);
 const TextWrapper = styled(View);
 
 const HomeKidsItem: React.FC<HomeKidsItemProps> = ({ kidName, status }) => {
+  const [checked, setChecked] = useState(false); // ! temp
+
   return (
     <Item className="flex-row items-center justify-between mt-7">
       <LeftColumn className="flex-row">
@@ -28,8 +32,8 @@ const HomeKidsItem: React.FC<HomeKidsItemProps> = ({ kidName, status }) => {
         </TextWrapper>
       </LeftColumn>
       <Switch
-        checked={false}
-        onChange={() => console.log('Kid status changed')}
+        checked={checked}
+        onChange={() => setChecked(prevState => !prevState)}
       />
     </Item>
   );
