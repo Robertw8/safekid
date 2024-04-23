@@ -1,15 +1,18 @@
 import { styled } from 'nativewind';
-import { Text, View } from 'react-native';
+import { Text, View, AccessibilityRole } from 'react-native';
 
 import { ReconnectKidItem } from '@/widgets/adult';
 import { KidStatus, IconName } from '@/shared/types';
 
 interface ReconnectKidProps {
-  iconName?: IconName;
   kidName?: string;
-  classNames?: string;
   status?: KidStatus;
+  iconName?: IconName;
+  classNames?: string;
   onPress: () => void;
+  accessibilityLabel: string;
+  accessibilityHint: string;
+  accessibilityRole: AccessibilityRole;
 }
 
 const Wrapper = styled(View);
@@ -17,9 +20,12 @@ const Title = styled(Text);
 
 const ReconnectKid: React.FC<ReconnectKidProps> = ({
   kidName,
-  iconName = 'new-message',
   classNames,
+  accessibilityLabel,
+  accessibilityHint,
+  accessibilityRole,
   status = 'inactive',
+  iconName = 'new-message',
 }) => {
   return (
     <Wrapper className={`flex-column items-center ml-5 w-80 ${classNames}`}>
@@ -27,10 +33,13 @@ const ReconnectKid: React.FC<ReconnectKidProps> = ({
         Оберіть дитину
       </Title>
       <ReconnectKidItem
+        status={status}
         kidName={kidName}
         iconType={iconName}
         classNames={classNames}
-        status={status}
+        accessibilityHint={accessibilityHint}
+        accessibilityRole={accessibilityRole}
+        accessibilityLabel={accessibilityLabel}
       />
     </Wrapper>
   );

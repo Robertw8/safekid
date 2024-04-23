@@ -10,10 +10,13 @@ const ReconnectKidScreen: React.FC = () => {
     <PrimaryContainer>
       <BackButton />
       <ReconnectKid
-        iconName="chevron-thin-right"
-        kidName="Katarina"
         status="active"
+        kidName="Katarina"
         onPress={handlePress}
+        iconName="chevron-thin-right"
+        accessibilityRole={'button'}
+        accessibilityLabel={"Оновити зв'язок"}
+        accessibilityHint={"натисніть щоб оновити зв'язок з дитиною"}
       />
     </PrimaryContainer>
   );

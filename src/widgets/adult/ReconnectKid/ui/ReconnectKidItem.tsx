@@ -1,18 +1,21 @@
 import { styled } from 'nativewind';
-import { Text, View } from 'react-native';
+import { Text, View, AccessibilityRole } from 'react-native';
 
 import { ActionButton, KidAvatar } from '@/shared/ui';
 import { KidStatus, IconName } from '@/shared/types';
 
 interface ReconnectKidItemProps {
   kidName?: string;
+  status: KidStatus;
   iconType: IconName;
   classNames?: string;
-  status: KidStatus;
+  accessibilityLabel: string;
+  accessibilityHint: string;
+  accessibilityRole: AccessibilityRole;
 }
 
-const Item = styled(View);
 const AvatarContainer = styled(View);
+const Item = styled(View);
 const Name = styled(Text);
 
 const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
@@ -20,6 +23,9 @@ const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
   iconType,
   classNames,
   status,
+  accessibilityLabel,
+  accessibilityHint,
+  accessibilityRole,
 }) => {
   return (
     <Item
@@ -33,7 +39,12 @@ const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
           {kidName || 'Child'}
         </Name>
       </AvatarContainer>
-      <ActionButton iconName={iconType} />
+      <ActionButton
+        iconName={iconType}
+        accessibilityHint={accessibilityHint}
+        accessibilityRole={accessibilityRole}
+        accessibilityLabel={accessibilityLabel}
+      />
     </Item>
   );
 };
