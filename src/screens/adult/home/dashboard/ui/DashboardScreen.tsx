@@ -1,11 +1,12 @@
 import { BackButton, PrimaryContainer } from '@/shared/ui';
-import { HomeKidsList } from '@/widgets/adult';
+import { AddKidButton, HomeKidsList } from '@/widgets/adult';
 
 const DashboardScreen: React.FC = () => {
   return (
     <PrimaryContainer>
-      <BackButton />
       <HomeKidsList />
+      <BackButton />
+      <AddKidButton />
     </PrimaryContainer>
   );
 };
