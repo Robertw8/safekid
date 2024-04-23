@@ -18,6 +18,15 @@ const AvatarContainer = styled(View);
 const Item = styled(View);
 const Name = styled(Text);
 
+const shadowStyle = {
+  shadowColor: 'rgba(0, 0, 0, 0.9)',
+  shadowOffset: { width: 0, height: 3 },
+  shadowOpacity: 0.1,
+  shadowRadius: 5,
+  elevation: 5,
+  backgroundColor: '#fff',
+};
+
 const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
   kidName,
   iconType,
@@ -29,7 +38,8 @@ const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
 }) => {
   return (
     <Item
-      className={`shadow-lg border border-black-20 rounded-2xl px-4 py-4 flex-row items-center justify-between w-full h-20 ${classNames}`}
+      style={shadowStyle}
+      className={`mt-4 rounded-2xl px-4 py-4 flex-row items-center justify-between w-full h-20 ${classNames}`}
     >
       <AvatarContainer className={` flex-row items-center ${classNames}`}>
         <KidAvatar statusTracking={true} status={status} />
