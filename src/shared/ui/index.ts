@@ -27,3 +27,4 @@ export { default as PrimaryModal } from './modals/PrimaryModal';
 export { default as KidCardTitle } from './typography/KidCardTitle';
 export { default as KidListeningStatus } from './typography/KidListeningStatus';
 export { default as KidAvatar } from './graphics/KidAvatar';
+export { default as ActionButton } from './buttons/ActionButton';
