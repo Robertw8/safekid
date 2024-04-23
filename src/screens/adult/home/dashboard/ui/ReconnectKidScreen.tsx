@@ -1,19 +1,36 @@
 import { BackButton, PrimaryContainer } from '@/shared/ui';
-import { ReconnectKid } from '@/widgets/adult';
+import { ReconnectKidList } from '@/widgets/adult';
+import { KidStatus, IconName } from '@/shared/types';
 
 const ReconnectKidScreen: React.FC = () => {
   const handlePress = () => {
     console.log('Handle kid selection');
   };
 
+  const kids = [
+    {
+      kidName: 'Олівія',
+      status: 'active' as KidStatus,
+      iconType: 'chevron-thin-right' as IconName,
+    },
+    {
+      kidName: 'Макс',
+      status: 'error' as KidStatus,
+      iconType: 'trash' as IconName,
+    },
+    {
+      kidName: 'Марта',
+      status: 'inactive' as KidStatus,
+      iconType: 'new-message' as IconName,
+    },
+  ];
+
   return (
     <PrimaryContainer>
       <BackButton />
-      <ReconnectKid
-        status="active"
-        kidName="Katarina"
+      <ReconnectKidList
+        kids={kids}
         onPress={handlePress}
-        iconName="chevron-thin-right"
         accessibilityRole={'button'}
         accessibilityLabel={"Оновити зв'язок"}
         accessibilityHint={"натисніть щоб оновити зв'язок з дитиною"}
