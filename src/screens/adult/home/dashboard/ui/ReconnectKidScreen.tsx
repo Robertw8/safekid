@@ -16,12 +16,12 @@ const ReconnectKidScreen: React.FC = () => {
     {
       kidName: 'Макс',
       status: 'error' as KidStatus,
-      iconType: 'trash' as IconName,
+      iconType: 'trash-outline' as IconName,
     },
     {
       kidName: 'Марта',
       status: 'inactive' as KidStatus,
-      iconType: 'new-message' as IconName,
+      iconType: 'form' as IconName,
     },
   ];
 
