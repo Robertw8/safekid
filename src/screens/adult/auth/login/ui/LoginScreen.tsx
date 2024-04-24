@@ -17,6 +17,9 @@ const LoginScreen: React.FC = () => {
           <NormalText>Не маєте акаунту?</NormalText>{' '}
           <HyperText>Створити</HyperText>
         </Link>
+        <Link href="/auth/adult/new-password">
+          <NormalText>NewPassword</NormalText>{' '}
+        </Link>
       </Wrapper>
     </TouchableWithoutFeedback>
   );

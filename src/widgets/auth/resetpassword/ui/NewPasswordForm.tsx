@@ -8,49 +8,40 @@ import {
   Platform,
 } from 'react-native';
 import {
-  CheckField,
-  HyperText,
   Icon,
   LabelInput,
-  NormalText,
   PrimaryButton,
   PrimaryInput,
   closedEyeIcon,
   openEyeIcon,
 } from '@/shared/ui';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { styled } from 'nativewind';
-import { validationRegisterSchema } from '@/entities/auth';
+import { validationNewPasswordSchema } from '@/entities/auth';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
 
-const RegisterForm = () => {
+const NewPasswordForm = () => {
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
-  const [check, setCheck] = useState(false);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationRegisterSchema),
+    resolver: yupResolver(validationNewPasswordSchema),
     defaultValues: {
-      email: '',
       password: '',
       confirmPassword: '',
     },
   });
 
   const onPressSend = (formData) => {
-    if (check) {
       console.log(formData);
       router.navigate('/adult/instruction' as `${string}:${string}`);
-    } else {
-      alert('Підтвердіть згоду з умовами конфіденційності')
-    }
   };
 
   return (
@@ -59,28 +50,8 @@ const RegisterForm = () => {
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
-          <View>
-            <LabelInput classNames='mb-2'>Електронна пошта</LabelInput>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { onChange, value } }) => (
-                <PrimaryInput
-                  value={value}
-                  onChangeText={onChange}
-                  placeholder="example@email.com"
-                  keyboardType="email-address"
-                  classNames={`${errors.email && 'border border-rose-600 text-red'}`}
-                />
-              )}
-              name="email"
-            />
-            {errors.email && <LabelInput classNames='text-red'>{errors.email.message}</LabelInput>}
-          </View>
           <View >
-            <LabelInput classNames='mb-2'>Пароль</LabelInput>
+            <LabelInput classNames='mb-2'>Новий пароль</LabelInput>
             <View style={{ position: 'relative' }}>
               <Controller
                 control={control}
@@ -148,26 +119,16 @@ const RegisterForm = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-      <CheckField checked={check} onPress={() => setCheck(!check)}>
-        <Link href="/auth/adult/privacy-police">
-          <NormalText classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}>
-            Згоден з
-          </NormalText>{' '}
-          <HyperText classNames="font-normal text-xs  leading-normal">
-            умовами та політикою конфіденційності
-          </HyperText>
-        </Link>
-      </CheckField>
       <PrimaryButton
-        text="Зареєструватися"
+        text="Встановити новий пароль"
         onPress={handleSubmit(onPressSend)}
-        hint="Зареєструвати ваш акаунт"
-        label="Зареєструватися"
+        hint="Встановити новий пароль"
+        label="Встановити новий пароль"
         role="button"
-        classNames="w-48 self-center mt-32"
+        classNames="w-64 self-center mt-auto"
       />
     </WrapperForm>
   );
 };
 
-export default RegisterForm;
+export default NewPasswordForm;

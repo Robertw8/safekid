@@ -4,16 +4,13 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-  Text,
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import {
-  HyperText,
   Icon,
   LabelInput,
-  NormalText,
   PrimaryButton,
   PrimaryInput,
   closedEyeIcon,
@@ -64,7 +61,6 @@ const LogInForm = () => {
                   value={value}
                   onChangeText={onChange}
                   placeholder="example@email.com"
-                  autoFocus
                   keyboardType="email-address"
                   classNames={`${errors.email && 'border border-rose-600 text-red'}`}
                 />
