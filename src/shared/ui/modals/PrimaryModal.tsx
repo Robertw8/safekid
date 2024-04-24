@@ -15,6 +15,7 @@ const ModalContainer = styled(View);
 const ModalContent = styled(View);
 const HeaderTitle = styled(SecondaryTitle);
 const BodyText = styled(NormalText);
+const Overlay = styled(View);
 
 const PrimaryModal: React.FC<ModalProps> = ({
   visible,
@@ -24,16 +25,19 @@ const PrimaryModal: React.FC<ModalProps> = ({
   classNames,
 }) => {
   return (
-    <Modal visible={visible} transparent animationType="slide">
-      <ModalContainer
-        className={` rounded-lg mt-48 bg-slate-50 w-full p-4 ${classNames}`}
+    <Modal visible={visible} transparent animationType="fade">
+      <Overlay
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+        className="absolute inset-0 h-full w-full flex justify-center items-center"
       >
-        <ModalContent className={`items-center mt-4 ${classNames}`}>
-          {header && <HeaderTitle>{header}</HeaderTitle>}
-          {body && <BodyText>{body}</BodyText>}
-          {footer && <View>{footer}</View>}
-        </ModalContent>
-      </ModalContainer>
+        <ModalContainer className={` bg-slate-50 w-full p-4 ${classNames}`}>
+          <ModalContent className={`items-center mt-4 ${classNames}`}>
+            {header && <HeaderTitle>{header}</HeaderTitle>}
+            {body && <BodyText>{body}</BodyText>}
+            {footer && <View>{footer}</View>}
+          </ModalContent>
+        </ModalContainer>
+      </Overlay>
     </Modal>
   );
 };
