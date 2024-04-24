@@ -1,8 +1,15 @@
 import { styled } from 'nativewind';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, Ionicons, AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity, AccessibilityRole } from 'react-native';
 
 import { IconName } from '@/shared/types';
+
+const iconPack = {
+  'chevron-thin-right': Entypo,
+  'trash-outline': Ionicons,
+  // prettier-ignore
+  'form': AntDesign,
+};
 
 interface ActionButtonProps {
   iconName: IconName;
@@ -23,6 +30,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   accessibilityHint,
   accessibilityRole,
 }) => {
+  const IconComponent = iconPack[iconName];
+
   return (
     <Button
       accessible={true}
@@ -32,7 +41,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       accessibilityHint={accessibilityHint}
       accessibilityRole={accessibilityRole}
     >
-      <Entypo name={iconName} size={24} color="black" />
+      <IconComponent name={iconName as any} size={24} color="black" />
     </Button>
   );
 };
