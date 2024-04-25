@@ -18,7 +18,7 @@ const LoginScreen: React.FC = () => {
           <HyperText>Створити</HyperText>
         </Link>
         <Link href="/auth/adult/new-password">
-          <NormalText>NewPassword</NormalText>{' '}
+          <NormalText classNames='bg-orange-500	font-semibold'>NewPassword</NormalText>{' '}
         </Link>
       </Wrapper>
     </TouchableWithoutFeedback>
