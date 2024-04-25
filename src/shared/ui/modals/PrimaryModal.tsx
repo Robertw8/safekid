@@ -1,7 +1,8 @@
 import { styled } from 'nativewind';
-import { Modal, View } from 'react-native';
 
-import { SecondaryTitle, NormalText } from '@/shared/ui';
+import { Modal, View } from 'react-native';
+import SecondaryTitle from '../typography/SecondaryTitle';
+import NormalText from '../typography/NormalText';
 
 interface ModalProps {
   visible: boolean;
