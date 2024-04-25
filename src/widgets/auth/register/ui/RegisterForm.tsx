@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -26,6 +25,7 @@ import { validationRegisterSchema } from '@/entities/auth';
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
+const WrapperButton = styled(View);
 
 const RegisterForm = () => {
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
@@ -55,7 +55,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <WrapperForm className="grow mb-9 w-full">
+    <WrapperForm className="grow mb-9 w-full flex">
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
@@ -72,7 +72,6 @@ const RegisterForm = () => {
                   value={value}
                   onChangeText={onChange}
                   placeholder="example@email.com"
-                  autoFocus
                   keyboardType="email-address"
                   classNames={`${errors.email && 'border border-rose-600 text-red'}`}
                 />
@@ -160,15 +159,16 @@ const RegisterForm = () => {
           </HyperText>
         </Link>
       </CheckField>
-      <PrimaryButton
-        text="Зареєструватися"
-        // onPress={onSubmitForm}
-        onPress={handleSubmit(onPressSend)}
-        hint="Зареєструвати ваш акаунт"
-        label="Зареєструватися"
-        role="button"
-        classNames="w-48 self-center mt-auto"
-      />
+      <WrapperButton className='grow flex justify-end'>
+        <PrimaryButton
+          text="Зареєструватися"
+          onPress={handleSubmit(onPressSend)}
+          hint="Зареєструвати ваш акаунт"
+          label="Зареєструватися"
+          role="button"
+          classNames="w-48 self-center"
+        />
+      </WrapperButton>
     </WrapperForm>
   );
 };

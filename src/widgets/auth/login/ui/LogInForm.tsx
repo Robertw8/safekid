@@ -4,16 +4,13 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
-  Text,
 } from 'react-native';
 import { useState } from 'react';
 import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import {
-  HyperText,
   Icon,
   LabelInput,
-  NormalText,
   PrimaryButton,
   PrimaryInput,
   closedEyeIcon,
@@ -25,6 +22,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
+const WrapperButton = styled(View);
 
 const LogInForm = () => {
   const [showPassword, setShowPassword] = useState(true);
@@ -64,7 +62,6 @@ const LogInForm = () => {
                   value={value}
                   onChangeText={onChange}
                   placeholder="example@email.com"
-                  autoFocus
                   keyboardType="email-address"
                   classNames={`${errors.email && 'border border-rose-600 text-red'}`}
                 />
@@ -112,14 +109,16 @@ const LogInForm = () => {
       >
         Забули пароль?
       </Link>
-      <PrimaryButton
-        text="Увійти"
-        onPress={handleSubmit(onPressSend)}
-        hint="Увійти в свій акаунт"
-        label="Увійти"
-        role="button"
-        classNames="w-48 self-center mt-auto"
-      />
+      <WrapperButton className='grow flex justify-end'>
+        <PrimaryButton
+          text="Увійти"
+          onPress={handleSubmit(onPressSend)}
+          hint="Увійти в свій акаунт"
+          label="Увійти"
+          role="button"
+          classNames="w-48 self-center"
+        />
+      </WrapperButton>
     </WrapperForm>
   );
 };
