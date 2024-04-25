@@ -1,5 +1,5 @@
 import { styled } from 'nativewind';
-import { Link, router, usePathname } from 'expo-router';
+import { Link, usePathname } from 'expo-router';
 
 import { View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
