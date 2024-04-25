@@ -28,6 +28,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@react-navigation/native": "^6.0.2",
     "@reduxjs/toolkit": "^2.2.3",
+    "axios": "^1.6.8",
     "expo": "~50.0.15",
     "expo-av": "^13.10.6",
     "expo-camera": "^14.1.3",
