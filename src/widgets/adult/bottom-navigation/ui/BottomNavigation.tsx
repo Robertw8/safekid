@@ -25,11 +25,13 @@ const BottomNavigation: React.FC = () => {
         />
       </Link>
 
-      <FontAwesome5
-        name="home"
-        size={28}
-        color={isActive('/adult/dashboard') ? '#7D5DFF' : '#fff'}
-      />
+      <Link href="/adult/dashboard">
+        <FontAwesome5
+          name="home"
+          size={28}
+          color={isActive('/adult/dashboard') ? '#7D5DFF' : '#fff'}
+        />
+      </Link>
       <FontAwesome
         name="user"
         size={28}
