@@ -25,6 +25,7 @@ import { validationRegisterSchema } from '@/entities/auth';
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
 const WrapperForm = styled(View);
+const WrapperButton = styled(View);
 
 const RegisterForm = () => {
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
@@ -54,7 +55,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <WrapperForm className="grow mb-9 w-full">
+    <WrapperForm className="grow mb-9 w-full flex">
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
@@ -158,14 +159,16 @@ const RegisterForm = () => {
           </HyperText>
         </Link>
       </CheckField>
-      <PrimaryButton
-        text="Зареєструватися"
-        onPress={handleSubmit(onPressSend)}
-        hint="Зареєструвати ваш акаунт"
-        label="Зареєструватися"
-        role="button"
-        classNames="w-48 self-center mt-32"
-      />
+      <WrapperButton className='grow flex justify-end'>
+        <PrimaryButton
+          text="Зареєструватися"
+          onPress={handleSubmit(onPressSend)}
+          hint="Зареєструвати ваш акаунт"
+          label="Зареєструватися"
+          role="button"
+          classNames="w-48 self-center"
+        />
+      </WrapperButton>
     </WrapperForm>
   );
 };

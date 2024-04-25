@@ -10,7 +10,7 @@ const NewPasswordScreen: React.FC = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
         <BackButton />
-        <PrimaryTitle classNames="mb-8">Введіть новий пароль</PrimaryTitle>
+        <PrimaryTitle classNames="mb-8 text-center">Введіть новий пароль</PrimaryTitle>
         <NewPasswordForm />
       </Wrapper>
     </TouchableWithoutFeedback>
