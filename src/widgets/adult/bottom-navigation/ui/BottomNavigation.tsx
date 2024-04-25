@@ -1,5 +1,5 @@
 import { styled } from 'nativewind';
-import { usePathname } from 'expo-router';
+import { Link, router, usePathname } from 'expo-router';
 
 import { View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
@@ -17,11 +17,14 @@ const BottomNavigation: React.FC = () => {
 
   return (
     <NavBar className="bg-black w-screen flex-row justify-between items-center h-14 px-8 relative">
-      <Entypo
-        name="info-with-circle"
-        size={28}
-        color={isActive('/adult/info') ? '#7D5DFF' : '#fff'}
-      />
+      <Link href="/adult/information">
+        <Entypo
+          name="info-with-circle"
+          size={28}
+          color={isActive('/adult/information') ? '#7D5DFF' : '#fff'}
+        />
+      </Link>
+
       <FontAwesome5
         name="home"
         size={28}
