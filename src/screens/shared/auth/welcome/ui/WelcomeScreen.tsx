@@ -21,7 +21,7 @@ const WelcomeScreen: React.FC = () => {
   const handleAdultSelect = () => {
     dispatch(setUserRole('adult'));
     console.log('USER ROLE:', role);
-    router.navigate('/auth/adult/login');
+    router.navigate('/auth/adult/profile');
   };
 
   const handleKidSelect = () => {

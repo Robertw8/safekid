@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, AccessibilityRole } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 interface DelAccountBtnProps {
+  id?: string;
   text: string;
   onPress: () => void;
   accessible?: boolean;
@@ -17,6 +18,7 @@ const StyledBtn = styled(TouchableOpacity);
 const StyledText = styled(Text);
 
 const DelAccountBtn: React.FC<DelAccountBtnProps> = ({
+  id,
   accessible,
   label,
   hint,
@@ -28,6 +30,7 @@ const DelAccountBtn: React.FC<DelAccountBtnProps> = ({
 }) => {
   return (
     <StyledBtn
+      id={id}
       accessibilityLabel={label}
       accessibilityHint={hint}
       accessibilityRole={role || 'button'}

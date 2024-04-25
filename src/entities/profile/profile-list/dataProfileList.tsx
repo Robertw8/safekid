@@ -3,7 +3,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 const dataProfileList = [
   {
     icon: <Ionicons name="book-outline" size={24} color="black" />,
-    route: '/auth/adult/qr-code',
+    route: '/adult/qr-code',
     title: 'Інформація про користувача',
   },
   {
@@ -14,22 +14,22 @@ const dataProfileList = [
         color="black"
       />
     ),
-    route: '/auth/adult/qr-code',
+    route: '/adult/qr-code',
     title: 'Сповіщення',
   },
   {
     icon: <Ionicons name="chatbubble-outline" size={24} color="black" />,
-    route: '/auth/adult/qr-code',
+    route: '/adult/qr-code',
     title: 'Налаштувати сповіщення',
   },
   {
     icon: <Ionicons name="cog-outline" size={24} color="black" />,
-    route: '/auth/adult/qr-code',
+    route: '/adult/qr-code',
     title: 'Редагувати дані дитини',
   },
   {
     icon: <Ionicons name="extension-puzzle-outline" size={24} color="black" />,
-    route: '/auth/adult/qr-code',
+    route: '/adult/qr-code',
     title: 'Відновити зв`язок з існуючим акаунтом дитини',
   },
 ];

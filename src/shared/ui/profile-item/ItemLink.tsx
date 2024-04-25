@@ -1,6 +1,7 @@
 import { styled } from 'nativewind';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
+import TertiaryTitle from '../typography/TertiaryTitle';
 
 interface ItemLinkProps {
   item: {
@@ -14,13 +15,8 @@ interface ItemLinkProps {
 const Wrapper = styled(View);
 const ItemWrap = styled(View);
 const Icon = styled(View);
-const Button = styled(Text);
 
-const ItemLink: React.FC<ItemLinkProps> = ({
-  item,
-
-  textClassNames,
-}) => {
+const ItemLink: React.FC<ItemLinkProps> = ({ item }) => {
   const { title, route, icon } = item;
 
   const handlePress = () => {
@@ -32,9 +28,7 @@ const ItemLink: React.FC<ItemLinkProps> = ({
       <ItemWrap className="flex flex-row items-center gap-y-6">
         <Icon>{icon}</Icon>
         <TouchableOpacity onPress={handlePress}>
-          <Button className={`font-medium text-xl ml-4 ${textClassNames}`}>
-            {title}
-          </Button>
+          <TertiaryTitle classNames="ml-4">{title}</TertiaryTitle>
         </TouchableOpacity>
       </ItemWrap>
     </Wrapper>
