@@ -7,7 +7,7 @@ const Header = styled(View);
 const Title = styled(View);
 const StyledText = styled(Text);
 
-const UserEmail = () => {
+const UserEmail: React.FC = () => {
   const email = 'example@gmail.com';
 
   return (

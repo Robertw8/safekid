@@ -1,6 +1,6 @@
 import { UserInfoScreen } from '@/screens/adult/user-info';
 
-const UserInfo = () => {
+const UserInfo: React.FC = () => {
   return <UserInfoScreen />;
 };
 
