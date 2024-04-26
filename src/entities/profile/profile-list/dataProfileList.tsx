@@ -24,7 +24,7 @@ const dataProfileList = [
   },
   {
     icon: <Ionicons name="cog-outline" size={24} color="black" />,
-    route: '/adult/reconnectKidList',
+    route: '/adult/reconnect-kid',
     title: 'Редагувати дані дитини',
   },
   {

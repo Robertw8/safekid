@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import DelAccountBtn from '@/shared/ui/buttons/DelAccountBtn';
 import ModalForDelAccount from './ModalForDelAccount';
+import { router } from 'expo-router';
 
 const Wrapper = styled(View);
 
@@ -33,7 +34,7 @@ const DeleteAccounts = () => {
           label="Видалити акаунт дитини"
           hint="При натисканні видаляється акаунт дитини"
           text="Видалити акаунт дитини"
-          onPress={() => handleModalOpen('kid')}
+          onPress={() => router.navigate('/adult/delete-kid')}
           accessible={true}
         />
         <DelAccountBtn
