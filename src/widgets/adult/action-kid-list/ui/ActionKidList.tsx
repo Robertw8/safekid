@@ -1,13 +1,15 @@
 import { styled } from 'nativewind';
-import { Text, View, AccessibilityRole } from 'react-native';
+import { View, AccessibilityRole } from 'react-native';
 
-import ReconnectKidItem from './ReconnectKidItem';
+import ActionKidItem from './ActionKidItem';
+
 import { KidStatus, IconName } from '@/shared/types';
+import { TertiaryTitle } from '@/shared/ui';
 
-interface ReconnectKidProps {
+interface ActionKidProps {
   kids: Array<{
     kidName: string;
-    status: KidStatus;
+    status?: KidStatus;
     iconType: IconName;
   }>;
   classNames?: string;
@@ -18,9 +20,8 @@ interface ReconnectKidProps {
 }
 
 const Wrapper = styled(View);
-const Title = styled(Text);
 
-const ReconnectKidList: React.FC<ReconnectKidProps> = ({
+const ActionKidList: React.FC<ActionKidProps> = ({
   kids,
   classNames,
   accessibilityLabel,
@@ -28,11 +29,9 @@ const ReconnectKidList: React.FC<ReconnectKidProps> = ({
   accessibilityRole,
 }) => (
   <Wrapper className={`flex-column items-center ml-5 w-80 ${classNames}`}>
-    <Title className="font-medium mb-6 text-xl text-black-primary">
-      Оберіть дитину
-    </Title>
+    <TertiaryTitle classNames="mb-8">Оберіть дитину</TertiaryTitle>
     {kids.map((kid, index) => (
-      <ReconnectKidItem
+      <ActionKidItem
         key={index}
         {...kid}
         classNames={classNames}
@@ -44,4 +43,4 @@ const ReconnectKidList: React.FC<ReconnectKidProps> = ({
   </Wrapper>
 );
 
-export default ReconnectKidList;
+export default ActionKidList;

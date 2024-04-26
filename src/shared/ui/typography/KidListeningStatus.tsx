@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import type { KidStatus } from '@/shared/types';
 
 interface KidListeningStatusProps {
-  status: KidStatus;
+  status?: KidStatus;
   classNames?: string;
 }
 

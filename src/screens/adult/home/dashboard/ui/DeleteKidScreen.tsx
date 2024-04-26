@@ -1,8 +1,8 @@
 import { BackButton, PrimaryContainer, TertiaryTitle } from '@/shared/ui';
 import { ActionKidList } from '@/widgets/adult';
-import { IconName } from '@/shared/types';
+import { KidStatus, IconName } from '@/shared/types';
 
-const ReconnectKidScreen: React.FC = () => {
+const DeleteKidScreen: React.FC = () => {
   const handlePress = () => {
     console.log('Handle kid selection');
   };
@@ -10,15 +10,18 @@ const ReconnectKidScreen: React.FC = () => {
   const kids = [
     {
       kidName: 'Олівія',
-      iconType: 'chevron-thin-right' as IconName,
+      status: 'active' as KidStatus,
+      iconType: 'trash-outline' as IconName,
     },
     {
       kidName: 'Макс',
-      iconType: 'chevron-thin-right' as IconName,
+      status: 'error' as KidStatus,
+      iconType: 'trash-outline' as IconName,
     },
     {
       kidName: 'Марта',
-      iconType: 'chevron-thin-right' as IconName,
+      status: 'inactive' as KidStatus,
+      iconType: 'trash-outline' as IconName,
     },
   ];
 
@@ -26,17 +29,17 @@ const ReconnectKidScreen: React.FC = () => {
     <PrimaryContainer classNames="justify-start">
       <BackButton />
       <TertiaryTitle classNames="mb-20 ml-12">
-        Відновити зв'язок з існуючим акаунтом дитини
+        Видалити акаунт дитини
       </TertiaryTitle>
       <ActionKidList
         kids={kids}
         onPress={handlePress}
         accessibilityRole={'button'}
-        accessibilityLabel={"Оновити зв'язок"}
-        accessibilityHint={"натисніть щоб оновити зв'язок з дитиною"}
+        accessibilityLabel={'видалити зі списку'}
+        accessibilityHint={'натисніть щоб видалити дитину зі списку'}
       />
     </PrimaryContainer>
   );
 };
 
-export default ReconnectKidScreen;
+export default DeleteKidScreen;

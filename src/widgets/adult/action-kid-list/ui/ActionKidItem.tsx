@@ -1,12 +1,17 @@
 import { styled } from 'nativewind';
-import { Text, View, AccessibilityRole } from 'react-native';
+import { View, AccessibilityRole } from 'react-native';
 
-import { ActionButton, KidAvatar } from '@/shared/ui';
 import { KidStatus, IconName } from '@/shared/types';
+import {
+  ActionButton,
+  KidAvatar,
+  KidCardTitle,
+  KidListeningStatus,
+} from '@/shared/ui';
 
-interface ReconnectKidItemProps {
-  kidName?: string;
-  status: KidStatus;
+interface ActionKidItemProps {
+  kidName: string;
+  status?: KidStatus;
   iconType: IconName;
   classNames?: string;
   accessibilityLabel: string;
@@ -16,7 +21,6 @@ interface ReconnectKidItemProps {
 
 const AvatarContainer = styled(View);
 const Item = styled(View);
-const Name = styled(Text);
 
 const shadowStyle = {
   shadowColor: 'rgba(0, 0, 0, 0.9)',
@@ -27,7 +31,7 @@ const shadowStyle = {
   backgroundColor: '#fff',
 };
 
-const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
+const ActionKidItem: React.FC<ActionKidItemProps> = ({
   kidName,
   iconType,
   classNames,
@@ -43,11 +47,10 @@ const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
     >
       <AvatarContainer className={` flex-row items-center ${classNames}`}>
         <KidAvatar statusTracking={true} status={status} />
-        <Name
-          className={`ml-4 text-lg font-semibold text-dark-blue ${classNames}`}
-        >
-          {kidName || 'Child'}
-        </Name>
+        <View>
+          <KidCardTitle classNames="ml-4">{kidName}</KidCardTitle>
+          <KidListeningStatus classNames="ml-4" status={status} />
+        </View>
       </AvatarContainer>
       <ActionButton
         iconName={iconType}
@@ -59,4 +62,4 @@ const ReconnectKidItem: React.FC<ReconnectKidItemProps> = ({
   );
 };
 
-export default ReconnectKidItem;
+export default ActionKidItem;
