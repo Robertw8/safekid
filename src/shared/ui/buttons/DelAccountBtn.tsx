@@ -40,7 +40,7 @@ const DelAccountBtn: React.FC<DelAccountBtnProps> = ({
     >
       <FontAwesome5 name="trash-alt" size={24} color="black" />
       <StyledText
-        className={`font-medium text-lg text-black mb-6 underline decoration-solid ${textClassNames}`}
+        className={`font-medium text-lg mb-6 underline decoration-solid ${textClassNames}`}
       >
         {text}
       </StyledText>
