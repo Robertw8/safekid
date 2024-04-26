@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./src/shared/assets/images/logo.png",
-      "resizeMode": "contain",
+      "resizeMode": "center",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": ["**/*"],
@@ -27,7 +27,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./src/shared/assets/images/favicon.png"
+      "favicon": "./src/shared/assets/images/logo.png"
     },
     "plugins": ["expo-router"],
     "experiments": {
