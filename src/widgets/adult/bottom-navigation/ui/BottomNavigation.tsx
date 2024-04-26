@@ -32,11 +32,13 @@ const BottomNavigation: React.FC = () => {
           color={isActive('/adult/dashboard') ? '#7D5DFF' : '#fff'}
         />
       </Link>
-      <FontAwesome
-        name="user"
-        size={28}
-        color={isActive('/adult/profile') ? '#7D5DFF' : '#fff'}
-      />
+      <Link href="/adult/profile">
+        <FontAwesome
+          name="user"
+          size={28}
+          color={isActive('/adult/profile') ? '#7D5DFF' : '#fff'}
+        />
+      </Link>
     </NavBar>
   );
 };
