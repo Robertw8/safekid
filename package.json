@@ -59,7 +59,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@react-native-async-storage/async-storage": "^1.23.1",
-    "@react-native-community/datetimepicker": "^7.7.0",
+    "@react-native-community/datetimepicker": "^8.0.0",
     "@react-native-community/slider": "^4.5.2",
     "@types/react": "^18.2.79",
     "babel-loader": "^9.1.3",
