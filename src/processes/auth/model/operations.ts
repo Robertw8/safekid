@@ -1,3 +1,4 @@
+import { getDeviceToken } from '@/features/listening';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -24,5 +25,10 @@ console.log('response.data =>', response.data);
     }
   },
 );
+
+export const getTokenThank = createAsyncThunk(
+    'auth/token',
+    getDeviceToken,
+)
 
 
