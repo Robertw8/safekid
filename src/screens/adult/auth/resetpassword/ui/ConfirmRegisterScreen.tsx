@@ -10,6 +10,8 @@ import {
 import { styled } from 'nativewind';
 import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
+import { selectUserData } from '@/processes/auth/model/selectors';
+import { useAppSelector } from '@/shared/lib';
 
 const Wrapper = styled(View);
 
@@ -35,6 +37,8 @@ const DigitInput = ({ digit, onChange }) => {
 
 const ConfirmRegisterScreen = () => {
   const [code, setCode] = useState(['', '', '', '']);
+  const userData = useAppSelector(selectUserData);
+  alert(`${userData?.message}`);
 
   const handleChange = (index, value) => {
     const newCode = [...code];

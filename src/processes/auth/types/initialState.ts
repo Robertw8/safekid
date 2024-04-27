@@ -1,7 +1,11 @@
 interface User {
+  dto: {
     email: string;
     password: string;
     deviceToken: string;
+    id: string;
+  };
+  message: string;
 };
 
 export default interface AuthInitialState {

@@ -57,7 +57,7 @@ const RegisterForm = () => {
       const userData = { email, password, deviceToken: token };
       console.log('user in onPressSend for backEnd', userData);
       dispatch(registerUser(userData));
-      router.navigate('/adult/instruction' as `${string}:${string}`);
+      router.navigate('/adult/confirm-register' as `${string}:${string}`);
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності')
     }
