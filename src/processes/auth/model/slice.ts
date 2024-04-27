@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
-import { setUserRole } from './operations';
+import { registerUser, setUserRole } from './operations';
 
 const initialState: AuthInitialState = {
   role: null,
+  userData: null,
+  error: null,
+  isLoading: false,
+  authenticated: false,
+  token: null,
 };
 
 const slice = createSlice({
@@ -11,9 +16,32 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(setUserRole, (state, { payload }) => {
+    builder
+      .addCase(setUserRole, (state, { payload }) => {
       state.role = payload;
-    });
+      })
+    // -----------Register------------
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.authenticated = true;
+        state.userData = payload;
+        state.error = null;
+      })
+    .addMatcher(
+        (action) => action.type.endsWith('/pending'),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        },
+      )
+      .addMatcher(
+        (action) => action.type.endsWith('/rejected'),
+        (state, action) => {
+          console.log('action in error', action);
+          state.isLoading = false;
+          state.error = "ERROR";
+        },
+      )
   },
 });
 
