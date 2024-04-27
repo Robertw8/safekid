@@ -29,7 +29,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(getTokenThank.fulfilled, (state, { payload }) => {
-        console.log('token', payload);
+        console.log('token in slice', payload);
         state.isLoading = false;
         state.token = payload;
         state.error = null;
