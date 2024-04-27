@@ -12,10 +12,11 @@ const instance = axios.create({
 
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
-  async (dataUser, thunkApi) => {
+    async (dataUser, thunkApi) => {
+      console.log('dataUser in registerUser', dataUser);
     try {
       const response = await instance.post('users/registration', dataUser);
-console.log('response.data =>', response.data);
+console.log('response.data in registerUser =>', response.data);
       return response.data;
     } catch (error) {
       alert(

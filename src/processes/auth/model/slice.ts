@@ -22,7 +22,7 @@ const slice = createSlice({
       })
       // -----------Register------------
       .addCase(registerUser.fulfilled, (state, { payload }) => {
-        console.log('userData', payload);
+        console.log('userData in slice', payload);
         state.isLoading = false;
         state.authenticated = true;
         state.userData = payload;

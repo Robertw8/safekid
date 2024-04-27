@@ -21,6 +21,9 @@ import {
 import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { selectToken } from '@/processes/auth/model/selectors';
+import { registerUser } from '@/processes/auth/model/operations';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -28,9 +31,13 @@ const WrapperForm = styled(View);
 const WrapperButton = styled(View);
 
 const RegisterForm = () => {
+  const dispatch = useAppDispatch();
+
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
   const [check, setCheck] = useState(false);
+
+  const token = useAppSelector(selectToken);
 
   const {
     control,
@@ -45,9 +52,11 @@ const RegisterForm = () => {
     },
   });
 
-  const onPressSend = (formData) => {
+  const onPressSend = ({ email, password }) => {
     if (check) {
-      console.log(formData);
+      const userData = { email, password, deviceToken: token };
+      console.log('user in onPressSend for backEnd', userData);
+      dispatch(registerUser(userData));
       router.navigate('/adult/instruction' as `${string}:${string}`);
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності')
