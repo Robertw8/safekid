@@ -10,8 +10,9 @@ import {
 import { styled } from 'nativewind';
 import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
-import { useAppSelector } from '@/shared/lib';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectUserData } from '@/processes/auth/model/selectors';
+import { postVerifyEmailThank } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 
@@ -36,6 +37,8 @@ const DigitInput = ({ digit, onChange }) => {
 };
 
 const ConfirmRegisterScreen = () => {
+    const dispatch = useAppDispatch();
+
   const [code, setCode] = useState(['', '', '', '']);
  const regUserData = useAppSelector(selectUserData);
 
@@ -47,7 +50,12 @@ const ConfirmRegisterScreen = () => {
 
   const onSubmitForm = () => {
     const enteredCode = code.join('');
-    console.log('Entered Code & email:', enteredCode, regUserData?.dto.email);
+    const verifyData = {
+      email: regUserData?.dto.email,
+      code: enteredCode
+    };
+    console.log('Entered Code & email:', verifyData);
+    dispatch(postVerifyEmailThank(verifyData))
     setCode(['', '', '', '']);
     router.navigate('/auth/adult/login');
   };
