@@ -6,7 +6,7 @@ const Wrapper = styled(View);
 
 const valueQr = 'https://github.com/Robertw8/safekid';
 
-const QrCode = () => {
+const QrCode: React.FC = () => {
   return (
     <Wrapper className="my-auto">
       <QRCode

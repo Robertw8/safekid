@@ -19,7 +19,7 @@ const dataProfileList = [
   },
   {
     icon: <Ionicons name="chatbubble-outline" size={24} color="black" />,
-    route: '/adult/qr-code',
+    route: '/adult/set-sound',
     title: 'Налаштувати сповіщення',
   },
   {

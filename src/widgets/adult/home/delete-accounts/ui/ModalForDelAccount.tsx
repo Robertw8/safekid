@@ -3,9 +3,17 @@ import { PrimaryButton, PrimaryModal } from '@/shared/ui';
 import { View } from 'react-native';
 import { modalText } from '@/entities/profile';
 
+interface ModalForDelAccountProps {
+  isModalOpen: boolean;
+  buttonId: string;
+  handleDeleteAccountKid: () => void;
+  handleDeleteAccountAdult: () => void;
+  handleModalOpen: (id: string) => void;
+}
+
 const BtnModal = styled(View);
 
-const ModalForDelAccount = ({
+const ModalForDelAccount: React.FC<ModalForDelAccountProps> = ({
   isModalOpen,
   buttonId,
   handleDeleteAccountKid,
