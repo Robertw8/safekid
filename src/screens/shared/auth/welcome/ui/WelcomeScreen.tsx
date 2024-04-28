@@ -12,7 +12,7 @@ import {
   kidIcon,
 } from '@/shared/ui';
 import { useEffect } from 'react';
-import { getTokenThank } from '@/processes/auth/model/operations';
+import { getTokenThunk } from '@/processes/auth/model/operations';
 const CardsWrapper = styled(View);
 
 const WelcomeScreen: React.FC = () => {
@@ -21,7 +21,7 @@ const WelcomeScreen: React.FC = () => {
 
   useEffect(() => {
     console.log('useEffect in WelcomeScreen');
-    dispatch(getTokenThank())
+    dispatch(getTokenThunk())
   }, []);
 
   const handleAdultSelect = () => {

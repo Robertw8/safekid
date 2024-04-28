@@ -2,24 +2,30 @@ import { getDeviceToken } from '@/features/listening';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import postRegisterUser from '../api/postRegisterUser';
 import postVerifyEmail from '../api/postVerifyEmail';
+import postLoginUser from '../api/postLoginUser';
 
 const setUserRole = createAction<'kid' | 'adult' | null>('auth/setUserRole');
 
 export { setUserRole };
     
-export const getTokenThank = createAsyncThunk(
+export const getTokenThunk = createAsyncThunk(
     'auth/token',
     getDeviceToken,
 );
 
-export const postRegisterUserThank = createAsyncThunk(
+export const postRegisterUserThunk = createAsyncThunk(
   'auth/registerUser',
     postRegisterUser
 );
 
-export const postVerifyEmailThank = createAsyncThunk(
+export const postVerifyEmailThunk = createAsyncThunk(
   'auth/verifyEmail',
     postVerifyEmail
+);
+
+export const postLoginUserThunk = createAsyncThunk(
+  'auth/loginUser',
+    postLoginUser
 );
 
 

@@ -12,7 +12,7 @@ import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectUserData } from '@/processes/auth/model/selectors';
-import { postVerifyEmailThank } from '@/processes/auth/model/operations';
+import { postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 
@@ -55,7 +55,7 @@ const ConfirmRegisterScreen = () => {
       code: enteredCode
     };
     console.log('Entered Code & email:', verifyData);
-    dispatch(postVerifyEmailThank(verifyData))
+    dispatch(postVerifyEmailThunk(verifyData))
     setCode(['', '', '', '']);
     router.navigate('/auth/adult/login');
   };

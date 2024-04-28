@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
-import { getTokenThank, postRegisterUserThank, postVerifyEmailThank, setUserRole } from './operations';
+import { getTokenThunk, postLoginUserThunk, postRegisterUserThunk, postVerifyEmailThunk, setUserRole } from './operations';
 
 const initialState: AuthInitialState = {
   role: null,
@@ -10,6 +10,7 @@ const initialState: AuthInitialState = {
   isLoading: false,
   authenticated: false,
   token: null,
+  jwtToken: null,
 };
 
 const slice = createSlice({
@@ -21,24 +22,31 @@ const slice = createSlice({
       .addCase(setUserRole, (state, { payload }) => {
         state.role = payload;
       })
-      .addCase(getTokenThank.fulfilled, (state, { payload }) => {
+      .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
         console.log('token in slice', payload);
         state.isLoading = false;
         state.token = payload;
         state.error = null;
       })
-      .addCase(postRegisterUserThank.fulfilled, (state, { payload }) => {
+      .addCase(postRegisterUserThunk.fulfilled, (state, { payload }) => {
         console.log('userData in slice', payload);
         state.isLoading = false;
         state.authenticated = false;
         state.userData = payload;
         state.error = null;
       })
-      .addCase(postVerifyEmailThank.fulfilled, (state, { payload }) => {
+      .addCase(postVerifyEmailThunk.fulfilled, (state, { payload }) => {
         console.log('response postVerifyEmailThank in slice', payload);
         state.isLoading = false;
-        state.authenticated = true;
+        state.authenticated = false;
         state.verifyEmail = true;
+        state.error = null;
+      })
+      .addCase(postLoginUserThunk.fulfilled, (state, { payload }) => {
+        console.log('response jwtToken postLoginUserThunk in slice', payload);
+        state.isLoading = false;
+        state.authenticated = true;
+        state.jwtToken = payload;
         state.error = null;
       })
       .addMatcher(

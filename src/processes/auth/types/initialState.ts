@@ -16,4 +16,5 @@ export default interface AuthInitialState {
   isLoading: boolean,
   authenticated: boolean,
   token: null | string,
+  jwtToken: null | string,
 };
