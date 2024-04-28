@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
-import { getTokenThank, registerUser, setUserRole } from './operations';
+import { getTokenThank, postRegisterUserThank, setUserRole } from './operations';
 
 const initialState: AuthInitialState = {
   role: null,
@@ -21,7 +21,7 @@ const slice = createSlice({
         state.role = payload;
       })
       // -----------Register------------
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
+      .addCase(postRegisterUserThank.fulfilled, (state, { payload }) => {
         console.log('userData in slice', payload);
         state.isLoading = false;
         state.authenticated = true;

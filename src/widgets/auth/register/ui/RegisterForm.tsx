@@ -22,8 +22,8 @@ import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectToken } from '@/processes/auth/model/selectors';
-import { registerUser } from '@/processes/auth/model/operations';
+import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
+import { postRegisterUserThank } from '@/processes/auth/model/operations';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -38,6 +38,7 @@ const RegisterForm = () => {
   const [check, setCheck] = useState(false);
 
   const token = useAppSelector(selectToken);
+ const regUserData = useAppSelector(selectUserData);
 
   const {
     control,
@@ -56,8 +57,9 @@ const RegisterForm = () => {
     if (check) {
       const userData = { email, password, deviceToken: token };
       console.log('user in onPressSend for backEnd', userData);
-      dispatch(registerUser(userData));
-      router.navigate('/adult/confirm-register' as `${string}:${string}`);
+      dispatch(postRegisterUserThank(userData));
+        alert(`${regUserData?.message}`);
+      router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності')
     }
@@ -178,6 +180,12 @@ const RegisterForm = () => {
           classNames="w-48 self-center"
         />
       </WrapperButton>
+      <Link href="/auth/adult/confirm-register">
+          <NormalText classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}>
+            confirm-register
+          </NormalText>{' '}
+      
+        </Link>
     </WrapperForm>
   );
 };
