@@ -19,7 +19,9 @@ const SetSoundNotification: React.FC = () => {
       </Header>
       <Title className="flex flex-row justify-between items-center mt-[63]">
         <StyledText className="font-medium text-xl">
-          {`Вимкнути звукове \nсповіщення`}
+          {checked
+            ? `Вимкнути звукове \nсповіщення`
+            : `Ввімкнути звукове \nсповіщення`}
         </StyledText>
         <Switch
           checked={checked}
