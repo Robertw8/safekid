@@ -1,6 +1,7 @@
 import { styled } from 'nativewind';
 import { View } from 'react-native';
 import { BackButton, PrimaryContainer, SecondaryTitle } from '@/shared/ui';
+
 import { QrCode } from '@/widgets/adult';
 
 const Wrapper = styled(View);

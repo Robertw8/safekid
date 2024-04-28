@@ -12,7 +12,7 @@ const HomeKidsList: React.FC = () => {
         <HomeKidsItem kidName={key} key={index} status={'inactive'} />
       ))}
       <Link
-        href="/adult/reconnectKidList"
+        href="/adult/reconnect-kid"
         className="ml-1 mt-4 w-64 font-normal underline text-base text-gray-primary"
       >
         Відновити зв'язок з існуючим акаунтом дитини

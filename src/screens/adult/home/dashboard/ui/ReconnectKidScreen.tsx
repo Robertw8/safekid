@@ -23,7 +23,7 @@ const ReconnectKidScreen: React.FC = () => {
   ];
 
   return (
-    <PrimaryContainer classNames="justify-start">
+    <PrimaryContainer classNames="justify-start pt-12">
       <BackButton />
       <TertiaryTitle classNames="mb-20 ml-12">
         Відновити зв'язок з існуючим акаунтом дитини
