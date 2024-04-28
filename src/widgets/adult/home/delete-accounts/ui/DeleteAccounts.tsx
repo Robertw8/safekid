@@ -8,7 +8,7 @@ import { router } from 'expo-router';
 
 const Wrapper = styled(View);
 
-const DeleteAccounts = () => {
+const DeleteAccounts: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [buttonId, setButtonId] = useState('');
 

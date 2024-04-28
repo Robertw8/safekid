@@ -23,11 +23,13 @@ const Logout: React.FC = () => {
   return (
     <>
       <StyledBtn
-        onPress={logout}
-        className="flex flex-row items-center gap-[16] mt-9"
+        onPress={handleModalOpen}
+        className="flex flex-row items-center mt-9"
       >
         <Ionicons name="log-out-outline" size={24} color="black" />
-        <StyledText className="font-medium text-xl">Вийти з акаунту</StyledText>
+        <StyledText className="font-medium text-xl ml-4">
+          Вийти з акаунту
+        </StyledText>
       </StyledBtn>
       <PrimaryModal
         visible={isModalOpen}

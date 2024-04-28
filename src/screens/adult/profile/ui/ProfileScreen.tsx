@@ -1,7 +1,5 @@
-import { ProfileList } from '@/widgets/profile-list';
 import { BackButton, PrimaryContainer } from '@/shared/ui';
-import { DeleteAccounts } from '@/widgets/delete-accounts';
-import { Logout } from '@/widgets/logout';
+import { DeleteAccounts, Logout, ProfileList } from '@/widgets/adult';
 
 const ProfileScreen = () => {
   return (

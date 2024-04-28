@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from 'nativewind';
 import QRCode from 'react-qr-code';
 
@@ -9,8 +9,6 @@ import { v4 as uuidv4 } from 'uuid';
 import getDeviceToken from '@/features/listening/api/getDeviceToken';
 
 const Wrapper = styled(View);
-
-// const valueQr = 'https://github.com/Robertw8/safekid';
 
 const QrCode = () => {
   const [deviceToken, setDeviceToken] = useState('');
