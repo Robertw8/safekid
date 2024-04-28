@@ -3,6 +3,7 @@ import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import postRegisterUser from '../api/postRegisterUser';
 import postVerifyEmail from '../api/postVerifyEmail';
 import postLoginUser from '../api/postLoginUser';
+import delParentAccount from '../api/delParentAccount';
 
 const setUserRole = createAction<'kid' | 'adult' | null>('auth/setUserRole');
 
@@ -26,6 +27,11 @@ export const postVerifyEmailThunk = createAsyncThunk(
 export const postLoginUserThunk = createAsyncThunk(
   'auth/loginUser',
     postLoginUser
+);
+
+export const delParentAccountThunk = createAsyncThunk(
+  'auth/delParent',
+    delParentAccount
 );
 
 

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
-import { getTokenThunk, postLoginUserThunk, postRegisterUserThunk, postVerifyEmailThunk, setUserRole } from './operations';
+import { delParentAccountThunk, getTokenThunk, postLoginUserThunk, postRegisterUserThunk, postVerifyEmailThunk, setUserRole } from './operations';
 
 const initialState: AuthInitialState = {
   role: null,
@@ -47,6 +47,17 @@ const slice = createSlice({
         state.isLoading = false;
         state.authenticated = true;
         state.jwtToken = payload;
+        state.error = null;
+      })
+      .addCase(delParentAccountThunk.fulfilled, (state, { payload }) => {
+        console.log('response delParentAccountThunk in slice', payload);
+        state.isLoading = false;
+        state.authenticated = false;
+        state.role = null;
+        state.verifyEmail = false;
+        state.userData = null;
+        state.token = null;
+        state.jwtToken = null;
         state.error = null;
       })
       .addMatcher(
