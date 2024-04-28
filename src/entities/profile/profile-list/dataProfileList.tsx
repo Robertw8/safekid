@@ -24,12 +24,12 @@ const dataProfileList = [
   },
   {
     icon: <Ionicons name="cog-outline" size={24} color="black" />,
-    route: '/adult/reconnect-kid',
+    route: '/adult/edit-kid',
     title: 'Редагувати дані дитини',
   },
   {
     icon: <Ionicons name="extension-puzzle-outline" size={24} color="black" />,
-    route: '/adult/qr-code',
+    route: '/adult/reconnect-kid',
     title: 'Відновити зв`язок з існуючим акаунтом дитини',
   },
 ];

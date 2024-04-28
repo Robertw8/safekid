@@ -1,7 +1,7 @@
 import { DeleteKidScreen } from '@/screens/adult/home';
 
-const deleteKidList: React.FC = () => {
+const DeleteKidList: React.FC = () => {
   return <DeleteKidScreen />;
 };
 
-export default deleteKidList;
+export default DeleteKidList;
