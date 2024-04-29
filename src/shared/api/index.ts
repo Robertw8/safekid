@@ -1,1 +1,2 @@
-export { default as requestWrapper } from './utils/requestWrapper';
+export { default as requestWrapper } from './requestWrapper';
+export { default as getDeviceToken } from './getDeviceToken';
