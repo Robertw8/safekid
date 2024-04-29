@@ -18,6 +18,8 @@ import {
 } from '@/shared/ui';
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useAppDispatch } from '@/shared/lib';
+import { postLoginUserThunk } from '@/processes/auth/model/operations';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -25,6 +27,8 @@ const WrapperForm = styled(View);
 const WrapperButton = styled(View);
 
 const LogInForm = () => {
+    const dispatch = useAppDispatch();
+
   const [showPassword, setShowPassword] = useState(true);
   
   const {
@@ -41,7 +45,8 @@ const LogInForm = () => {
 
   const onPressSend = (formData) => {
     console.log(formData);
-    router.navigate('/adult/dashboard');
+    dispatch(postLoginUserThunk(formData))
+    router.navigate('/adult/instruction');
   };
 
   return (

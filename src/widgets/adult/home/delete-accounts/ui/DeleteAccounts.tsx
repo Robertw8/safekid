@@ -5,10 +5,13 @@ import { useState } from 'react';
 import DelAccountBtn from '@/shared/ui/buttons/DelAccountBtn';
 import ModalForDelAccount from './ModalForDelAccount';
 import { router } from 'expo-router';
+import { useAppDispatch } from '@/shared/lib';
+import { delParentAccountThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 
 const DeleteAccounts: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [buttonId, setButtonId] = useState('');
 
@@ -22,9 +25,11 @@ const DeleteAccounts: React.FC = () => {
   };
 
   const handleDeleteAccountAdult = () => {
+    dispatch(delParentAccountThunk({}));
     console.log('Акаунт видалений');
     handleModalOpen('adult');
   };
+
   return (
     <>
       <Wrapper className="flex mt-20">

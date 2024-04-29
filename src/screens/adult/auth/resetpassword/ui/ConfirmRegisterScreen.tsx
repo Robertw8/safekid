@@ -10,6 +10,9 @@ import {
 import { styled } from 'nativewind';
 import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { selectUserData } from '@/processes/auth/model/selectors';
+import { postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 
@@ -34,7 +37,10 @@ const DigitInput = ({ digit, onChange }) => {
 };
 
 const ConfirmRegisterScreen = () => {
+    const dispatch = useAppDispatch();
+
   const [code, setCode] = useState(['', '', '', '']);
+ const regUserData = useAppSelector(selectUserData);
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -44,8 +50,14 @@ const ConfirmRegisterScreen = () => {
 
   const onSubmitForm = () => {
     const enteredCode = code.join('');
-    console.log('Entered Code:', enteredCode);
-    router.navigate('/auth/adult');
+    const verifyData = {
+      email: regUserData?.dto.email,
+      code: enteredCode
+    };
+    console.log('Entered Code & email:', verifyData);
+    dispatch(postVerifyEmailThunk(verifyData))
+    setCode(['', '', '', '']);
+    router.navigate('/auth/adult/login');
   };
 
   const resendCode = () => {
@@ -90,10 +102,10 @@ const ConfirmRegisterScreen = () => {
         </Text>
       </TouchableOpacity>
       <PrimaryButton
-        text="Встановити новий пароль"
+        text="Підтвердити реєстрацію"
         onPress={onSubmitForm}
-        hint="Встановити новий пароль"
-        label="Встановити новий пароль"
+        hint="Підтвердити реєстрацію"
+        label="Підтвердити реєстрацію"
         role="button"
         classNames="w-full self-center mt-40"
       />

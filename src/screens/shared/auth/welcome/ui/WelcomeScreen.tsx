@@ -11,12 +11,18 @@ import {
   adultIcon,
   kidIcon,
 } from '@/shared/ui';
-
+import { useEffect } from 'react';
+import { getTokenThunk } from '@/processes/auth/model/operations';
 const CardsWrapper = styled(View);
 
 const WelcomeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const { role } = useAuth();
+
+  useEffect(() => {
+    console.log('useEffect in WelcomeScreen');
+    dispatch(getTokenThunk())
+  }, []);
 
   const handleAdultSelect = () => {
     dispatch(setUserRole('adult'));
