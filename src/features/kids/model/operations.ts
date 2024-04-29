@@ -15,16 +15,14 @@ import { actionWrapper } from '@/shared/lib';
 
 import RegisterChildParams from '../types/registerChild';
 
-const baseURL = 'https://drake-singular-severely.ngrok-free.app';
-
-export const registerKid = actionWrapper(
+const registerKid = actionWrapper(
   'child/register',
   async (params: RegisterChildParams) => {
     const { parentId, mobileTitle, deviceId } = params;
     const response = await requestWrapper(
       {
         method: 'post',
-        url: `${baseURL}/child/registration`,
+        url: `/child/registration`,
         data: { parentId, mobileTitle, deviceId },
       },
       error => error
@@ -34,17 +32,17 @@ export const registerKid = actionWrapper(
   }
 );
 
-export const sendKidData = actionWrapper(
-  'child/sendData',
-  async (childId: string) => {
-    const response = await requestWrapper(
-      {
-        method: 'post',
-        url: `${baseURL}/child/send/${childId}`,
-      },
-      error => error
-    );
+//! це прибрати, для фічі з нотифікашками буде окремий слайс
+const sendKidData = actionWrapper('child/sendData', async (childId: string) => {
+  const response = await requestWrapper(
+    {
+      method: 'post',
+      url: `/child/send/${childId}`,
+    },
+    error => error
+  );
 
-    return response;
-  }
-);
+  return response;
+});
+
+export { registerKid, sendKidData };
