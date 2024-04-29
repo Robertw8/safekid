@@ -1,7 +1,7 @@
 import { EditKidScreen } from '@/screens/adult/home';
 
-const editKidList: React.FC = () => {
+const EditKidList: React.FC = () => {
   return <EditKidScreen />;
 };
 
-export default editKidList;
+export default EditKidList;

@@ -1,5 +1,5 @@
 import { PrimaryContainer } from '@/shared/ui';
-import { UserEmail } from '@/widgets/user-info';
+import { UserEmail } from '@/widgets/adult';
 
 const UserInfoScreen: React.FC = () => {
   return (

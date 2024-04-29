@@ -28,7 +28,7 @@ const EditKidScreen: React.FC = () => {
   return (
     <PrimaryContainer classNames="justify-start">
       <BackButton />
-      <TertiaryTitle classNames="mb-20 ml-12">
+      <TertiaryTitle classNames="mb-20 ml-16">
         Редагувати дані дитини
       </TertiaryTitle>
       <ActionKidList

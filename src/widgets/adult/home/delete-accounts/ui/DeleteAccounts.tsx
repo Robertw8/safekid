@@ -10,9 +10,8 @@ import { delParentAccountThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 
-const DeleteAccounts = () => {
-    const dispatch = useAppDispatch();
-
+const DeleteAccounts: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [buttonId, setButtonId] = useState('');
 
@@ -26,7 +25,7 @@ const DeleteAccounts = () => {
   };
 
   const handleDeleteAccountAdult = () => {
-    dispatch(delParentAccountThunk())
+    dispatch(delParentAccountThunk({}));
     console.log('Акаунт видалений');
     handleModalOpen('adult');
   };
