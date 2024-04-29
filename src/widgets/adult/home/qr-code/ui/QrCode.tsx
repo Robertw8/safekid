@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { styled } from 'nativewind';
-import QRCode from 'react-qr-code';
+import { getDeviceToken } from '@/shared/api';
+import { v4 as uuidv4 } from 'uuid';
+import 'react-native-get-random-values';
 
 import { Text, View } from 'react-native';
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
-
-import getDeviceToken from '@/features/listening/api/getDeviceToken';
+import QRCode from 'react-qr-code';
 
 const Wrapper = styled(View);
 
-const QrCode = () => {
+const QrCode: React.FC = () => {
   const [deviceToken, setDeviceToken] = useState('');
   const childId = uuidv4();
 
@@ -23,8 +22,12 @@ const QrCode = () => {
     fetchToken();
   }, []);
 
-  const generateQrValue = (childId, deviceToken) => {
-    return `https://example.com/register?childId=${encodeURIComponent(childId)}&deviceToken=${encodeURIComponent(deviceToken)}`;
+  const generateQrValue = (childId: string, deviceToken: string) => {
+    // return `https://example.com/register?childId=${encodeURIComponent(childId)}&deviceToken=${encodeURIComponent(deviceToken)}`;
+    return JSON.stringify({
+      childId,
+      deviceToken,
+    });
   };
 
   const valueQr = generateQrValue(childId, deviceToken);
@@ -35,7 +38,7 @@ const QrCode = () => {
       <Text>Child ID: {childId}</Text>
       <Text>Device Token: {deviceToken}</Text>
       {/* сформована лінка кур  */}
-      <Text>QR Value: {valueQr}</Text>
+      {/* <Text>QR Value: {valueQr}</Text> */}
 
       <QRCode
         bgColor={'transparent'}
