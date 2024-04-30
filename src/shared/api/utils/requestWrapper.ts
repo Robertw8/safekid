@@ -13,7 +13,7 @@ interface RequestWrapperParams {
 }
 
 const axiosInstance = axios.create({
-  baseURL: '', // !
+  baseURL: 'https://drake-singular-severely.ngrok-free.app', // !
 });
 
 const requestWrapper = async (

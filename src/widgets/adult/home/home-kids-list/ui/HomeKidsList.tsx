@@ -1,15 +1,19 @@
+import { Link } from 'expo-router';
 import { View } from 'react-native';
 import HomeKidsItem from './HomeKidsItem';
 
-import { Link } from 'expo-router';
+import { useSelector } from 'react-redux';
+import { selectListKids } from '@/features/get-list-kids/model/selectors';
 
-const kids = [{ key: 'Олівія' }, { key: 'Макс' }, { key: 'Марта' }];
+// const kids = [{ key: 'Олівія' }, { key: 'Макс' }, { key: 'Марта' }];
 
 const HomeKidsList: React.FC = () => {
+  const kids = useSelector(selectListKids);
+
   return (
     <View>
-      {kids.map(({ key }, index) => (
-        <HomeKidsItem kidName={key} key={index} status={'inactive'} />
+      {kids.map(kid => (
+        <HomeKidsItem kidName={kid.userName} key={kid.id} status={'inactive'} />
       ))}
       <Link
         href="/adult/reconnect-kid"

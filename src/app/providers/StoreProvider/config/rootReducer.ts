@@ -1,15 +1,19 @@
 import { authReducer } from '@/processes/auth';
-import { kidsReducer } from '@/features/kids';
+import { sendKidsReducer } from '@/features/send-kids';
 import { listeningReducer } from '@/features/listening';
 
-import { kidsDeleteReducer } from '@/features/delete-kid';
-
+import { registerKidsReducer } from '@/features/register-kids';
+import { deleteKidsReducer } from '@/features/delete-kids';
 import { combineReducers } from '@reduxjs/toolkit';
+
+import { listKidsReducer } from '@/features/get-list-kids';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  kids: kidsReducer,
-  kidsDelete: kidsDeleteReducer,
+  listKids: listKidsReducer,
+  sendKids: sendKidsReducer,
+  registerKids: registerKidsReducer,
+  kidsDelete: deleteKidsReducer,
   listening: listeningReducer,
 });
 
