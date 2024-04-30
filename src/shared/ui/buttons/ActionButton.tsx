@@ -1,6 +1,6 @@
 import { styled } from 'nativewind';
 import { Entypo, Ionicons, AntDesign } from '@expo/vector-icons';
-import { TouchableOpacity, AccessibilityRole } from 'react-native';
+import { TouchableOpacity, AccessibilityRole, Text } from 'react-native';
 
 import { IconName } from '@/shared/types';
 
@@ -18,9 +18,12 @@ interface ActionButtonProps {
   accessibilityLabel: string;
   accessibilityHint: string;
   accessibilityRole: AccessibilityRole;
+  text?: string;
+  textClassNames?: string;
 }
 
 const Button = styled(TouchableOpacity);
+const StyledText = styled(Text);
 
 const ActionButton: React.FC<ActionButtonProps> = ({
   onPress,
@@ -29,6 +32,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   accessibilityLabel,
   accessibilityHint,
   accessibilityRole,
+  text,
+  textClassNames,
 }) => {
   const IconComponent = iconPack[iconName];
 
@@ -36,12 +41,17 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     <Button
       accessible={true}
       onPress={onPress}
-      className={`m-2 ${classNames}`}
+      className={`flex flex-row m-2 ${classNames}`}
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       accessibilityRole={accessibilityRole}
     >
       <IconComponent name={iconName as any} size={24} color="black" />
+      <StyledText
+        className={`font-medium text-lg underline decoration-solid ${textClassNames}`}
+      >
+        {text}
+      </StyledText>
     </Button>
   );
 };

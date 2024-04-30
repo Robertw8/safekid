@@ -2,10 +2,10 @@ import { styled } from 'nativewind';
 import { View } from 'react-native';
 import { useState } from 'react';
 
-import DelAccountBtn from '@/shared/ui/buttons/DelAccountBtn';
-import ModalForDelAccount from './ModalForDelAccount';
 import { router } from 'expo-router';
 import { useAppDispatch } from '@/shared/lib';
+import { ActionButton } from '@/shared/ui';
+import ModalForDelAccount from './ModalForDelAccount';
 import { delParentAccountThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
@@ -32,24 +32,26 @@ const DeleteAccounts: React.FC = () => {
 
   return (
     <>
-      <Wrapper className="flex mt-20">
-        <DelAccountBtn
-          id="kid"
-          role="button"
-          label="Видалити акаунт дитини"
-          hint="При натисканні видаляється акаунт дитини"
+      <Wrapper className="mt-20">
+        <ActionButton
+          iconName="trash-outline"
+          accessibilityLabel="Видалити акаунт дитини"
+          accessibilityHint="При натисканні видаляється акаунт дитини"
+          accessibilityRole="button"
           text="Видалити акаунт дитини"
+          classNames="m-0 mb-6"
+          textClassNames="ml-4"
           onPress={() => router.navigate('/adult/delete-kid')}
-          accessible={true}
         />
-        <DelAccountBtn
-          id="adult"
-          role="button"
-          label="Видалити акаунт дорослого"
-          hint="При натисканні видаляється акаунт дорослого"
+        <ActionButton
+          iconName="trash-outline"
+          accessibilityLabel="Видалити акаунт дорослого"
+          accessibilityHint="При натисканні видаляється акаунт дорослого"
+          accessibilityRole="button"
           text="Видалити акаунт дорослого"
+          classNames="m-0"
+          textClassNames="ml-4"
           onPress={() => handleModalOpen('adult')}
-          accessible={true}
         />
       </Wrapper>
 

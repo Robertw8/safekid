@@ -24,7 +24,7 @@ const Logout: React.FC = () => {
     <>
       <StyledBtn
         onPress={handleModalOpen}
-        className="flex flex-row items-center mt-9"
+        className="flex flex-row items-center mt-16"
       >
         <Ionicons name="log-out-outline" size={24} color="black" />
         <StyledText className="font-medium text-xl ml-4">
