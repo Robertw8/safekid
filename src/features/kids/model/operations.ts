@@ -13,24 +13,24 @@
 import { requestWrapper } from '@/shared/api';
 import { actionWrapper } from '@/shared/lib';
 
-import RegisterChildParams from '../types/registerChild';
+// import RegisterChildParams from '../types/registerChild';
 
-const registerKid = actionWrapper(
-  'child/register',
-  async (params: RegisterChildParams) => {
-    const { parentId, mobileTitle, deviceId } = params;
-    const response = await requestWrapper(
-      {
-        method: 'post',
-        url: `/child/registration`,
-        data: { parentId, mobileTitle, deviceId },
-      },
-      error => error
-    );
+// const registerKid = actionWrapper(
+//   'child/register',
+//   async (params: RegisterChildParams) => {
+//     const { parentId, mobileTitle, deviceId } = params;
+//     const response = await requestWrapper(
+//       {
+//         method: 'post',
+//         url: `/child/registration`,
+//         data: { parentId, mobileTitle, deviceId },
+//       },
+//       error => error
+//     );
 
-    return response;
-  }
-);
+//     return response;
+//   }
+// );
 
 //! це прибрати, для фічі з нотифікашками буде окремий слайс
 const sendKidData = actionWrapper('child/sendData', async (childId: string) => {
@@ -45,4 +45,4 @@ const sendKidData = actionWrapper('child/sendData', async (childId: string) => {
   return response;
 });
 
-export { registerKid, sendKidData };
+export { sendKidData };
