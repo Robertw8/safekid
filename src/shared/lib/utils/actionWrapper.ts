@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const actionWrapper = <Returned, ThunkArg>(
-  path: string,
+  name: string,
   handler: (args: ThunkArg, thunkAPI) => Promise<Returned>
 ) => {
-  return createAsyncThunk<Returned, ThunkArg>(path, async (args, thunkAPI) => {
+  return createAsyncThunk<Returned, ThunkArg>(name, async (args, thunkAPI) => {
     try {
       return await handler(args, thunkAPI);
     } catch (error) {

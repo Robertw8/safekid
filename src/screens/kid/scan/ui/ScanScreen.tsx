@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAppDispatch, useListening } from '@/shared/lib';
 import { router } from 'expo-router';
 import { styled } from 'nativewind';
 
@@ -10,22 +11,32 @@ import {
 } from '@/shared/ui';
 import { Camera } from 'expo-camera';
 import { Link } from 'expo-router';
+import { registerKid } from '@/features/kids';
 
 const StyledCamera = styled(Camera);
 
 const ScanScreen: React.FC = () => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState<boolean | string>(false);
+  const dispatch = useAppDispatch();
+  const { deviceToken } = useListening();
 
   const requestCameraPermission = async () => {
     const { status } = await Camera.requestCameraPermissionsAsync();
     setHasPermission(status === 'granted');
   };
 
-  const handleBarCodeScanned = ({}) => {
-    setScanned(true);
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    router.navigate('/kid/home');
+  const handleBarCodeScanned = ({ data }) => {
+    // setScanned(true);
+    dispatch(
+      registerKid({
+        parentId: 'xxx',
+        deviceId: deviceToken,
+        mobileTitle: '*Phone name',
+      })
+    );
+
+    // router.navigate('/kid/home');
   };
 
   return (
