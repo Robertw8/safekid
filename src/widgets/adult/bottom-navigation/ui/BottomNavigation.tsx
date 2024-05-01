@@ -17,7 +17,7 @@ const BottomNavigation: React.FC = () => {
 
   return (
     <NavBar className="bg-black w-screen flex-row justify-between items-center h-14 px-8 relative">
-      <Link href="/adult/information">
+      <Link href="/adult/information/">
         <Entypo
           name="info-with-circle"
           size={28}
@@ -25,14 +25,14 @@ const BottomNavigation: React.FC = () => {
         />
       </Link>
 
-      <Link href="/adult/dashboard">
+      <Link href="/adult/dashboard/">
         <FontAwesome5
           name="home"
           size={28}
           color={isActive('/adult/dashboard') ? '#7D5DFF' : '#fff'}
         />
       </Link>
-      <Link href="/adult/profile">
+      <Link href="/adult/profile/">
         <FontAwesome
           name="user"
           size={28}
