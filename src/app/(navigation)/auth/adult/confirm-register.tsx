@@ -1,4 +1,4 @@
-import { ConfirmRegisterScreen } from '@/screens/adult/auth';
+import { ConfirmRegisterScreen } from '@/screens/adult';
 
 const ConfirmRegister: React.FC = () => {
   return <ConfirmRegisterScreen />;

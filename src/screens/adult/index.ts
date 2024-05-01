@@ -1,0 +1,16 @@
+export { default as LoginScreen } from './auth/login/ui/LoginScreen';
+export { default as RegisterScreen } from './auth/register/ui/RegisterScreen';
+export { default as PrivacyPoliceScreen } from './auth/register/ui/PrivacyPoliceScreen';
+export { default as ConfirmRegisterScreen } from './auth/register/ui/ConfirmRegisterScreen';
+export { default as NewPasswordScreen } from './auth/resetpassword/ui/NewPasswordScreen';
+export { default as ResetPasswordScreen } from './auth/resetpassword/ui/ResetPasswordScreen';
+export { default as DashboardScreen } from './home/dashboard/ui/DashboardScreen';
+export { default as ReconnectKidScreen } from './home/reconnect-kid/ui/ReconnectKidScreen';
+export { default as EditKidScreen } from './home/edit-kid/ui/EditKidScreen';
+export { default as DeleteKidScreen } from './home/delete-kid/ui/DeleteKidScreen';
+export { default as InformationScreen } from './information/ui/InformationScreen';
+export { default as InstructionScreen } from './instruction/ui/InstructionScreen';
+export { default as ProfileScreen } from './profile/ui/ProfileScreen';
+export { default as QrCodeScreen } from './qr-сode/ui/QrCodeScreen';
+export { default as SetSoundScreen } from './set-sound/ui/SetSoundScreen';
+export { default as UserInfoScreen } from './user-info/ui/UserInfoScreen';

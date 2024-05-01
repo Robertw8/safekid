@@ -1,4 +1,4 @@
-import { QrCodeScreen } from '@/screens/adult/qr-сode';
+import { QrCodeScreen } from '@/screens/adult';
 
 const QrCode: React.FC = () => {
   return <QrCodeScreen />;

@@ -5,7 +5,7 @@ import { styled } from 'nativewind';
 
 const Wrapper = styled(View);
 
-const PasswordResetScreen: React.FC = () => {
+const ResetPasswordScreen: React.FC = () => {
   return (
     <Wrapper className="px-4 pt-10 h-full bg-white flex">
       <BackButton />
@@ -15,4 +15,4 @@ const PasswordResetScreen: React.FC = () => {
     </Wrapper>
   );
 };
-export default PasswordResetScreen;
+export default ResetPasswordScreen;

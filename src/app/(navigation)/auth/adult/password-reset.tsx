@@ -1,4 +1,4 @@
-import { ResetPasswordScreen } from '@/screens/adult/auth';
+import { ResetPasswordScreen } from '@/screens/adult';
 
 const PasswordReset: React.FC = () => {
   return <ResetPasswordScreen />;

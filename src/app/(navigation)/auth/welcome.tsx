@@ -1,4 +1,4 @@
-import { WelcomeScreen } from '@/screens/shared/auth';
+import { WelcomeScreen } from '@/screens/shared';
 
 const Welcome: React.FC = () => {
   return <WelcomeScreen />;

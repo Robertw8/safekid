@@ -1,4 +1,4 @@
-import { PrivacyPoliceScreen } from '@/screens/adult/auth';
+import { PrivacyPoliceScreen } from '@/screens/adult';
 
 const PrivacyPolice: React.FC = () => {
   return <PrivacyPoliceScreen />;

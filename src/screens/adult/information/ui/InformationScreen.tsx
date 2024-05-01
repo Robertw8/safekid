@@ -5,7 +5,6 @@ const InformationScreen = () => {
   return (
     <PrimaryContainer classNames="justify-start">
       <BackButton />
-
       <InformationList />
     </PrimaryContainer>
   );

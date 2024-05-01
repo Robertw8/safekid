@@ -1,4 +1,4 @@
-import { ProfileScreen } from '@/screens/adult/profile';
+import { ProfileScreen } from '@/screens/adult';
 
 const Profile: React.FC = () => {
   return <ProfileScreen />;

@@ -1,4 +1,4 @@
-import { KidHomeScreen } from '@/screens/kid/home';
+import { KidHomeScreen } from '@/screens/kid';
 
 const KidHome: React.FC = () => {
   return <KidHomeScreen />;

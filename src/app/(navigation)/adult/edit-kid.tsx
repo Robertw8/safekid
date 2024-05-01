@@ -1,4 +1,4 @@
-import { EditKidScreen } from '@/screens/adult/home';
+import { EditKidScreen } from '@/screens/adult';
 
 const EditKidList: React.FC = () => {
   return <EditKidScreen />;

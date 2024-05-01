@@ -1,4 +1,4 @@
-import { SetSoundScreen } from '@/screens/set-sound';
+import { SetSoundScreen } from '@/screens/adult';
 
 const SetSound: React.FC = () => {
   return <SetSoundScreen />;

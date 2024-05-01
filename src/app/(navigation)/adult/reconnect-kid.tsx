@@ -1,4 +1,4 @@
-import { ReconnectKidScreen } from '@/screens/adult/home';
+import { ReconnectKidScreen } from '@/screens/adult';
 
 const ReconnectKidList: React.FC = () => {
   return <ReconnectKidScreen />;

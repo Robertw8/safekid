@@ -1,4 +1,4 @@
-import { DeleteKidScreen } from '@/screens/adult/home';
+import { DeleteKidScreen } from '@/screens/adult';
 
 const DeleteKidList: React.FC = () => {
   return <DeleteKidScreen />;

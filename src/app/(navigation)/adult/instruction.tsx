@@ -1,4 +1,4 @@
-import { InstructionScreen } from '@/screens/adult/instruction';
+import { InstructionScreen } from '@/screens/adult';
 
 const Instruction: React.FC = () => {
   return <InstructionScreen />;
