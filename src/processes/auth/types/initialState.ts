@@ -11,10 +11,10 @@ interface User {
 export default interface AuthInitialState {
   role: 'kid' | 'adult' | null;
   userData: null | User;
-  verifyEmail: boolean:
-  error: null | string,
-  isLoading: boolean,
-  authenticated: boolean,
-  token: null | string,
-  jwtToken: null | string,
+  verifyEmail: boolean;
+  error: null | string;
+  isLoading: boolean;
+  authenticated: boolean;
+  token: null | string;
+  jwtToken: null | string;
 };

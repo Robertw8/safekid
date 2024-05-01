@@ -2,8 +2,8 @@ import instance from './baseUrl';
 
 const postRegisterUser = async (dataUser, thunkApi) => {
     try {
-        const response = await instance.post('users/registration', dataUser);
-        return response.data;
+        const { data } = await instance.post('users/registration', dataUser);
+        return data;
     } catch (error) {
         alert(
             `Oops! Something was wrong...`,
