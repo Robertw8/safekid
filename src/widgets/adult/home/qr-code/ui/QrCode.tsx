@@ -1,45 +1,22 @@
-import { useState, useEffect } from 'react';
 import { styled } from 'nativewind';
-import { getDeviceToken } from '@/shared/api';
-import { v4 as uuidv4 } from 'uuid';
-import 'react-native-get-random-values';
-
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import QRCode from 'react-qr-code';
+
+import useAppSelector from '@/shared/lib/hooks/useAppSelector';
 
 const Wrapper = styled(View);
 
 const QrCode: React.FC = () => {
-  const [deviceToken, setDeviceToken] = useState('');
-  const childId = uuidv4();
+  const parentId = useAppSelector(state => state.userData?.dto?.id);
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      const token = await getDeviceToken();
-      setDeviceToken(token);
-    };
-
-    fetchToken();
-  }, []);
-
-  const generateQrValue = (childId: string, deviceToken: string) => {
-    // return `https://example.com/register?childId=${encodeURIComponent(childId)}&deviceToken=${encodeURIComponent(deviceToken)}`;
-    return JSON.stringify({
-      childId,
-      deviceToken,
-    });
+  const generateQrValue = (parentId: string | null) => {
+    return JSON.stringify({ parentId });
   };
 
-  const valueQr = generateQrValue(childId, deviceToken);
+  const valueQr = generateQrValue(parentId);
 
   return (
     <Wrapper className="my-auto">
-      {/* тимчасиво вивожу на екран те що зашиваю в кур */}
-      <Text>Child ID: {childId}</Text>
-      <Text>Device Token: {deviceToken}</Text>
-      {/* сформована лінка кур  */}
-      {/* <Text>QR Value: {valueQr}</Text> */}
-
       <QRCode
         bgColor={'transparent'}
         size={162}
