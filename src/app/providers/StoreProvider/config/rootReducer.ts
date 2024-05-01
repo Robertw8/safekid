@@ -4,8 +4,9 @@ import { listeningReducer } from '@/features/listening';
 
 import { registerKidsReducer } from '@/features/register-kids';
 import { deleteKidsReducer } from '@/features/delete-kids';
-import { combineReducers } from '@reduxjs/toolkit';
+import { parentInfoReducer } from '@/features/user-info';
 
+import { combineReducers } from '@reduxjs/toolkit';
 import { listKidsReducer } from '@/features/get-list-kids';
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   registerKids: registerKidsReducer,
   kidsDelete: deleteKidsReducer,
   listening: listeningReducer,
+  parentInfo: parentInfoReducer,
 });
 
 export default rootReducer;
