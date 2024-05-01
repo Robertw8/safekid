@@ -26,7 +26,6 @@ const DeleteAccounts: React.FC = () => {
 
   const handleDeleteAccountAdult = () => {
     dispatch(delParentAccountThunk({}));
-    console.log('Акаунт видалений');
     handleModalOpen('adult');
   };
 

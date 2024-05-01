@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -22,7 +22,7 @@ import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
+import { selectIsLoading, selectToken, selectUserData } from '@/processes/auth/model/selectors';
 import { postRegisterUserThunk } from '@/processes/auth/model/operations';
 
 const WrapperInputs = styled(View);
@@ -38,7 +38,7 @@ const RegisterForm = () => {
   const [check, setCheck] = useState(false);
 
   const token = useAppSelector(selectToken);
- const regUserData = useAppSelector(selectUserData);
+  const regUserData = useAppSelector(selectUserData);
 
   const {
     control,
@@ -53,13 +53,18 @@ const RegisterForm = () => {
     },
   });
 
+  useEffect(() => {
+    if (!regUserData) {
+      return;
+    }
+    alert(`${regUserData.message}`);
+    router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
+  }, [regUserData]);
+
   const onPressSend = ({ email, password }) => {
     if (check) {
-      const userData = { email, password, deviceToken: token };
-      console.log('user in onPressSend for backEnd', userData);
+      const userData = { email, password, deviceToken: token, privacyPolicyAgreement: check };
       dispatch(postRegisterUserThunk(userData));
-        alert(`${regUserData?.message}`);
-      router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності')
     }
@@ -122,7 +127,6 @@ const RegisterForm = () => {
               </TouchableOpacityStyled>
             </View>
             {errors.password && <LabelInput classNames='text-red'>{errors.password.message}</LabelInput>}
-
           </View>
           <View>
             <LabelInput classNames='mb-2'>Повторіть пароль</LabelInput>
@@ -143,7 +147,6 @@ const RegisterForm = () => {
                 )}
                 name="confirmPassword"
               />
-  
               <TouchableOpacityStyled
                 className="absolute bottom-3.5 right-3.5"
                 onPress={() => setShowPasswordSecond(!showPasswordSecond)}
@@ -154,7 +157,6 @@ const RegisterForm = () => {
                   <Icon xml={openEyeIcon} />
                 )}
               </TouchableOpacityStyled>
-
             </View>
             {errors.confirmPassword && <LabelInput classNames='text-red'>{errors.confirmPassword.message}</LabelInput>}
           </View>

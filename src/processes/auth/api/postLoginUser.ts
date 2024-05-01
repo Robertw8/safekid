@@ -2,7 +2,7 @@ import instance from './baseUrl';
 
 export const token = {
   set: (token) => {
-    instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+    instance.defaults.headers['Authorization'] = token;
   },
   clear: () => {
     instance.defaults.headers['Authorization'] = '';
@@ -13,13 +13,10 @@ const postLoginUser = async (dataUser, thunkApi) => {
     try {
         console.log('dataUser in postLoginUser', dataUser);
         const response = await instance.post('users/login', dataUser);
-        const newToken = response?.headers['Authorization'];
-            //   token.set(response.data.token);
-                        console.log('response', response);
+              token.set(response.data);
+                        console.log('response.data', response.data);
 
-            console.log('newToken', newToken);
-token.set(newToken)
-        return newToken;
+        return response.data;
     } catch (error: {message: string} | any) {
         alert(
             `Oops! Something was wrong...${error?.message}`,

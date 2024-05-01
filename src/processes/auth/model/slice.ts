@@ -1,16 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
-import { delParentAccountThunk, getTokenThunk, postLoginUserThunk, postRegisterUserThunk, postVerifyEmailThunk, setUserRole } from './operations';
+import {
+  delParentAccountThunk,
+  getTokenThunk,
+  postLoginUserThunk,
+  postRegisterUserThunk,
+  postVerifyEmailThunk,
+  setUserRole
+} from './operations';
 
 const initialState: AuthInitialState = {
   role: null,
   userData: null,
   verifyEmail: false,
-  error: null,
-  isLoading: false,
   authenticated: false,
   token: null,
   jwtToken: null,
+  error: null,
+  isLoading: false,
 };
 
 const slice = createSlice({
@@ -50,7 +57,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(delParentAccountThunk.fulfilled, (state, { payload }) => {
-        console.log('response delParentAccountThunk in slice', payload);
+        // console.log('response delParentAccountThunk in slice', payload);
         state.isLoading = false;
         state.authenticated = false;
         state.role = null;
@@ -72,7 +79,7 @@ const slice = createSlice({
         (state, action) => {
           console.log('action in error', action);
           state.isLoading = false;
-          state.error = "ERROR";
+          state.error = action?.payload;
         },
       )
   },

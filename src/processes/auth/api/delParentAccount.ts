@@ -3,10 +3,10 @@ import { token } from './postLoginUser';
 
 const delParentAccount = async (_, thunkApi) => {
     try {
-        console.log('use delParentAccount', );
         const response = await instance.delete('parent/delete');
+        alert(`${response.data}`)
         token.clear();
-        return response.data;
+        return;
     } catch (error) {
         alert(
             `Oops! Something was wrong...`,

@@ -1,9 +1,9 @@
-import { getDeviceToken } from '@/features/listening';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import postRegisterUser from '../api/postRegisterUser';
 import postVerifyEmail from '../api/postVerifyEmail';
 import postLoginUser from '../api/postLoginUser';
 import delParentAccount from '../api/delParentAccount';
+import { getDeviceToken } from '@/shared/api';
 
 const setUserRole = createAction<'kid' | 'adult' | null>('auth/setUserRole');
 
