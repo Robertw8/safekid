@@ -3,7 +3,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 const dataProfileList = [
   {
     icon: <Ionicons name="book-outline" size={24} color="black" />,
-    route: '/adult/user-info',
+    route: '/adult/profile/user-info',
     title: 'Інформація про користувача',
   },
   {
@@ -19,7 +19,7 @@ const dataProfileList = [
   },
   {
     icon: <Ionicons name="chatbubble-outline" size={24} color="black" />,
-    route: '/adult/set-sound',
+    route: '/adult/profile/set-sound',
     title: 'Налаштувати сповіщення',
   },
   {
