@@ -1,5 +1,5 @@
 import { Icon, NormalText, PrimaryButton, SecondaryTitle } from '@/shared/ui';
-import noPermissionIcon from './icons/no-permission-icon';
+import { errorIcon } from '@/shared/ui';
 import { Audio } from 'expo-av';
 
 const PermissionSettings: React.FC = () => {
@@ -12,7 +12,7 @@ const PermissionSettings: React.FC = () => {
 
   return (
     <>
-      <Icon xml={noPermissionIcon} />
+      <Icon xml={errorIcon} />
       <SecondaryTitle classNames="text-center mt-8">
         Додаток не працює!
       </SecondaryTitle>

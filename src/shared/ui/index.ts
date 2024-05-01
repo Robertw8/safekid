@@ -29,3 +29,4 @@ export { default as KidListeningStatus } from './typography/KidListeningStatus';
 export { default as KidAvatar } from './graphics/KidAvatar';
 export { default as ActionButton } from './buttons/ActionButton';
 export { default as ItemLink } from './profile-item/ItemLink';
+export { default as errorIcon } from './graphics/icons/error-icon';

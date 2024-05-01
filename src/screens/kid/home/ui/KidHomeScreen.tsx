@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { BackButton, PrimaryContainer } from '@/shared/ui';
 import { checkMicrophonePermission, useListening } from '@/shared/lib';
 
-import { Listening, PermissionSettings } from '@/widgets/kid';
+import { Listening } from '@/features/listening';
+import { PermissionSettings } from '@/widgets/kid';
 import { PermissionResponse } from 'expo-camera';
 
 const KidHomeScreen: React.FC = () => {

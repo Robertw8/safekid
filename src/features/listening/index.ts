@@ -11,3 +11,4 @@ export {
   setKidId,
   setDeviceToken,
 } from './model/operations';
+export { default as Listening } from './ui/Listening';
