@@ -1,0 +1,7 @@
+const framesIcon = `<svg width="288" height="288" viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M144 186C167.196 186 186 167.196 186 144C186 120.804 167.196 102 144 102C120.804 102 102 120.804 102 144C102 167.196 120.804 186 144 186Z" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33 57.666H206.334C212.693 57.685 218.787 60.2197 223.284 64.7164C227.78 69.2132 230.315 75.3066 230.334 81.666V190.248M255 230.334H81.666C75.3066 230.315 69.2132 227.78 64.7164 223.284C60.2197 218.787 57.685 212.693 57.666 206.334V97.134M57.666 57.666V33M230.334 230.334V255" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+export default framesIcon;

@@ -10,6 +10,7 @@ interface BackButtonProps {
   onPress?: () => void;
   classNames?: string;
   activeOpacity?: number;
+  whiteIcon?: boolean;
 }
 
 const StyledButton = styled(TouchableOpacity);
@@ -21,6 +22,7 @@ const BackButton: React.FC<BackButtonProps> = ({
   onPress,
   classNames,
   activeOpacity,
+  whiteIcon,
 }) => {
   return (
     <StyledButton
@@ -31,10 +33,14 @@ const BackButton: React.FC<BackButtonProps> = ({
       accessibilityRole={role || 'button'}
       accessible={true}
       onPress={onPress ? onPress : () => router.back()}
-      className={`absolute top-16 left-4 ${classNames}`}
+      className={`absolute top-16 left-4 z-10 ${classNames}`}
       activeOpacity={activeOpacity || 0.75}
     >
-      <Entypo name="chevron-thin-left" size={24} color="black" />
+      <Entypo
+        name="chevron-thin-left"
+        size={24}
+        color={whiteIcon ? '#fff' : '#000'}
+      />
     </StyledButton>
   );
 };
