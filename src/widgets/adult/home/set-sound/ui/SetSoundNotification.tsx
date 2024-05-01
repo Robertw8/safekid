@@ -1,15 +1,31 @@
 import { styled } from 'nativewind';
-import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { useState, useEffect } from 'react';
 
+import { Text, View } from 'react-native';
 import { BackButton, Switch, TertiaryTitle } from '@/shared/ui';
+import { setEnabled, selectEnabled } from '@/features/listening';
+
+import useAppSelector from '@/shared/lib/hooks/useAppSelector';
+import useAppDispatch from '@/shared/lib/hooks/useAppDispatch';
 
 const Header = styled(View);
 const Title = styled(View);
 const StyledText = styled(Text);
 
 const SetSoundNotification: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const isEnabled = useAppSelector(selectEnabled);
   const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setChecked(isEnabled);
+  }, [isEnabled]);
+
+  const handleSwitchChange = () => {
+    const newChecked = !checked;
+    setChecked(newChecked);
+    dispatch(setEnabled(newChecked));
+  };
 
   return (
     <>
@@ -23,10 +39,7 @@ const SetSoundNotification: React.FC = () => {
             ? `Вимкнути звукове \nсповіщення`
             : `Ввімкнути звукове \nсповіщення`}
         </StyledText>
-        <Switch
-          checked={checked}
-          onChange={() => setChecked(prevState => !prevState)}
-        />
+        <Switch checked={checked} onChange={handleSwitchChange} />
       </Title>
     </>
   );

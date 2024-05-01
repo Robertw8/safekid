@@ -6,7 +6,7 @@ interface User {
     id: string;
   };
   message: string;
-};
+}
 
 export default interface AuthInitialState {
   role: 'kid' | 'adult' | null;
@@ -18,3 +18,4 @@ export default interface AuthInitialState {
   token: null | string;
   jwtToken: null | string;
 };
+
