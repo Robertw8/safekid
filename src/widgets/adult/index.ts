@@ -11,3 +11,4 @@ export { default as UserEmail } from './home/user-info/ui/UserEmail';
 export { default as DeleteAccounts } from './home/delete-accounts/ui/DeleteAccounts';
 export { default as ModalForDelAccount } from './home/delete-accounts/ui/ModalForDelAccount';
 export { default as SetSoundNotification } from './home/set-sound/ui/SetSoundNotification';
+export { default as AvatarsList } from './home/avatars/ui/AvatarsList';
