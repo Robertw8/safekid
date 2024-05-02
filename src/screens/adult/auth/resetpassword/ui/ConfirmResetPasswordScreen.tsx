@@ -45,7 +45,7 @@ const ConfirmResetPasswordScreen: React.FC = () => {
   const onSubmitForm = () => {
     const enteredCode = code.join('');
     console.log('Entered Code:', enteredCode);
-    router.navigate('/auth/adult');
+    router.navigate('/auth/adult/new-password');
   };
 
   const resendCode = () => {

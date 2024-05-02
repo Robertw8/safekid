@@ -16,13 +16,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 const WrapperInputs = styled(View);
 const WrapperForm = styled(View);
 const TextWrapper = styled(View);
+const WrapperButton = styled(View);
 
 const ResetPasswordForm = () => {
   const [email, setEmail] = useState('');
 
   const {
     control,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationLoginSchema),
@@ -76,15 +76,16 @@ const ResetPasswordForm = () => {
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
-
-      <PrimaryButton
-        text="Відновити пароль"
-        onPress={handleSubmit(onSubmitForm)}
-        hint="Відновити пароль"
-        label="Відновити пароль"
-        role="button"
-        classNames="w-48 self-center"
-      />
+      <WrapperButton className="grow flex justify-center">
+        <PrimaryButton
+          text="Відновити пароль"
+          onPress={onSubmitForm}
+          hint="Відновити пароль"
+          label="Відновити пароль"
+          role="button"
+          classNames="w-48 self-center"
+        />
+      </WrapperButton>
     </WrapperForm>
   );
 };
