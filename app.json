@@ -22,14 +22,15 @@
         "foregroundImage": "./src/shared/assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.robertw8.safekid"
+      "package": "com.robertw8.safekid",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./src/shared/assets/images/logo.png"
     },
-    "plugins": ["expo-router"],
+    "plugins": ["expo-router", "@react-native-firebase/app"],
     "experiments": {
       "typedRoutes": true
     },
