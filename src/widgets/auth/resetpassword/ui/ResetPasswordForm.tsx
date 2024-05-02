@@ -34,7 +34,7 @@ const ResetPasswordForm = () => {
   const onSubmitForm = () => {
     console.log('email =>', email);
     setEmail('');
-    router.navigate('/auth/adult/confirm-register');
+    router.navigate('/auth/adult/confirm-reset');
   };
 
   return (

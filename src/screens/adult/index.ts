@@ -14,3 +14,4 @@ export { default as ProfileScreen } from './profile/ui/ProfileScreen';
 export { default as QrCodeScreen } from './qr-сode/ui/QrCodeScreen';
 export { default as SetSoundScreen } from './set-sound/ui/SetSoundScreen';
 export { default as UserInfoScreen } from './user-info/ui/UserInfoScreen';
+export { default as ConfirmResetPasswordScreen } from './auth/resetpassword/ui/ConfirmResetPasswordScreen';
