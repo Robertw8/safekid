@@ -17,3 +17,4 @@ export { default as UserInfoScreen } from './user-info/ui/UserInfoScreen';
 export { default as CommunicationChildScreen } from './information/communication-child/ui/CommunicationChildScreen';
 export { default as TestAppScreen } from './information/test-app/ui/TestAppScreen';
 export { default as PrivacyPolicyScreen } from './information/privacy-policy/ui/PrivacyPolicyScreen';
+export { default as ConfirmResetPasswordScreen } from './auth/resetpassword/ui/ConfirmResetPasswordScreen';
