@@ -3,7 +3,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 export const informationListData = [
   {
     icon: <Ionicons name="book-outline" size={24} color="black" />,
-    route: '/',
+    route: '/adult/information/communication-child',
     title: 'Інструкція спілкування з дитиною',
   },
   {
@@ -15,12 +15,12 @@ export const informationListData = [
     icon: (
       <MaterialCommunityIcons name="flask-outline" size={24} color="black" />
     ),
-    route: '/',
+    route: '/adult/information/test-app',
     title: 'Протестувати додаток',
   },
   {
     icon: <Ionicons name="document-text-outline" size={24} color="black" />,
-    route: '/',
+    route: '/adult/information/privacy-policy',
     title: 'Умови та політика конфіденційності',
   },
   {

@@ -1,7 +1,7 @@
 import { BackButton, PrimaryContainer } from '@/shared/ui';
 import { DeleteAccounts, Logout, ProfileList } from '@/widgets/adult';
 
-const ProfileScreen = () => {
+const ProfileScreen: React.FC = () => {
   return (
     <PrimaryContainer classNames="justify-start">
       <BackButton />
