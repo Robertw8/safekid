@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useState } from 'react';
 
 import { router } from 'expo-router';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { useAppDispatch } from '@/shared/lib';
 import { ActionButton } from '@/shared/ui';
 import ModalForDelAccount from './ModalForDelAccount';
 import { delParentAccountThunk } from '@/processes/auth/model/operations';

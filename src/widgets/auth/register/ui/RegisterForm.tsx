@@ -22,7 +22,7 @@ import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectIsLoading, selectToken, selectUserData } from '@/processes/auth/model/selectors';
+import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
 import { postRegisterUserThunk } from '@/processes/auth/model/operations';
 
 const WrapperInputs = styled(View);
