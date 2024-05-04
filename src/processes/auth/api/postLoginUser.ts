@@ -13,11 +13,9 @@ const postLoginUser = async (dataUser, thunkApi) => {
     try {
         console.log('dataUser in postLoginUser', dataUser);
         const response = await instance.post('users/login', dataUser);
-              token.set(response.data);
-                        console.log('response.data', response.data);
-
+        token.set(response.data);
         return response.data;
-    } catch (error: {message: string} | any) {
+    } catch (error: { message: string } | any) {
         alert(
             `Oops! Something was wrong...${error?.message}`,
         );

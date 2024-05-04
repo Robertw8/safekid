@@ -20,7 +20,7 @@ import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { postLoginUserThunk } from '@/processes/auth/model/operations';
-import { selectAuthenticated, selectUserData } from '@/processes/auth/model/selectors';
+import { selectAuthenticated } from '@/processes/auth/model/selectors';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -28,8 +28,8 @@ const WrapperForm = styled(View);
 const WrapperButton = styled(View);
 
 const LogInForm = () => {
-    const dispatch = useAppDispatch();
- const isUserAuth = useAppSelector(selectAuthenticated);
+  const dispatch = useAppDispatch();
+  const isUserAuth = useAppSelector(selectAuthenticated);
 
   const [showPassword, setShowPassword] = useState(true);
   

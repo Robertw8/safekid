@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, TextInput, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import {
   BackButton,
+  ConfirmRegisterInput,
   Icon,
   NormalText,
   PrimaryButton,
@@ -15,27 +16,6 @@ import { selectIsLoading, selectUserData, selectVerifyEmail } from '@/processes/
 import { postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
-
-const DigitInput = ({ digit, onChange, inputRef }) => {
-  return (
-    <TextInput
-      style={{
-        borderWidth: 0,
-        backgroundColor: '#E8E8E8',
-        borderRadius: 10,
-        width: 36,
-        height: 36,
-        textAlign: 'center',
-        margin: 5,
-      }}
-      onChangeText={onChange}
-      maxLength={1}
-      keyboardType="numeric"
-      value={digit}
-      ref={inputRef}
-    />
-  );
-};
 
 const ConfirmRegisterScreen = () => {
   const dispatch = useAppDispatch();
@@ -103,11 +83,13 @@ const ConfirmRegisterScreen = () => {
             }}
           >
             {[0, 1, 2, 3].map(index => (
-              <DigitInput
+              <ConfirmRegisterInput
+                onChangeText={value => handleChange(index, value, inputRefsArr[index + 1], inputRefsArr[index - 1])}
+                value={code[index]}
+                keyboardType="numeric"
                 inputRef={inputRefsArr[index]}
+                maxLength={1}
                 key={index}
-                digit={code[index]}
-                onChange={value => handleChange(index, value, inputRefsArr[index+1], inputRefsArr[index-1])}
               />)
             )}
           </View>

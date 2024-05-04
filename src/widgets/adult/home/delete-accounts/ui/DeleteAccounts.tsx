@@ -27,6 +27,7 @@ const DeleteAccounts: React.FC = () => {
   const handleDeleteAccountAdult = () => {
     dispatch(delParentAccountThunk({}));
     handleModalOpen('adult');
+    router.navigate('/auth/adult/register' as `${string}:${string}`);
   };
 
   return (
