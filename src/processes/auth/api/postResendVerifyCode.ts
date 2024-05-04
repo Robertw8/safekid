@@ -1,10 +1,10 @@
 import instance from './baseUrl';
 
-const postRegisterUser = async (dataUser, thunkApi) => {
+const postResendVerifyCode = async (email, thunkApi) => {
     try {
-        const { data } = await instance.post('users/registration', dataUser);
-        alert(data.message)
-        return data;
+        const response = await instance.post(`users/refreshToken/${email}`,);
+        alert(`${response.data}`);
+        return;
     } catch (error) {
         alert(
             `Oops! Something was wrong...`,
@@ -13,4 +13,4 @@ const postRegisterUser = async (dataUser, thunkApi) => {
     }
 };
 
-export default postRegisterUser;
+export default postResendVerifyCode;

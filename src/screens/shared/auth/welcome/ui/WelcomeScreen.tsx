@@ -20,7 +20,6 @@ const WelcomeScreen: React.FC = () => {
   const { role } = useAuth();
 
   useEffect(() => {
-    console.log('useEffect in WelcomeScreen');
     dispatch(getTokenThunk())
   }, []);
 

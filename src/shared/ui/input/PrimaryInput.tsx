@@ -2,8 +2,6 @@ import { styled } from 'nativewind';
 import { KeyboardTypeOptions, TextInput } from 'react-native';
 
 interface PrimaryInputProps {
-    // onFocus: () => void;
-    // onBlur: () => void;
     onChangeText: (text: string) => void;
     value: string;
     autoFocus?: boolean;
@@ -16,8 +14,6 @@ interface PrimaryInputProps {
 const StyledInput = styled(TextInput)
 
 const PrimaryInput: React.FC<PrimaryInputProps> = ({
-    // onFocus,
-    // onBlur,
     onChangeText,
     value,
     autoFocus,
@@ -29,8 +25,6 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({
     return (
         <StyledInput
             autoFocus={autoFocus || false}
-            // onFocus={() => onFocus}
-            // onBlur={() => onBlur}
             onChangeText={onChangeText}
             value={value}
             placeholder={placeholder || ''}

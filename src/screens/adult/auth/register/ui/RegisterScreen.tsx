@@ -13,17 +13,18 @@ const RegisterScreen: React.FC = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
-        <BackButton />
-        {isLoading ? <ActivityIndicator size="large" color="#3D33E2" /> :
-          <View>
-            <PrimaryTitle classNames="mb-8">Реєстрація</PrimaryTitle>
-            <RegisterForm />
-            <Link href="/auth/adult/login">
-              <NormalText>Вже є акаунт?</NormalText> <HyperText>Увійти</HyperText>
-            </Link>
-          </View>}
-      </Wrapper>
+      {isLoading ?
+        (<Wrapper className="h-full justify-center">
+          <ActivityIndicator size={100} color="#3D33E2" />
+        </Wrapper>) :
+        (<Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
+          <BackButton />
+          <PrimaryTitle classNames="mb-8">Реєстрація</PrimaryTitle>
+          <RegisterForm />
+          <Link href="/auth/adult/login">
+            <NormalText>Вже є акаунт?</NormalText> <HyperText>Увійти</HyperText>
+          </Link>
+        </Wrapper>)}
     </TouchableWithoutFeedback >
   );
 };

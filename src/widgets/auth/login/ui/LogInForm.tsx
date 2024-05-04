@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import {
@@ -18,8 +18,9 @@ import {
 } from '@/shared/ui';
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAppDispatch } from '@/shared/lib';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { postLoginUserThunk } from '@/processes/auth/model/operations';
+import { selectAuthenticated } from '@/processes/auth/model/selectors';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -27,7 +28,8 @@ const WrapperForm = styled(View);
 const WrapperButton = styled(View);
 
 const LogInForm = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const isUserAuth = useAppSelector(selectAuthenticated);
 
   const [showPassword, setShowPassword] = useState(true);
   
@@ -43,10 +45,16 @@ const LogInForm = () => {
     },
   });
 
+  useEffect(() => {
+    if (!isUserAuth) {
+      return;
+    }
+    router.navigate('/adult/instruction' as `${string}:${string}`);
+  }, [isUserAuth]);
+
   const onPressSend = (formData) => {
     console.log(formData);
     dispatch(postLoginUserThunk(formData))
-    router.navigate('/adult/instruction');
   };
 
   return (

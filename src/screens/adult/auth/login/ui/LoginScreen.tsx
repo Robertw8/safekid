@@ -1,15 +1,23 @@
 import { styled } from 'nativewind';
-import { Keyboard, TouchableWithoutFeedback, View } from 'react-native';
+import { ActivityIndicator, Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { LogInForm } from '@/widgets/auth';
 import { Link } from 'expo-router';
 import { BackButton, HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
+import { useAppSelector } from '@/shared/lib';
+import { selectIsLoading } from '@/processes/auth/model/selectors';
 
 const Wrapper = styled(View);
 
 const LoginScreen: React.FC = () => {
+    const isLoading = useAppSelector(selectIsLoading);
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
+      {isLoading ?
+        (<Wrapper className="h-full justify-center">
+          <ActivityIndicator size={100} color="#3D33E2" />
+        </Wrapper>) :
+        <Wrapper className="px-4 pt-40 pb-12 h-full bg-white flex items-center">
         <BackButton />
         <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
         <LogInForm />
@@ -17,12 +25,9 @@ const LoginScreen: React.FC = () => {
           <NormalText>Не маєте акаунту?</NormalText>{' '}
           <HyperText>Створити</HyperText>
         </Link>
-        <Link href="/auth/adult/new-password">
-          <NormalText classNames='bg-orange-500	font-semibold'>NewPassword</NormalText>{' '}
-        </Link>
-      </Wrapper>
+      </Wrapper>}
     </TouchableWithoutFeedback>
   );
 };
-40
+
 export default LoginScreen;
