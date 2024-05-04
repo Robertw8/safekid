@@ -5,6 +5,7 @@ import {
   getTokenThunk,
   postLoginUserThunk,
   postRegisterUserThunk,
+  postResendVerifyCodeThunk,
   postVerifyEmailThunk,
   setUserRole
 } from './operations';
@@ -41,6 +42,11 @@ const slice = createSlice({
         state.userData = payload;
         state.error = null;
       })
+      .addCase(postResendVerifyCodeThunk.fulfilled, (state, _) => {
+        state.isLoading = false;
+        state.authenticated = false;
+        state.error = null;
+      })
       .addCase(postVerifyEmailThunk.fulfilled, (state, { payload }) => {
         console.log('response postVerifyEmailThank in slice', payload);
         state.isLoading = false;
@@ -49,14 +55,12 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(postLoginUserThunk.fulfilled, (state, { payload }) => {
-        console.log('response jwtToken postLoginUserThunk in slice', payload);
         state.isLoading = false;
         state.authenticated = true;
         state.jwtToken = payload;
         state.error = null;
       })
-      .addCase(delParentAccountThunk.fulfilled, (state, { payload }) => {
-        console.log('response delParentAccountThunk in slice', payload);
+      .addCase(delParentAccountThunk.fulfilled, (state, _ ) => {
         state.isLoading = false;
         state.authenticated = false;
         state.role = null;

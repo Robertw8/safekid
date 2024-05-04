@@ -4,6 +4,7 @@ import postVerifyEmail from '../api/postVerifyEmail';
 import postLoginUser from '../api/postLoginUser';
 import delParentAccount from '../api/delParentAccount';
 import { getDeviceToken } from '@/shared/api';
+import postResendVerifyCode from '../api/postResendVerifyCode';
 
 const setUserRole = createAction<'kid' | 'adult' | null>('auth/setUserRole');
 
@@ -17,6 +18,11 @@ export const getTokenThunk = createAsyncThunk(
 export const postRegisterUserThunk = createAsyncThunk(
   'auth/registerUser',
     postRegisterUser
+);
+
+export const postResendVerifyCodeThunk = createAsyncThunk(
+  'auth/resendVerifyCode',
+    postResendVerifyCode
 );
 
 export const postVerifyEmailThunk = createAsyncThunk(

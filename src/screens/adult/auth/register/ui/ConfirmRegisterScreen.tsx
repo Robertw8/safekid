@@ -13,7 +13,7 @@ import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectIsLoading, selectUserData, selectVerifyEmail } from '@/processes/auth/model/selectors';
-import { postVerifyEmailThunk } from '@/processes/auth/model/operations';
+import { postResendVerifyCodeThunk, postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 
@@ -60,7 +60,8 @@ const ConfirmRegisterScreen = () => {
   };
 
   const resendCode = () => {
-    console.log('Resending code...');
+    console.log(`Resending code to the ${regUserData?.dto.email}`);
+        dispatch(postResendVerifyCodeThunk(regUserData?.dto.email))
   };
 
   return (
