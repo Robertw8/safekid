@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput } from 'react-native';
 import {
   BackButton,
@@ -11,7 +11,7 @@ import { styled } from 'nativewind';
 import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectUserData } from '@/processes/auth/model/selectors';
+import { selectUserData, selectVerifyEmail } from '@/processes/auth/model/selectors';
 import { postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
@@ -40,7 +40,15 @@ const ConfirmRegisterScreen = () => {
     const dispatch = useAppDispatch();
 
   const [code, setCode] = useState(['', '', '', '']);
- const regUserData = useAppSelector(selectUserData);
+  const regUserData = useAppSelector(selectUserData);
+  const isEmailVerify = useAppSelector(selectVerifyEmail);
+
+  useEffect(() => {
+    if (!isEmailVerify) {
+      return;
+    }
+    router.navigate('/auth/adult/login' as `${string}:${string}`);
+  }, [isEmailVerify]);
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -57,7 +65,6 @@ const ConfirmRegisterScreen = () => {
     console.log('Entered Code & email:', verifyData);
     dispatch(postVerifyEmailThunk(verifyData))
     setCode(['', '', '', '']);
-    router.navigate('/auth/adult/login');
   };
 
   const resendCode = () => {

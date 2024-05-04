@@ -4,7 +4,7 @@ import { token } from './postLoginUser';
 const delParentAccount = async (_, thunkApi) => {
     try {
         const response = await instance.delete('parent/delete');
-        alert(`${response.data}`)
+        alert(`${response.data}`.length !== 0 || 'Юзера видалено!' )
         token.clear();
         return;
     } catch (error) {
