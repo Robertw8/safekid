@@ -57,7 +57,6 @@ const RegisterForm = () => {
     if (!regUserData) {
       return;
     }
-    alert(`${regUserData.message}`);
     router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
   }, [regUserData]);
 
