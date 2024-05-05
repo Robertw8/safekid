@@ -1,6 +1,6 @@
+import React from 'react';
 import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
-import { useState } from 'react';
 import { styled } from 'nativewind';
 import {
   LabelInput,
@@ -12,6 +12,9 @@ import {
 import { router } from 'expo-router';
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { postResetPasswordThunk } from '@/processes/auth/model/operations';
+
+import { useAppDispatch } from '@/shared/lib';
 
 const WrapperInputs = styled(View);
 const WrapperForm = styled(View);
@@ -19,10 +22,10 @@ const TextWrapper = styled(View);
 const WrapperButton = styled(View);
 
 const ResetPasswordForm = () => {
-  const [email, setEmail] = useState('');
-
+  const dispatch = useAppDispatch();
   const {
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationLoginSchema),
@@ -31,10 +34,11 @@ const ResetPasswordForm = () => {
     },
   });
 
-  const onSubmitForm = () => {
-    console.log('email =>', email);
-    setEmail('');
+  const onPressSend = data => {
+    console.log('Form data =>', data);
     router.navigate('/auth/adult/confirm-reset');
+
+    dispatch(postResetPasswordThunk(data));
   };
 
   return (
@@ -43,7 +47,7 @@ const ResetPasswordForm = () => {
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
         <TextWrapper>
-          <SecondaryTitle> Забули пароль?</SecondaryTitle>
+          <SecondaryTitle>Забули пароль?</SecondaryTitle>
           <NormalText classNames="mt-2 mb-6 ml-2">
             Введіть вашу електронну пошту
           </NormalText>
@@ -53,9 +57,7 @@ const ResetPasswordForm = () => {
             <LabelInput classNames="mb-2">Електронна пошта</LabelInput>
             <Controller
               control={control}
-              rules={{
-                required: true,
-              }}
+              rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
                 <PrimaryInput
                   value={value}
@@ -79,7 +81,7 @@ const ResetPasswordForm = () => {
       <WrapperButton className="grow flex justify-center">
         <PrimaryButton
           text="Відновити пароль"
-          onPress={onSubmitForm}
+          onPress={handleSubmit(onPressSend)}
           hint="Відновити пароль"
           label="Відновити пароль"
           role="button"

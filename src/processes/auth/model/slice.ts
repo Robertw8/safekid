@@ -7,7 +7,8 @@ import {
   postRegisterUserThunk,
   postResendVerifyCodeThunk,
   postVerifyEmailThunk,
-  setUserRole
+  setUserRole,
+  postResetPasswordThunk,
 } from './operations';
 
 const initialState: AuthInitialState = {
@@ -19,6 +20,7 @@ const initialState: AuthInitialState = {
   jwtToken: null,
   error: null,
   isLoading: false,
+  resetPasswordData: null,
 };
 
 const slice = createSlice({
@@ -60,7 +62,12 @@ const slice = createSlice({
         state.jwtToken = payload;
         state.error = null;
       })
-      .addCase(delParentAccountThunk.fulfilled, (state, _ ) => {
+      .addCase(postResetPasswordThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.resetPasswordData = payload;
+      })
+      .addCase(delParentAccountThunk.fulfilled, (state, _) => {
         state.isLoading = false;
         state.authenticated = false;
         state.role = null;
@@ -71,20 +78,20 @@ const slice = createSlice({
         state.error = null;
       })
       .addMatcher(
-        (action) => action.type.endsWith('/pending'),
-        (state) => {
+        action => action.type.endsWith('/pending'),
+        state => {
           state.isLoading = true;
           state.error = null;
-        },
+        }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/rejected'),
+        action => action.type.endsWith('/rejected'),
         (state, action) => {
           console.log('action in error', action);
           state.isLoading = false;
           state.error = 'Error';
-        },
-      )
+        }
+      );
   },
 });
 

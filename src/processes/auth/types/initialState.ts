@@ -17,5 +17,5 @@ export default interface AuthInitialState {
   authenticated: boolean;
   token: null | string;
   jwtToken: null | string;
-};
-
+  resetPasswordData: any;
+}
