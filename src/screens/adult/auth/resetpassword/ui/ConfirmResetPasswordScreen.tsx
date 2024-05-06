@@ -28,7 +28,6 @@ const ConfirmResetPasswordScreen: React.FC = () => {
   const regUserData = useAppSelector(selectUserData);
   const isEmailVerify = useAppSelector(selectVerifyEmail);
   const isLoading = useAppSelector(selectIsLoading);
-
   const [code, setCode] = useState(['', '', '', '']);
 
   useEffect(() => {
@@ -37,48 +36,36 @@ const ConfirmResetPasswordScreen: React.FC = () => {
     }
   }, [isEmailVerify]);
 
-  const inputRefsArr = useRef<Array<React.RefObject<any>>>(
-    Array(4)
-      .fill(null)
-      .map(() => useRef(null))
-  );
+  const input1Ref = useRef(null);
+  const input2Ref = useRef(null);
+  const input3Ref = useRef(null);
+  const input4Ref = useRef(null);
+  const inputRefsArr = [input1Ref, input2Ref, input3Ref, input4Ref];
 
-  const handleChange = (index: number, value: string) => {
+  const handleChange = (index, value, nextInputRef, prevInputRef) => {
     const newCode = [...code];
     newCode[index] = value;
     setCode(newCode);
-    const nextIndex = index + 1;
-    const prevIndex = index - 1;
-    if (value.length === 0 && prevIndex >= 0) {
-      inputRefsArr.current[prevIndex].current.focus();
-    } else if (value.length === 1 && nextIndex < 4) {
-      inputRefsArr.current[nextIndex].current.focus();
+    if (value.length === 0 && prevInputRef && prevInputRef?.current) {
+      prevInputRef.current.focus();
+    } else if (value.length === 1 && nextInputRef && nextInputRef?.current) {
+      nextInputRef.current.focus();
     }
   };
 
   const onSubmitForm = () => {
     const enteredCode = code.join('');
-    const userEmail = regUserData?.dto.email;
-    if (userEmail) {
-      const verifyData = {
-        email: userEmail,
-        code: enteredCode,
-      };
-      dispatch(postVerifyEmailThunk(verifyData));
-      setCode(['', '', '', '']);
-    } else {
-      console.error('User email is undefined or null');
-    }
+    const verifyData = {
+      email: regUserData?.dto.email,
+      code: enteredCode,
+    };
+    dispatch(postVerifyEmailThunk(verifyData));
+    setCode(['', '', '', '']);
   };
 
   const resendCode = () => {
-    if (regUserData && regUserData.dto && regUserData.dto.email) {
-      const userEmail = regUserData.dto.email;
-      dispatch(postResendVerifyCodeThunk(userEmail));
-      console.log(`Resending code to ${userEmail}`);
-    } else {
-      console.error('User email is undefined or null');
-    }
+    console.log(`Resending code to the ${regUserData?.dto.email}`);
+    dispatch(postResendVerifyCodeThunk(regUserData?.dto.email));
   };
 
   return (
@@ -103,10 +90,17 @@ const ConfirmResetPasswordScreen: React.FC = () => {
           >
             {[0, 1, 2, 3].map(index => (
               <ConfirmRegisterInput
-                onChangeText={value => handleChange(index, value)}
+                onChangeText={value =>
+                  handleChange(
+                    index,
+                    value,
+                    inputRefsArr[index + 1],
+                    inputRefsArr[index - 1]
+                  )
+                }
                 value={code[index]}
                 keyboardType="numeric"
-                inputRef={inputRefsArr.current[index]}
+                inputRef={inputRefsArr[index]}
                 maxLength={1}
                 key={index}
               />

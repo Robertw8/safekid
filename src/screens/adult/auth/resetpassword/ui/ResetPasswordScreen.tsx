@@ -1,15 +1,14 @@
-import React from 'react';
+import { ResetPasswordForm } from '@/widgets/auth';
 import {
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
   ActivityIndicator,
+  Keyboard,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import { BackButton, Icon, chatIcon, messageIcon } from '@/shared/ui';
-import { useAppSelector } from '@/shared/lib';
-import { selectIsLoading } from '@/processes/auth/model/selectors';
 import { styled } from 'nativewind';
-import { ResetPasswordForm } from '@/widgets/auth';
+import { selectIsLoading } from '@/processes/auth/model/selectors';
+import { useAppSelector } from '@/shared/lib';
 
 const Wrapper = styled(View);
 
@@ -32,5 +31,4 @@ const ResetPasswordScreen: React.FC = () => {
     </TouchableWithoutFeedback>
   );
 };
-
 export default ResetPasswordScreen;

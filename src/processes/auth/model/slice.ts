@@ -66,6 +66,7 @@ const slice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.resetPasswordData = payload;
+        state.authenticated = true;
       })
       .addCase(delParentAccountThunk.fulfilled, (state, _) => {
         state.isLoading = false;
