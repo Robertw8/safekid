@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { styled } from 'nativewind';
@@ -13,15 +13,15 @@ import { router } from 'expo-router';
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { postResetPasswordThunk } from '@/processes/auth/model/operations';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectAuthenticated } from '@/processes/auth/model/selectors';
+import { useAppDispatch } from '@/shared/lib';
+
 const WrapperInputs = styled(View);
 const WrapperForm = styled(View);
 const WrapperButton = styled(View);
 const TextWrapper = styled(View);
 const ResetPasswordForm = () => {
   const dispatch = useAppDispatch();
-  const isUserAuth = useAppSelector(selectAuthenticated);
+
   const {
     control,
     handleSubmit,
@@ -33,16 +33,14 @@ const ResetPasswordForm = () => {
     },
   });
 
-  useEffect(() => {
-    if (!isUserAuth) {
-      return;
-    }
-    router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
-  }, [isUserAuth]);
-  const onPressSend = formData => {
-    dispatch(postResetPasswordThunk(formData));
+  const onPressSend = (formData) => {
+    console.log(formData);
+    dispatch(postResetPasswordThunk(formData))
+    router.navigate('/adult/instruction' as `${string}:${string}`);
   };
   console.log(onPressSend);
+  console.log(postResetPasswordThunk);
+
   return (
     <WrapperForm className="grow mb-9 w-full">
       <KeyboardAvoidingView

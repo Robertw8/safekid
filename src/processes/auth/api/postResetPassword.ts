@@ -1,21 +1,17 @@
 import instance from './baseUrl';
-export const token = {
-  set: token => {
-    instance.defaults.headers['Authorization'] = token;
-  },
-  clear: () => {
-    instance.defaults.headers['Authorization'] = '';
-  },
-};
 
-const postResetPassword = async (dataUser, thunkApi) => {
+const postResetPassword = async (email, thunkApi) => {
   try {
-    console.log('dataUser in postResetPassword', dataUser);
-    const response = await instance.post('users/resetPassword', dataUser);
-    token.set(response.data);
-    return response.data;
-  } catch (error: { message: string } | any) {
-    alert(`Oops! Something was wrong...${error?.message}`);
+    const response = await instance.post(`/users/reset-password/${email}`);
+    if (response.status === 200) {
+      const data = response.data;
+      alert(`${data}`);
+      return data;
+    } else {
+      throw new Error('Request failed with status: ' + response.status);
+    }
+  } catch (error) {
+    alert(`Oops! Something was wrong...`);
     return thunkApi.rejectWithValue(
       error instanceof Error ? error.message : 'An error occurred'
     );
@@ -23,3 +19,5 @@ const postResetPassword = async (dataUser, thunkApi) => {
 };
 
 export default postResetPassword;
+
+
