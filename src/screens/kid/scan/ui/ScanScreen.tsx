@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAppDispatch, useListening } from '@/shared/lib';
+// import { useAppDispatch, useListening } from '@/shared/lib';
 import { router } from 'expo-router';
 import { styled } from 'nativewind';
 
@@ -25,6 +25,7 @@ const ScanScreen: React.FC = () => {
   const handleBarCodeScanned = ({ data }) => {
     setScanned(true);
     console.log(data);
+    router.navigate('/kid/add-kid');
   };
 
   return (

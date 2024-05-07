@@ -6,6 +6,7 @@ export { default as NewPasswordScreen } from './auth/resetpassword/ui/NewPasswor
 export { default as ResetPasswordScreen } from './auth/resetpassword/ui/ResetPasswordScreen';
 export { default as DashboardScreen } from './home/dashboard/ui/DashboardScreen';
 export { default as ReconnectKidScreen } from './home/reconnect-kid/ui/ReconnectKidScreen';
+export { default as AddKidScreen } from './home/add-kid/ui/AddKidScreen';
 export { default as EditKidScreen } from './home/edit-kid/ui/EditKidScreen';
 export { default as DeleteKidScreen } from './home/delete-kid/ui/DeleteKidScreen';
 export { default as InformationScreen } from './information/ui/InformationScreen';
