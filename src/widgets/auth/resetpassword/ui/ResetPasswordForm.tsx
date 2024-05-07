@@ -33,10 +33,18 @@ const ResetPasswordForm = () => {
     },
   });
 
-  const onPressSend = (formData) => {
+  const onSubmit = async (formData) => {
+    try {
+      await onPressSend(formData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onPressSend = async (formData) => {
+    router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
     console.log(formData);
-    dispatch(postResetPasswordThunk(formData))
-    router.navigate('/adult/instruction' as `${string}:${string}`);
+    await dispatch(postResetPasswordThunk(formData.email));
   };
   console.log(onPressSend);
   console.log(postResetPasswordThunk);
@@ -81,7 +89,7 @@ const ResetPasswordForm = () => {
       <WrapperButton className="grow flex justify-center">
         <PrimaryButton
           text="Відновити пароль"
-          onPress={handleSubmit(onPressSend)}
+          onPress={handleSubmit(onSubmit)}
           hint="Відновити пароль"
           label="Відновити пароль"
           role="button"
