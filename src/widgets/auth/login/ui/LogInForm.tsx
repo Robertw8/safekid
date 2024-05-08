@@ -52,8 +52,8 @@ const LogInForm = () => {
       return;
     };
     if (!userId) {
-    dispatch(getUserInfoThunk({}))
-  return;
+      dispatch(getUserInfoThunk({}))
+      return;
     };
     router.navigate('/adult/instruction' as `${string}:${string}`);
   }, [isUserAuth, userId]);

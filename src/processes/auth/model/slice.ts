@@ -26,7 +26,20 @@ const initialState: AuthInitialState = {
 const slice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logOutUser(state, _) {
+      console.log('use logOutUser');
+      state.isLoading = false;
+        state.authenticated = false;
+        state.role = null;
+        state.verifyEmail = false;
+        state.userData = null;
+        state.token = null;
+        state.jwtToken = null;
+        state.error = null;
+        state.userId = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(setUserRole, (state, { payload }) => {
@@ -80,6 +93,7 @@ const slice = createSlice({
         state.token = null;
         state.jwtToken = null;
         state.error = null;
+        state.userId = null;
       })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
@@ -98,6 +112,8 @@ const slice = createSlice({
       )
   },
 });
+
+export const { logOutUser } = slice.actions;
 
 const authReducer = slice.reducer;
 export default authReducer;
