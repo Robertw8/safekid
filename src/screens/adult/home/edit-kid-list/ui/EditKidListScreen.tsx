@@ -2,8 +2,11 @@ import { BackButton, PrimaryContainer, TertiaryTitle } from '@/shared/ui';
 import { ActionKidList } from '@/widgets/adult';
 import { KidStatus, IconName } from '@/shared/types';
 
-const EditKidScreen: React.FC = () => {
+import { router } from 'expo-router';
+
+const EditKidListScreen: React.FC = () => {
   const handlePress = () => {
+    router.navigate('/adult/edit-kid-data');
     console.log('Handle kid selection');
   };
 
@@ -42,4 +45,4 @@ const EditKidScreen: React.FC = () => {
   );
 };
 
-export default EditKidScreen;
+export default EditKidListScreen;

@@ -7,7 +7,8 @@ export { default as ResetPasswordScreen } from './auth/resetpassword/ui/ResetPas
 export { default as DashboardScreen } from './home/dashboard/ui/DashboardScreen';
 export { default as ReconnectKidScreen } from './home/reconnect-kid/ui/ReconnectKidScreen';
 export { default as AddKidScreen } from './home/add-kid/ui/AddKidScreen';
-export { default as EditKidScreen } from './home/edit-kid/ui/EditKidScreen';
+export { default as EditKidListScreen } from './home/edit-kid-list/ui/EditKidListScreen';
+export { default as EditKidDataScreen } from './home/edit-kid-data/ui/EditKidDataScreen';
 export { default as DeleteKidScreen } from './home/delete-kid/ui/DeleteKidScreen';
 export { default as InformationScreen } from './information/ui/InformationScreen';
 export { default as InstructionScreen } from './instruction/ui/InstructionScreen';

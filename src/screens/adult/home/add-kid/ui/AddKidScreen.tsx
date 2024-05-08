@@ -36,7 +36,8 @@ const AddKidScreen: React.FC<AddKidProps> = ({ classNames }) => {
       />
       <AvatarsList />
       <PrimaryButton
-        classNames="mt-8 ml-20 w-48 bg-slate-500 text-black"
+        classNames="mt-8 ml-20 w-48 bg-[#ACACAC]"
+        textClassNames="text-[#1A1A1C]"
         text="Додати дитину"
         onPress={handlePress}
         label="Додати нову дитину"
