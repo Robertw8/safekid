@@ -3,6 +3,7 @@ import type AuthInitialState from '../types/initialState';
 import {
   delParentAccountThunk,
   getTokenThunk,
+  getUserInfoThunk,
   postLoginUserThunk,
   postRegisterUserThunk,
   postResendVerifyCodeThunk,
@@ -17,6 +18,7 @@ const initialState: AuthInitialState = {
   authenticated: false,
   token: null,
   jwtToken: null,
+  userId: null,
   error: null,
   isLoading: false,
 };
@@ -41,6 +43,7 @@ const slice = createSlice({
         state.authenticated = false;
         state.userData = payload;
         state.error = null;
+        state.userId = payload.dto.id;
       })
       .addCase(postResendVerifyCodeThunk.fulfilled, (state, _) => {
         state.isLoading = false;
@@ -55,9 +58,17 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(postLoginUserThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in postLoginUserThunk', payload);
         state.isLoading = false;
         state.authenticated = true;
         state.jwtToken = payload;
+        state.error = null;
+      })
+      .addCase(getUserInfoThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in getUserInfoThunk', payload);
+        state.isLoading = false;
+        state.authenticated = true;
+        state.userId = payload.id;
         state.error = null;
       })
       .addCase(delParentAccountThunk.fulfilled, (state, _ ) => {
