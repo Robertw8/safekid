@@ -1,8 +1,13 @@
+import { selectAuthenticated } from '@/processes/auth/model/selectors';
+import { WelcomeScreen } from '@/screens/shared';
+import { useAppSelector } from '@/shared/lib';
 import { BottomNavigation } from '@/widgets/adult';
 import { Stack } from 'expo-router';
 
 const AdultLayout: React.FC = () => {
-  return (
+  const isAuth = useAppSelector(selectAuthenticated);
+
+  return isAuth ? (
     <>
       <Stack
         screenOptions={{
@@ -13,6 +18,8 @@ const AdultLayout: React.FC = () => {
       />
       <BottomNavigation />
     </>
+  ) : (
+    <WelcomeScreen />
   );
 };
 
