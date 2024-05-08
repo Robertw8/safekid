@@ -19,8 +19,8 @@ import {
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { postLoginUserThunk } from '@/processes/auth/model/operations';
-import { selectAuthenticated } from '@/processes/auth/model/selectors';
+import { getUserInfoThunk, postLoginUserThunk } from '@/processes/auth/model/operations';
+import { selectAuthenticated, selectUserId } from '@/processes/auth/model/selectors';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -30,6 +30,8 @@ const WrapperButton = styled(View);
 const LogInForm = () => {
   const dispatch = useAppDispatch();
   const isUserAuth = useAppSelector(selectAuthenticated);
+  const userId = useAppSelector(selectUserId);
+  console.log('userId', userId);
 
   const [showPassword, setShowPassword] = useState(true);
   
@@ -48,9 +50,13 @@ const LogInForm = () => {
   useEffect(() => {
     if (!isUserAuth) {
       return;
-    }
+    };
+    if (!userId) {
+      dispatch(getUserInfoThunk({}))
+      return;
+    };
     router.navigate('/adult/instruction' as `${string}:${string}`);
-  }, [isUserAuth]);
+  }, [isUserAuth, userId]);
 
   const onPressSend = (formData) => {
     console.log(formData);
