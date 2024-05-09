@@ -1,5 +1,5 @@
 import { selectAuthenticated } from '@/processes/auth/model/selectors';
-import { WelcomeScreen } from '@/screens/shared';
+import { LoginScreen } from '@/screens/adult';
 import { useAppSelector } from '@/shared/lib';
 import { BottomNavigation } from '@/widgets/adult';
 import { Stack } from 'expo-router';
@@ -19,7 +19,7 @@ const AdultLayout: React.FC = () => {
       <BottomNavigation />
     </>
   ) : (
-    <WelcomeScreen />
+    <LoginScreen />
   );
 };
 

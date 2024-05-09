@@ -3,17 +3,15 @@ import { Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { BackButton, NormalText, TertiaryTitle } from '@/shared/ui';
 import { useAppSelector } from '@/shared/lib';
-import { selectParentInfo } from '@/features/user-info';
+// import { selectParentInfo } from '@/features/user-info';
+import { selectEmail } from '@/processes/auth/model/selectors';
 
 const Header = styled(View);
 const Title = styled(View);
 const StyledText = styled(Text);
 
 const UserEmail: React.FC = () => {
-  const email = useAppSelector(selectParentInfo);
-  console.log('email', email);
-
-  // const email = 'example@gmail.com';
+  const email = useAppSelector(selectEmail);
 
   return (
     <>
