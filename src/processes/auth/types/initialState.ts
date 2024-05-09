@@ -18,5 +18,5 @@ export default interface AuthInitialState {
   token: null | string;
   jwtToken: null | string;
   userId: null | string;
-};
-
+  email: null | string;
+}

@@ -8,7 +8,7 @@ import {
   postRegisterUserThunk,
   postResendVerifyCodeThunk,
   postVerifyEmailThunk,
-  setUserRole
+  setUserRole,
 } from './operations';
 
 const initialState: AuthInitialState = {
@@ -19,6 +19,7 @@ const initialState: AuthInitialState = {
   token: null,
   jwtToken: null,
   userId: null,
+  email: null,
   error: null,
   isLoading: false,
 };
@@ -82,6 +83,7 @@ const slice = createSlice({
         state.isLoading = false;
         state.authenticated = true;
         state.userId = payload.id;
+        state.email = payload.email;
         state.error = null;
       })
       .addCase(delParentAccountThunk.fulfilled, (state, _) => {
@@ -96,20 +98,20 @@ const slice = createSlice({
         state.userId = null;
       })
       .addMatcher(
-        (action) => action.type.endsWith('/pending'),
-        (state) => {
+        action => action.type.endsWith('/pending'),
+        state => {
           state.isLoading = true;
           state.error = null;
-        },
+        }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/rejected'),
+        action => action.type.endsWith('/rejected'),
         (state, action) => {
           console.log('action in error', action);
           state.isLoading = false;
           state.error = 'Error';
-        },
-      )
+        }
+      );
   },
 });
 
