@@ -1,4 +1,6 @@
 import { AuthProvider } from '../../AuthProvider';
+import { ListeningProvider } from '../../ListeningProvider';
+import { NotificationsProvider } from '../../NotificationsProvider';
 import { StoreProvider } from '../../StoreProvider';
 
 interface RootProviderProps {
@@ -8,7 +10,11 @@ interface RootProviderProps {
 const RootProvider: React.FC<RootProviderProps> = ({ children }) => {
   return (
     <StoreProvider>
-      <AuthProvider>{children}</AuthProvider>
+      <ListeningProvider>
+        <NotificationsProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </NotificationsProvider>
+      </ListeningProvider>
     </StoreProvider>
   );
 };

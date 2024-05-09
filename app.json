@@ -9,10 +9,12 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./src/shared/assets/images/logo.png",
-      "resizeMode": "center",
+      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.robertw8.safekid"
