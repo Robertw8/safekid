@@ -1,13 +1,13 @@
-import { selectAuthenticated } from '@/processes/auth/model/selectors';
+import { selectJwtToken } from '@/processes/auth/model/selectors';
 import { LoginScreen } from '@/screens/adult';
 import { useAppSelector } from '@/shared/lib';
 import { BottomNavigation } from '@/widgets/adult';
 import { Stack } from 'expo-router';
 
 const AdultLayout: React.FC = () => {
-  const isAuth = useAppSelector(selectAuthenticated);
+  const isJwtToken = useAppSelector(selectJwtToken);
 
-  return isAuth ? (
+  return isJwtToken ? (
     <>
       <Stack
         screenOptions={{
