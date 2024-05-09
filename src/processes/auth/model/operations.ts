@@ -5,6 +5,7 @@ import postLoginUser from '../api/postLoginUser';
 import delParentAccount from '../api/delParentAccount';
 import { getDeviceToken } from '@/shared/api';
 import postResendVerifyCode from '../api/postResendVerifyCode';
+import getUserInfo from '../api/getUserInfo';
 
 const setUserRole = createAction<'kid' | 'adult' | null>('auth/setUserRole');
 
@@ -40,6 +41,10 @@ export const delParentAccountThunk = createAsyncThunk(
     delParentAccount
 );
 
+export const getUserInfoThunk = createAsyncThunk(
+  'auth/getUserInfo',
+    getUserInfo
+);
 
 
 

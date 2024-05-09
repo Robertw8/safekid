@@ -1,8 +1,12 @@
 import { styled } from 'nativewind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PrimaryButton, PrimaryModal } from '@/shared/ui';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { logOutUser } from '@/processes/auth/model/slice';
+import { selectAuthenticated } from '@/processes/auth/model/selectors';
+import { router } from 'expo-router';
 
 const StyledBtn = styled(TouchableOpacity);
 const StyledText = styled(Text);
@@ -10,6 +14,15 @@ const BtnModal = styled(View);
 
 const Logout: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const isUserAuth = useAppSelector(selectAuthenticated);
+
+  useEffect(() => {
+    if (isUserAuth) {
+      return;
+    };
+    router.navigate('/auth/adult/login' as `${string}:${string}`);
+  }, [isUserAuth]);
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
@@ -18,6 +31,7 @@ const Logout: React.FC = () => {
   const logout = () => {
     handleModalOpen();
     console.log('Вийшли з акаунта');
+    dispatch(logOutUser({}));
   };
 
   return (

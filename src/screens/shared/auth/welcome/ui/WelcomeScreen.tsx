@@ -3,7 +3,7 @@ import { styled } from 'nativewind';
 import { setUserRole } from '@/processes/auth';
 
 import { View } from 'react-native';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { ClickableRoleCard } from '@/widgets/auth';
 import {
   PrimaryContainer,
@@ -20,7 +20,7 @@ const WelcomeScreen: React.FC = () => {
   const { role } = useAuth();
 
   useEffect(() => {
-    dispatch(getTokenThunk())
+    dispatch(getTokenThunk());
   }, []);
 
   const handleAdultSelect = () => {
@@ -51,9 +51,6 @@ const WelcomeScreen: React.FC = () => {
           onPress={handleKidSelect}
         />
       </CardsWrapper>
-      <Link href="/adult/dashboard" style={{ marginTop: 20, color: 'green' }}>
-        Dashboard
-      </Link>
     </PrimaryContainer>
   );
 };
