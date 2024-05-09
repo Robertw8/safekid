@@ -41,7 +41,7 @@ const ListeningProvider: React.FC<ListeningProviderProps> = ({ children }) => {
       await recording.prepareToRecordAsync(audioSettings);
       await recording.startAsync();
       dispatch(setEnabled(true));
-      console.log('recording started');
+      // console.log('recording started');
 
       //! const status = await recording.getStatusAsync();
 
@@ -49,7 +49,7 @@ const ListeningProvider: React.FC<ListeningProviderProps> = ({ children }) => {
         await stopListening(recording);
 
         const uri = recording.getURI();
-        console.log(uri);
+        // console.log(uri);
         //! const base64String = await FileSystem.readAsStringAsync(uri as string, {
         //!   encoding: FileSystem.EncodingType.Base64,
         //! });
@@ -59,7 +59,7 @@ const ListeningProvider: React.FC<ListeningProviderProps> = ({ children }) => {
         //! console.log(speechResponse);
       }, 1000);
     } catch (err) {
-      console.log('Failed to start recording', err);
+      // console.log('Failed to start recording', err);
     }
   };
 

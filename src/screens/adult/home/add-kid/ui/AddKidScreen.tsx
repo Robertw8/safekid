@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   BackButton,
   PrimaryButton,
@@ -8,15 +9,41 @@ import {
 } from '@/shared/ui';
 import { AvatarsList } from '@/widgets/adult';
 
+import { registerKid } from '@/features/register-kids/model/operations';
+
+import useListening from '@/shared/lib/hooks/useListening';
+import useAppSelector from '@/shared/lib/hooks/useAppSelector';
+import useAppDispatch from '@/shared/lib/hooks/useAppDispatch';
+import { selectUserId } from '@/processes/auth/model/selectors';
+
 interface AddKidProps {
   classNames?: string;
+  parentId: string | null;
+  deviceId: string;
 }
 
 const AddKidScreen: React.FC<AddKidProps> = ({ classNames }) => {
   const [name, setName] = useState('');
+  const { deviceToken } = useListening();
+  const userId = useAppSelector(selectUserId);
+  const dispatch = useAppDispatch();
 
-  const handlePress = () => {
+  const handlePress = async () => {
     console.log('add kid', name);
+    console.log('User ID:', userId);
+    console.log('Device Token:', deviceToken);
+    try {
+      const result = await dispatch(
+        registerKid({
+          parentId: userId,
+          mobileTitle: name,
+          deviceId: deviceToken,
+        })
+      ).unwrap();
+      console.log('Result from server:', result);
+    } catch (error) {
+      console.error('Error registering kid:', error);
+    }
   };
 
   const handleNameChange = (text: string) => {
