@@ -22,7 +22,7 @@ const registerKidsSlice = createSlice({
       })
       .addCase(registerKid.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error?.message ?? null;
+        state.error = (action.payload as string) || null;
       });
   },
 });

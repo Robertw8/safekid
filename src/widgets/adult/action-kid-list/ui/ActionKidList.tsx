@@ -29,7 +29,7 @@ const ActionKidList: React.FC<ActionKidProps> = ({
   accessibilityRole,
   onPress,
 }) => (
-  <Wrapper className={`flex-column items-center ml-5 w-80 ${classNames}`}>
+  <Wrapper className={`flex-column items-center ml-1 w-80 ${classNames}`}>
     <TertiaryTitle classNames="mb-8">Оберіть дитину</TertiaryTitle>
     {kids.map((kid, index) => (
       <ActionKidItem

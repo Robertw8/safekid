@@ -12,7 +12,7 @@ export const registerKid = actionWrapper(
         url: `/child/registration`,
         data: { parentId, mobileTitle, deviceId },
       },
-      error => error
+      error => (typeof error.message === 'string' ? error.message : 'error')
     );
 
     return response;
