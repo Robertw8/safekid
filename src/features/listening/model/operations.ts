@@ -8,4 +8,17 @@ const setKidId = createAction<string>('listening/setKidId');
 
 const setDeviceToken = createAction<string>('listening/setDeviceToken');
 
-export { setEnabled, setIsLoggedIn, setKidId, setDeviceToken };
+const setRecording = createAction<string>('listening/setRecording');
+
+const setIsTriggerDetected = createAction<boolean>(
+  'listening/setTriggerDetected'
+);
+
+export {
+  setEnabled,
+  setIsLoggedIn,
+  setKidId,
+  setDeviceToken,
+  setRecording,
+  setIsTriggerDetected,
+};
