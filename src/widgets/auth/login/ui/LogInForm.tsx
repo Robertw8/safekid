@@ -31,7 +31,6 @@ const LogInForm = () => {
   const dispatch = useAppDispatch();
   const isUserAuth = useAppSelector(selectAuthenticated);
   const userId = useAppSelector(selectUserId);
-  console.log('userId', userId);
 
   const [showPassword, setShowPassword] = useState(true);
   

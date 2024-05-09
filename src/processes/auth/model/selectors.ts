@@ -6,6 +6,7 @@ export const selectAuthenticated = (state: RootState) => state.auth.authenticate
 export const selectVerifyEmail = (state: RootState) => state.auth.verifyEmail;
 export const selectUserId = (state: RootState) => state.auth.userId;
 export const selectToken = (state: RootState) => state.auth.token;
+export const selectJwtToken = (state: RootState) => state.auth.jwtToken;
 export const selectIsLoading = (state: RootState) => state.auth.isLoading;
 
 

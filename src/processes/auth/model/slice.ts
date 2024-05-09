@@ -30,14 +30,14 @@ const slice = createSlice({
     logOutUser(state, _) {
       console.log('use logOutUser');
       state.isLoading = false;
-        state.authenticated = false;
-        state.role = null;
-        state.verifyEmail = false;
-        state.userData = null;
-        state.token = null;
-        state.jwtToken = null;
-        state.error = null;
-        state.userId = null;
+      state.authenticated = false;
+      state.role = null;
+      state.verifyEmail = false;
+      state.userData = null;
+      state.token = null;
+      state.jwtToken = null;
+      state.error = null;
+      state.userId = null;
     },
   },
   extraReducers: builder => {
@@ -84,7 +84,7 @@ const slice = createSlice({
         state.userId = payload.id;
         state.error = null;
       })
-      .addCase(delParentAccountThunk.fulfilled, (state, _ ) => {
+      .addCase(delParentAccountThunk.fulfilled, (state, _) => {
         state.isLoading = false;
         state.authenticated = false;
         state.role = null;
@@ -116,4 +116,5 @@ const slice = createSlice({
 export const { logOutUser } = slice.actions;
 
 const authReducer = slice.reducer;
+
 export default authReducer;
