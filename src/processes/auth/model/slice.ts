@@ -118,4 +118,5 @@ const slice = createSlice({
 export const { logOutUser } = slice.actions;
 
 const authReducer = slice.reducer;
+
 export default authReducer;

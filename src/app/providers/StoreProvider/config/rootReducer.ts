@@ -8,9 +8,11 @@ import { parentInfoReducer } from '@/features/user-info';
 
 import { combineReducers } from '@reduxjs/toolkit';
 import { listKidsReducer } from '@/features/get-list-kids';
+import persistReducer from 'redux-persist/es/persistReducer';
+import authPersistConfig from './authPersistConfig';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  auth: persistReducer(authPersistConfig, authReducer),
   listKids: listKidsReducer,
   sendKids: sendKidsReducer,
   registerKids: registerKidsReducer,
