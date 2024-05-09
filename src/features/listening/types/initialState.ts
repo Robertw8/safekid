@@ -3,4 +3,6 @@ export default interface ListeningInitialState {
   enabled: boolean;
   kidId: string | null;
   deviceToken: string | null;
+  recording: string | null;
+  isTriggerDetected: boolean;
 }

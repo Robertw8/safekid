@@ -27,6 +27,7 @@ const ActionKidList: React.FC<ActionKidProps> = ({
   accessibilityLabel,
   accessibilityHint,
   accessibilityRole,
+  onPress,
 }) => (
   <Wrapper className={`flex-column items-center ml-5 w-80 ${classNames}`}>
     <TertiaryTitle classNames="mb-8">Оберіть дитину</TertiaryTitle>
@@ -34,6 +35,7 @@ const ActionKidList: React.FC<ActionKidProps> = ({
       <ActionKidItem
         key={index}
         {...kid}
+        onPress={onPress}
         classNames={classNames}
         accessibilityLabel={accessibilityLabel}
         accessibilityHint={accessibilityHint}

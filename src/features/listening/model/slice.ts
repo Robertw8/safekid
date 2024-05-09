@@ -5,6 +5,8 @@ import {
   setEnabled,
   setIsLoggedIn,
   setKidId,
+  setRecording,
+  setIsTriggerDetected,
 } from './operations';
 
 const initialState: ListeningInitialState = {
@@ -12,6 +14,8 @@ const initialState: ListeningInitialState = {
   isLoggedIn: false,
   kidId: null,
   deviceToken: null,
+  recording: '',
+  isTriggerDetected: false,
 };
 
 const slice = createSlice({
@@ -31,6 +35,12 @@ const slice = createSlice({
       })
       .addCase(setDeviceToken, (state, { payload }) => {
         state.deviceToken = payload;
+      })
+      .addCase(setRecording, (state, { payload }) => {
+        state.recording = payload;
+      })
+      .addCase(setIsTriggerDetected, (state, { payload }) => {
+        state.isTriggerDetected = payload;
       });
   },
 });

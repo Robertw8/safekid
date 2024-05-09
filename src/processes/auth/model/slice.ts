@@ -3,6 +3,7 @@ import type AuthInitialState from '../types/initialState';
 import {
   delParentAccountThunk,
   getTokenThunk,
+  getUserInfoThunk,
   postLoginUserThunk,
   postRegisterUserThunk,
   postResendVerifyCodeThunk,
@@ -17,6 +18,7 @@ const initialState: AuthInitialState = {
   authenticated: false,
   token: null,
   jwtToken: null,
+  userId: null,
   error: null,
   isLoading: false,
 };
@@ -24,7 +26,20 @@ const initialState: AuthInitialState = {
 const slice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logOutUser(state, _) {
+      console.log('use logOutUser');
+      state.isLoading = false;
+        state.authenticated = false;
+        state.role = null;
+        state.verifyEmail = false;
+        state.userData = null;
+        state.token = null;
+        state.jwtToken = null;
+        state.error = null;
+        state.userId = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(setUserRole, (state, { payload }) => {
@@ -41,6 +56,7 @@ const slice = createSlice({
         state.authenticated = false;
         state.userData = payload;
         state.error = null;
+        state.userId = payload.dto.id;
       })
       .addCase(postResendVerifyCodeThunk.fulfilled, (state, _) => {
         state.isLoading = false;
@@ -55,9 +71,17 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(postLoginUserThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in postLoginUserThunk', payload);
         state.isLoading = false;
         state.authenticated = true;
         state.jwtToken = payload;
+        state.error = null;
+      })
+      .addCase(getUserInfoThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in getUserInfoThunk', payload);
+        state.isLoading = false;
+        state.authenticated = true;
+        state.userId = payload.id;
         state.error = null;
       })
       .addCase(delParentAccountThunk.fulfilled, (state, _ ) => {
@@ -69,6 +93,7 @@ const slice = createSlice({
         state.token = null;
         state.jwtToken = null;
         state.error = null;
+        state.userId = null;
       })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
@@ -87,6 +112,8 @@ const slice = createSlice({
       )
   },
 });
+
+export const { logOutUser } = slice.actions;
 
 const authReducer = slice.reducer;
 export default authReducer;

@@ -33,8 +33,10 @@ const PrimaryModal: React.FC<ModalProps> = ({
       >
         <ModalContainer className={` bg-slate-50 w-full p-4 ${classNames}`}>
           <ModalContent className={`items-center mt-4 ${classNames}`}>
-            {header && <HeaderTitle>{header}</HeaderTitle>}
-            {body && <BodyText>{body}</BodyText>}
+            {header && (
+              <HeaderTitle classNames="text-center mb-4">{header}</HeaderTitle>
+            )}
+            {body && <BodyText classNames="text-center">{body}</BodyText>}
             {footer && <View>{footer}</View>}
           </ModalContent>
         </ModalContainer>

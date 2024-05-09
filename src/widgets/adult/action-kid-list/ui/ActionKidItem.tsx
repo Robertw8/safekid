@@ -17,6 +17,7 @@ interface ActionKidItemProps {
   accessibilityLabel: string;
   accessibilityHint: string;
   accessibilityRole: AccessibilityRole;
+  onPress?: () => void;
 }
 
 const AvatarContainer = styled(View);
@@ -39,6 +40,7 @@ const ActionKidItem: React.FC<ActionKidItemProps> = ({
   accessibilityLabel,
   accessibilityHint,
   accessibilityRole,
+  onPress,
 }) => {
   return (
     <Item
@@ -53,6 +55,7 @@ const ActionKidItem: React.FC<ActionKidItemProps> = ({
         </View>
       </AvatarContainer>
       <ActionButton
+        onPress={onPress}
         iconName={iconType}
         accessibilityHint={accessibilityHint}
         accessibilityRole={accessibilityRole}
