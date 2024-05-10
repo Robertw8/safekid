@@ -22,8 +22,12 @@ import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
-import { postRegisterUserThunk } from '@/processes/auth/model/operations';
+import { selectUserData } from '@/processes/auth/model/selectors';
+import {
+  postRegisterUserThunk,
+  setUserRole,
+} from '@/processes/auth/model/operations';
+import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -37,7 +41,7 @@ const RegisterForm = () => {
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
   const [check, setCheck] = useState(false);
 
-  const token = useAppSelector(selectToken);
+  const { pushToken } = usePushNotifications();
   const regUserData = useAppSelector(selectUserData);
 
   const {
@@ -62,10 +66,16 @@ const RegisterForm = () => {
 
   const onPressSend = ({ email, password }) => {
     if (check) {
-      const userData = { email, password, deviceToken: token, privacyPolicyAgreement: check };
+      const userData = {
+        email,
+        password,
+        deviceToken: pushToken?.data,
+        privacyPolicyAgreement: check,
+      };
       dispatch(postRegisterUserThunk(userData));
+      dispatch(setUserRole('adult'));
     } else {
-      alert('Підтвердіть згоду з умовами конфіденційності')
+      alert('Підтвердіть згоду з умовами конфіденційності');
     }
   };
 
@@ -76,7 +86,7 @@ const RegisterForm = () => {
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
           <View>
-            <LabelInput classNames='mb-2'>Електронна пошта</LabelInput>
+            <LabelInput classNames="mb-2">Електронна пошта</LabelInput>
             <Controller
               control={control}
               rules={{
@@ -93,10 +103,14 @@ const RegisterForm = () => {
               )}
               name="email"
             />
-            {errors.email && <LabelInput classNames='text-red'>{errors.email.message}</LabelInput>}
+            {errors.email && (
+              <LabelInput classNames="text-red">
+                {errors.email.message}
+              </LabelInput>
+            )}
           </View>
-          <View >
-            <LabelInput classNames='mb-2'>Пароль</LabelInput>
+          <View>
+            <LabelInput classNames="mb-2">Пароль</LabelInput>
             <View style={{ position: 'relative' }}>
               <Controller
                 control={control}
@@ -125,10 +139,14 @@ const RegisterForm = () => {
                 )}
               </TouchableOpacityStyled>
             </View>
-            {errors.password && <LabelInput classNames='text-red'>{errors.password.message}</LabelInput>}
+            {errors.password && (
+              <LabelInput classNames="text-red">
+                {errors.password.message}
+              </LabelInput>
+            )}
           </View>
           <View>
-            <LabelInput classNames='mb-2'>Повторіть пароль</LabelInput>
+            <LabelInput classNames="mb-2">Повторіть пароль</LabelInput>
             <View style={{ position: 'relative' }}>
               <Controller
                 control={control}
@@ -157,13 +175,19 @@ const RegisterForm = () => {
                 )}
               </TouchableOpacityStyled>
             </View>
-            {errors.confirmPassword && <LabelInput classNames='text-red'>{errors.confirmPassword.message}</LabelInput>}
+            {errors.confirmPassword && (
+              <LabelInput classNames="text-red">
+                {errors.confirmPassword.message}
+              </LabelInput>
+            )}
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
       <CheckField checked={check} onPress={() => setCheck(!check)}>
         <Link href="/auth/adult/privacy-police">
-          <NormalText classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}>
+          <NormalText
+            classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}
+          >
             Згоден з
           </NormalText>{' '}
           <HyperText classNames="font-normal text-xs  leading-normal">
@@ -171,7 +195,7 @@ const RegisterForm = () => {
           </HyperText>
         </Link>
       </CheckField>
-      <WrapperButton className='grow flex justify-end'>
+      <WrapperButton className="grow flex justify-end">
         <PrimaryButton
           text="Зареєструватися"
           onPress={handleSubmit(onPressSend)}

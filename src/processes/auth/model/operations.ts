@@ -7,44 +7,38 @@ import { getDeviceToken } from '@/shared/api';
 import postResendVerifyCode from '../api/postResendVerifyCode';
 import getUserInfo from '../api/getUserInfo';
 
-const setUserRole = createAction<'kid' | 'adult' | null>('auth/setUserRole');
-
-export { setUserRole };
-    
-export const getTokenThunk = createAsyncThunk(
-    'auth/token',
-    getDeviceToken,
+export const setUserRole = createAction<'kid' | 'adult' | null>(
+  'auth/setUserRole'
 );
+
+export const getTokenThunk = createAsyncThunk('auth/token', getDeviceToken);
 
 export const postRegisterUserThunk = createAsyncThunk(
   'auth/registerUser',
-    postRegisterUser
+  postRegisterUser
 );
 
 export const postResendVerifyCodeThunk = createAsyncThunk(
   'auth/resendVerifyCode',
-    postResendVerifyCode
+  postResendVerifyCode
 );
 
 export const postVerifyEmailThunk = createAsyncThunk(
   'auth/verifyEmail',
-    postVerifyEmail
+  postVerifyEmail
 );
 
 export const postLoginUserThunk = createAsyncThunk(
   'auth/loginUser',
-    postLoginUser
+  postLoginUser
 );
 
 export const delParentAccountThunk = createAsyncThunk(
   'auth/delParent',
-    delParentAccount
+  delParentAccount
 );
 
 export const getUserInfoThunk = createAsyncThunk(
   'auth/getUserInfo',
-    getUserInfo
+  getUserInfo
 );
-
-
-

@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import { useAppDispatch, useAuth } from '@/shared/lib';
 import { styled } from 'nativewind';
 import { setUserRole } from '@/processes/auth';
+import { router } from 'expo-router';
+import { getTokenThunk } from '@/processes/auth/model/operations';
 
 import { View } from 'react-native';
-import { router } from 'expo-router';
 import { ClickableRoleCard } from '@/widgets/auth';
 import {
   PrimaryContainer,
@@ -11,8 +13,7 @@ import {
   adultIcon,
   kidIcon,
 } from '@/shared/ui';
-import { useEffect } from 'react';
-import { getTokenThunk } from '@/processes/auth/model/operations';
+
 const CardsWrapper = styled(View);
 
 const WelcomeScreen: React.FC = () => {
@@ -32,7 +33,7 @@ const WelcomeScreen: React.FC = () => {
   const handleKidSelect = () => {
     dispatch(setUserRole('kid'));
     console.log('USER ROLE:', role);
-    router.navigate('/auth/kid/scan');
+    router.navigate('/auth/kid/register');
   };
 
   return (

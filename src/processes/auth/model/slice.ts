@@ -12,7 +12,7 @@ import {
 } from './operations';
 
 const initialState: AuthInitialState = {
-  role: null,
+  userRole: null,
   userData: null,
   verifyEmail: false,
   authenticated: false,
@@ -32,7 +32,7 @@ const slice = createSlice({
       console.log('use logOutUser');
       state.isLoading = false;
       state.authenticated = false;
-      state.role = null;
+      state.userRole = null;
       state.verifyEmail = false;
       state.userData = null;
       state.token = null;
@@ -44,7 +44,7 @@ const slice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(setUserRole, (state, { payload }) => {
-        state.role = payload;
+        state.userRole = payload;
       })
       .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -58,6 +58,7 @@ const slice = createSlice({
         state.userData = payload;
         state.error = null;
         state.userId = payload.dto.id;
+        state.token = payload.deviceToken;
       })
       .addCase(postResendVerifyCodeThunk.fulfilled, (state, _) => {
         state.isLoading = false;
@@ -77,6 +78,7 @@ const slice = createSlice({
         state.authenticated = true;
         state.jwtToken = payload;
         state.error = null;
+        state.token = payload.token;
       })
       .addCase(getUserInfoThunk.fulfilled, (state, { payload }) => {
         console.log('payload in getUserInfoThunk', payload);
@@ -89,7 +91,7 @@ const slice = createSlice({
       .addCase(delParentAccountThunk.fulfilled, (state, _) => {
         state.isLoading = false;
         state.authenticated = false;
-        state.role = null;
+        state.userRole = null;
         state.verifyEmail = false;
         state.userData = null;
         state.token = null;

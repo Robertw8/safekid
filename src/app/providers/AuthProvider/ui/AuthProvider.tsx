@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '@/shared/lib';
-import { setDeviceToken } from '@/features/listening';
-import { getDeviceToken } from '@/shared/api';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { getUserInfoThunk } from '@/processes/auth/model/operations';
+import {
+  selectJwtToken,
+  selectUserRole,
+} from '@/processes/auth/model/selectors';
+import { router } from 'expo-router';
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -9,12 +13,16 @@ interface AuthProviderProps {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const dispatch = useAppDispatch();
+  const jwtToken = useAppSelector(selectJwtToken);
+  const userRole = useAppSelector(selectUserRole);
 
   useEffect(() => {
     (async () => {
-      const deviceToken = await getDeviceToken();
+      dispatch(getUserInfoThunk({ token: jwtToken as string }));
 
-      dispatch(setDeviceToken(deviceToken));
+      if (jwtToken && userRole === 'adult') {
+        router.navigate('/adult/dashboard');
+      }
     })();
   }, []);
 

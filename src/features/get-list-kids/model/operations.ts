@@ -10,7 +10,7 @@ export const getListKids = actionWrapper(
         url: '/parent/my-children',
         config: {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
           },
         },
       },

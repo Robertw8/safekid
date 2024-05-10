@@ -28,7 +28,6 @@ yarn-error.*
 
 # local env files
 .env*.local
-safekid-6e4dd-8351ae1a880b.json
 
 # typescript
 *.tsbuildinfo

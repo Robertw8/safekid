@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Redirect, SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { RootProvider } from './providers/RootProvider';
 
 // SplashScreen.preventAutoHideAsync(); // ! temp
@@ -11,7 +11,6 @@ const StackLayout: React.FC = () => {
 
   return (
     <RootProvider>
-      <Redirect href="/auth/welcome" />
       <Stack
         screenOptions={{
           animation: 'fade_from_bottom',

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "78812897924",
+    "project_id": "safekid-6e4dd",
+    "storage_bucket": "safekid-6e4dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78812897924:android:dd7f14d87873a58870d8d1",
+        "android_client_info": {
+          "package_name": "bootcamp.safekid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAugj1hD0DBqj75R8LpVZAHH2xzW-GPmB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78812897924:android:3b3a8b589a216bd470d8d1",
+        "android_client_info": {
+          "package_name": "com.robertw8.safekid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAugj1hD0DBqj75R8LpVZAHH2xzW-GPmB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,11 +8,10 @@ import { PermissionResponse } from 'expo-camera';
 
 const KidHomeScreen: React.FC = () => {
   const [permission, setPermission] = useState<PermissionResponse | null>(null);
-  const { enabled, deviceToken } = useListening();
+  const { enabled } = useListening();
 
   useEffect(() => {
     checkMicrophonePermission().then(res => setPermission(res));
-    console.log(deviceToken);
   }, []);
 
   return (

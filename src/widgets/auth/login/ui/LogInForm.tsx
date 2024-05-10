@@ -19,8 +19,17 @@ import {
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { getUserInfoThunk, postLoginUserThunk } from '@/processes/auth/model/operations';
-import { selectAuthenticated, selectUserId } from '@/processes/auth/model/selectors';
+import {
+  getUserInfoThunk,
+  postLoginUserThunk,
+  setUserRole,
+} from '@/processes/auth/model/operations';
+import {
+  selectAuthenticated,
+  selectJwtToken,
+  selectUserId,
+} from '@/processes/auth/model/selectors';
+import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -31,9 +40,11 @@ const LogInForm = () => {
   const dispatch = useAppDispatch();
   const isUserAuth = useAppSelector(selectAuthenticated);
   const userId = useAppSelector(selectUserId);
+  const jwtToken = useAppSelector(selectJwtToken);
 
   const [showPassword, setShowPassword] = useState(true);
-  
+  const { pushToken } = usePushNotifications();
+
   const {
     control,
     handleSubmit,
@@ -49,17 +60,18 @@ const LogInForm = () => {
   useEffect(() => {
     if (!isUserAuth) {
       return;
-    };
+    }
     if (!userId) {
-      dispatch(getUserInfoThunk({}))
+      dispatch(getUserInfoThunk({ token: jwtToken as string }));
       return;
-    };
+    }
     router.navigate('/adult/instruction' as `${string}:${string}`);
   }, [isUserAuth, userId]);
 
-  const onPressSend = (formData) => {
+  const onPressSend = formData => {
     console.log(formData);
-    dispatch(postLoginUserThunk(formData))
+    dispatch(postLoginUserThunk({ ...formData, deviceToken: pushToken?.data }));
+    dispatch(setUserRole('adult'));
   };
 
   return (
@@ -69,7 +81,7 @@ const LogInForm = () => {
       >
         <WrapperInputs className="flex justify-center gap-4 mb-6">
           <View>
-            <LabelInput classNames='mb-2'>Електронна пошта</LabelInput>
+            <LabelInput classNames="mb-2">Електронна пошта</LabelInput>
             <Controller
               control={control}
               rules={{
@@ -86,10 +98,15 @@ const LogInForm = () => {
               )}
               name="email"
             />
-            {errors.email && <LabelInput classNames='text-red'>{errors.email.message}</LabelInput>}
+            {errors.email && (
+              <LabelInput classNames="text-red">
+                {errors.email.message}
+              </LabelInput>
+            )}
           </View>
           <View style={{ position: 'relative' }}>
-            <LabelInput classNames='mb-2'>Пароль</LabelInput><View style={{ position: 'relative' }}>
+            <LabelInput classNames="mb-2">Пароль</LabelInput>
+            <View style={{ position: 'relative' }}>
               <Controller
                 control={control}
                 rules={{
@@ -117,7 +134,11 @@ const LogInForm = () => {
                 )}
               </TouchableOpacityStyled>
             </View>
-            {errors.password && <LabelInput classNames='text-red'>{errors.password.message}</LabelInput>}
+            {errors.password && (
+              <LabelInput classNames="text-red">
+                {errors.password.message}
+              </LabelInput>
+            )}
           </View>
         </WrapperInputs>
       </KeyboardAvoidingView>
@@ -127,7 +148,7 @@ const LogInForm = () => {
       >
         Забули пароль?
       </Link>
-      <WrapperButton className='grow flex justify-end'>
+      <WrapperButton className="grow flex justify-end">
         <PrimaryButton
           text="Увійти"
           onPress={handleSubmit(onPressSend)}

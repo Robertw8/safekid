@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications';
+
 interface User {
   dto: {
     email: string;
@@ -9,13 +11,13 @@ interface User {
 }
 
 export default interface AuthInitialState {
-  role: 'kid' | 'adult' | null;
+  userRole: 'kid' | 'adult' | null;
   userData: null | User;
   verifyEmail: boolean;
   error: null | string;
   isLoading: boolean;
   authenticated: boolean;
-  token: null | string;
+  token: Notifications.ExpoPushToken | null;
   jwtToken: null | string;
   userId: null | string;
   email: null | string;

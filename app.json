@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.robertw8.safekid"
@@ -24,7 +22,8 @@
         "foregroundImage": "./src/shared/assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.robertw8.safekid"
+      "package": "com.robertw8.safekid",
+      "googleServicesFile": "./android/app/google-services.json"
     },
     "web": {
       "bundler": "metro",

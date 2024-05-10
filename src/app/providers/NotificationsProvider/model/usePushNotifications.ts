@@ -32,38 +32,41 @@ const usePushNotifications = (): PushNotificationState => {
   const registerPushNotifications = async () => {
     let token;
 
-    if (Device.isDevice) {
-      const { status: existingStatus } =
-        await Notifications.getPermissionsAsync();
+    const { status: existingStatus } =
+      await Notifications.getPermissionsAsync();
 
-      let finalStatus = existingStatus;
+    let finalStatus = existingStatus;
 
-      if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-
-      if (finalStatus !== 'granted') {
-        alert('Не вдалось отримати доступ до повідомлень');
-      }
-
-      token = await Notifications.getExpoPushTokenAsync({
-        projectId: Constants.expoConfig?.extra?.eas?.projectId,
-      });
-
-      if (Platform.OS === 'android') {
-        Notifications.setNotificationChannelAsync('default', {
-          name: 'default',
-          importance: Notifications.AndroidImportance.MAX,
-          vibrationPattern: [0, 25, 250, 250],
-          lightColor: '#FF231F7C',
-        });
-      }
-
-      return token;
-    } else {
-      console.log('ERROR: Use physical device');
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
     }
+
+    if (finalStatus !== 'granted') {
+      alert('Не вдалось отримати доступ до повідомлень');
+    }
+
+    for (let i = 0; i < 5; i += 1) {
+      try {
+        token = await Notifications.getExpoPushTokenAsync({
+          projectId: Constants.expoConfig?.extra?.eas?.projectId,
+        });
+        console.log(token.data);
+      } catch (error) {
+        console.log('error while getting push token', error);
+      }
+    }
+
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 25, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+
+    return token;
   };
 
   useEffect(() => {
