@@ -47,6 +47,7 @@ const slice = createSlice({
         state.role = payload;
       })
       .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in getTokenThunk', payload);
         state.isLoading = false;
         state.token = payload;
         state.error = null;
