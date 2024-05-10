@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, ScrollView } from 'react-native';
 import {
   BackButton,
   ConfirmRegisterInput,
@@ -16,6 +16,7 @@ import { selectIsLoading, selectUserData, selectVerifyEmail } from '@/processes/
 import { postResendVerifyCodeThunk, postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
+const ScrollWrapper = styled(ScrollView);
 
 const ConfirmRegisterScreen = () => {
   const dispatch = useAppDispatch();
@@ -66,58 +67,60 @@ const ConfirmRegisterScreen = () => {
 
   return (
     <>
-      {isLoading ?
-        (<Wrapper className="h-full justify-center">
-          <ActivityIndicator size={100} color="#3D33E2" />
-        </Wrapper>) :
-        (<Wrapper className="px-4 pt-10 h-full bg-white flex">
-          <BackButton />
-          <Icon xml={chatIcon} classNames={`ml-[320px] mt-6`} />
-          <NormalText classNames="mt-14 mb-5">
-            Введіть цифровий код з повідомлення:
-          </NormalText>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-            }}
-          >
-            {[0, 1, 2, 3].map(index => (
-              <ConfirmRegisterInput
-                onChangeText={value => handleChange(index, value, inputRefsArr[index + 1], inputRefsArr[index - 1])}
-                value={code[index]}
-                keyboardType="numeric"
-                inputRef={inputRefsArr[index]}
-                maxLength={1}
-                key={index}
-              />)
-            )}
-          </View>
-          <NormalText classNames="mt-5">Не прийшов код? </NormalText>
-
-          <TouchableOpacity onPress={resendCode}>
-            <Text
+      <ScrollWrapper className='bg-white'>
+        {isLoading ?
+          (<Wrapper className="h-screen justify-center">
+            <ActivityIndicator size={100} color="#3D33E2" />
+          </Wrapper>) :
+          (<Wrapper className="px-4 pt-10 h-screen bg-white flex">
+            <BackButton />
+            <Icon xml={chatIcon} classNames={`ml-[320px] mt-6`} />
+            <NormalText classNames="mt-14 mb-5">
+              Введіть цифровий код з повідомлення:
+            </NormalText>
+            <View
               style={{
-                fontSize: 12,
-                fontWeight: '400',
-                lineHeight: 18,
-                color: '#374785',
-                textDecorationLine: 'underline',
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
               }}
             >
-              Натисніть, щоб відправити знову
-            </Text>
-          </TouchableOpacity>
-          <PrimaryButton
-            text="Підтвердити реєстрацію"
-            onPress={onSubmitForm}
-            hint="Підтвердити реєстрацію"
-            label="Підтвердити реєстрацію"
-            role="button"
-            classNames="w-full self-center mt-40"
-          />
-        </Wrapper>)}
+              {[0, 1, 2, 3].map(index => (
+                <ConfirmRegisterInput
+                  onChangeText={value => handleChange(index, value, inputRefsArr[index + 1], inputRefsArr[index - 1])}
+                  value={code[index]}
+                  keyboardType="numeric"
+                  inputRef={inputRefsArr[index]}
+                  maxLength={1}
+                  key={index}
+                />)
+              )}
+            </View>
+            <NormalText classNames="mt-5">Не прийшов код? </NormalText>
+  
+            <TouchableOpacity onPress={resendCode}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: '400',
+                  lineHeight: 18,
+                  color: '#374785',
+                  textDecorationLine: 'underline',
+                }}
+              >
+                Натисніть, щоб відправити знову
+              </Text>
+            </TouchableOpacity>
+            <PrimaryButton
+              text="Підтвердити реєстрацію"
+              onPress={onSubmitForm}
+              hint="Підтвердити реєстрацію"
+              label="Підтвердити реєстрацію"
+              role="button"
+              classNames="w-full self-center mt-40"
+            />
+          </Wrapper>)}
+      </ScrollWrapper>
       
     </>
   );
