@@ -1,5 +1,5 @@
 export default interface RegisterChildParams {
-  parentId: string;
+  parentId: string | null;
   mobileTitle: string;
   deviceId: string | null;
 }

@@ -22,12 +22,10 @@ import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectUserData } from '@/processes/auth/model/selectors';
-import {
-  postRegisterUserThunk,
-  setUserRole,
-} from '@/processes/auth/model/operations';
 import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
+import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
+import { postRegisterUserThunk } from '@/processes/auth/model/operations';
+import { setUser } from '@/processes/auth/model/slice';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -72,8 +70,8 @@ const RegisterForm = () => {
         deviceToken: pushToken?.data,
         privacyPolicyAgreement: check,
       };
+      dispatch(setUser(email));
       dispatch(postRegisterUserThunk(userData));
-      dispatch(setUserRole('adult'));
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності');
     }

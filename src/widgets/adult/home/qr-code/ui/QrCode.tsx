@@ -3,13 +3,12 @@ import { View } from 'react-native';
 import QRCode from 'react-qr-code';
 
 import useAppSelector from '@/shared/lib/hooks/useAppSelector';
-import { selectUserData, selectUserId } from '@/processes/auth/model/selectors';
+import { selectUserId } from '@/processes/auth/model/selectors';
 
 const Wrapper = styled(View);
 
 const QrCode: React.FC = () => {
   const userId = useAppSelector(selectUserId);
-  console.log(userId);
 
   const generateQrValue = (parentId: string | null) => {
     return JSON.stringify({

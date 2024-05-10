@@ -35,10 +35,13 @@ const slice = createSlice({
       state.userRole = null;
       state.verifyEmail = false;
       state.userData = null;
-      state.token = null;
       state.jwtToken = null;
       state.error = null;
       state.userId = null;
+    },
+    setUser(state, { payload }) {
+      console.log('email in setUser', payload);
+      state.email = payload;
     },
   },
   extraReducers: builder => {
@@ -47,6 +50,7 @@ const slice = createSlice({
         state.userRole = payload;
       })
       .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in getTokenThunk', payload);
         state.isLoading = false;
         state.token = payload;
         state.error = null;
@@ -59,6 +63,7 @@ const slice = createSlice({
         state.error = null;
         state.userId = payload.dto.id;
         state.token = payload.deviceToken;
+        state.userRole = 'adult';
       })
       .addCase(postResendVerifyCodeThunk.fulfilled, (state, _) => {
         state.isLoading = false;
@@ -79,6 +84,7 @@ const slice = createSlice({
         state.jwtToken = payload;
         state.error = null;
         state.token = payload.token;
+        state.userRole = 'adult';
       })
       .addCase(getUserInfoThunk.fulfilled, (state, { payload }) => {
         console.log('payload in getUserInfoThunk', payload);
@@ -98,6 +104,7 @@ const slice = createSlice({
         state.jwtToken = null;
         state.error = null;
         state.userId = null;
+        state.email = null;
       })
       .addMatcher(
         action => action.type.endsWith('/pending'),
@@ -117,7 +124,7 @@ const slice = createSlice({
   },
 });
 
-export const { logOutUser } = slice.actions;
+export const { logOutUser, setUser } = slice.actions;
 
 const authReducer = slice.reducer;
 
