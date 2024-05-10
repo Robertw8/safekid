@@ -24,6 +24,7 @@ import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
 import { postRegisterUserThunk } from '@/processes/auth/model/operations';
+import { setUser } from '@/processes/auth/model/slice';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -63,6 +64,7 @@ const RegisterForm = () => {
   const onPressSend = ({ email, password }) => {
     if (check) {
       const userData = { email, password, deviceToken: token, privacyPolicyAgreement: check };
+      dispatch(setUser(email));
       dispatch(postRegisterUserThunk(userData));
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності')

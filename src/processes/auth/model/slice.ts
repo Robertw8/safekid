@@ -39,6 +39,10 @@ const slice = createSlice({
       state.error = null;
       state.userId = null;
     },
+    setUser(state, { payload }) {
+      console.log('email in setUser', payload);
+      state.email = payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -92,10 +96,11 @@ const slice = createSlice({
         state.role = null;
         state.verifyEmail = false;
         state.userData = null;
-        state.token = null;
+        // state.token = null;
         state.jwtToken = null;
         state.error = null;
         state.userId = null;
+        state.email = null;
       })
       .addMatcher(
         action => action.type.endsWith('/pending'),
@@ -115,7 +120,7 @@ const slice = createSlice({
   },
 });
 
-export const { logOutUser } = slice.actions;
+export const { logOutUser, setUser } = slice.actions;
 
 const authReducer = slice.reducer;
 

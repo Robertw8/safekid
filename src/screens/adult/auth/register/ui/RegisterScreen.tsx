@@ -3,14 +3,21 @@ import { Keyboard, TouchableWithoutFeedback, View, ActivityIndicator, ScrollView
 import { Link } from 'expo-router';
 import { BackButton, HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
 import { RegisterForm } from '@/widgets/auth';
-import { useAppSelector } from '@/shared/lib';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectIsLoading } from '@/processes/auth/model/selectors';
+import { useEffect } from 'react';
+import { getTokenThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
 const ScrollWrapper = styled(ScrollView);
 
 const RegisterScreen: React.FC = () => {
+    const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
+
+  useEffect(() => {
+    dispatch(getTokenThunk());
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
