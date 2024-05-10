@@ -32,13 +32,16 @@ const slice = createSlice({
       console.log('use logOutUser');
       state.isLoading = false;
       state.authenticated = false;
-      state.role = null;
-      state.verifyEmail = false;
+      // state.role = null;
+      // state.verifyEmail = false;
       state.userData = null;
-      state.token = null;
       state.jwtToken = null;
       state.error = null;
       state.userId = null;
+    },
+    setUser(state, { payload }) {
+      console.log('email in setUser', payload);
+      state.email = payload;
     },
   },
   extraReducers: builder => {
@@ -47,6 +50,7 @@ const slice = createSlice({
         state.role = payload;
       })
       .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
+        console.log('payload in getTokenThunk', payload);
         state.isLoading = false;
         state.token = payload;
         state.error = null;
@@ -92,10 +96,11 @@ const slice = createSlice({
         state.role = null;
         state.verifyEmail = false;
         state.userData = null;
-        state.token = null;
+        // state.token = null;
         state.jwtToken = null;
         state.error = null;
         state.userId = null;
+        state.email = null;
       })
       .addMatcher(
         action => action.type.endsWith('/pending'),
@@ -115,7 +120,7 @@ const slice = createSlice({
   },
 });
 
-export const { logOutUser } = slice.actions;
+export const { logOutUser, setUser } = slice.actions;
 
 const authReducer = slice.reducer;
 

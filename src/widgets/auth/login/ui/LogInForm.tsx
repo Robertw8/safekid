@@ -20,7 +20,7 @@ import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { getUserInfoThunk, postLoginUserThunk } from '@/processes/auth/model/operations';
-import { selectAuthenticated, selectUserId } from '@/processes/auth/model/selectors';
+import { selectAuthenticated, selectToken, selectUserId } from '@/processes/auth/model/selectors';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -31,6 +31,7 @@ const LogInForm = () => {
   const dispatch = useAppDispatch();
   const isUserAuth = useAppSelector(selectAuthenticated);
   const userId = useAppSelector(selectUserId);
+  const token = useAppSelector(selectToken);
 
   const [showPassword, setShowPassword] = useState(true);
   
@@ -54,12 +55,12 @@ const LogInForm = () => {
       dispatch(getUserInfoThunk({}))
       return;
     };
-    router.navigate('/adult/instruction' as `${string}:${string}`);
+    router.navigate('/adult/dashboard' as `${string}:${string}`);
   }, [isUserAuth, userId]);
 
-  const onPressSend = (formData) => {
-    console.log(formData);
-    dispatch(postLoginUserThunk(formData))
+  const onPressSend = ({ email, password }) => {
+    const userData = { email, password, deviceToken: token};
+    dispatch(postLoginUserThunk(userData))
   };
 
   return (
