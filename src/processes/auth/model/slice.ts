@@ -32,10 +32,9 @@ const slice = createSlice({
       console.log('use logOutUser');
       state.isLoading = false;
       state.authenticated = false;
-      state.role = null;
-      state.verifyEmail = false;
+      // state.role = null;
+      // state.verifyEmail = false;
       state.userData = null;
-      state.token = null;
       state.jwtToken = null;
       state.error = null;
       state.userId = null;

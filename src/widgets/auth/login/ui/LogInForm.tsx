@@ -55,7 +55,7 @@ const LogInForm = () => {
       dispatch(getUserInfoThunk({}))
       return;
     };
-    router.navigate('/adult/instruction' as `${string}:${string}`);
+    router.navigate('/adult/dashboard' as `${string}:${string}`);
   }, [isUserAuth, userId]);
 
   const onPressSend = ({ email, password }) => {
