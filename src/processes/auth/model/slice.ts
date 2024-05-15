@@ -8,7 +8,6 @@ import {
   postRegisterUserThunk,
   postResendVerifyCodeThunk,
   postVerifyEmailThunk,
-  setUserRole,
 } from './operations';
 
 const initialState: AuthInitialState = {
@@ -46,9 +45,6 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(setUserRole, (state, { payload }) => {
-        state.userRole = payload;
-      })
       .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
         console.log('payload in getTokenThunk', payload);
         state.isLoading = false;
@@ -76,6 +72,7 @@ const slice = createSlice({
         state.authenticated = false;
         state.verifyEmail = true;
         state.error = null;
+        state.userRole = 'adult';
       })
       .addCase(postLoginUserThunk.fulfilled, (state, { payload }) => {
         console.log('payload in postLoginUserThunk', payload);
@@ -93,6 +90,7 @@ const slice = createSlice({
         state.userId = payload.id;
         state.email = payload.email;
         state.error = null;
+        state.userRole = 'adult';
       })
       .addCase(delParentAccountThunk.fulfilled, (state, _) => {
         state.isLoading = false;

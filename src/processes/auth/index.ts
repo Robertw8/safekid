@@ -7,4 +7,3 @@ export { default as delParentAccount } from './api/delParentAccount';
 export { default as getUserInfo } from './api/getUserInfo';
 export { default as authReducer } from './model/slice';
 export { selectUserRole } from './model/selectors';
-export { setUserRole } from './model/operations';

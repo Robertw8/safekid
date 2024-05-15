@@ -1,8 +1,8 @@
-import { selectRole } from '@/processes/auth';
+import { selectUserRole } from '@/processes/auth';
 import useAppSelector from './useAppSelector';
 
 const useAuth = () => {
-  const role = useAppSelector(selectRole);
+  const role = useAppSelector(selectUserRole);
 
   return { role };
 };

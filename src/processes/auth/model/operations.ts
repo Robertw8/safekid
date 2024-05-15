@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import postRegisterUser from '../api/postRegisterUser';
 import postVerifyEmail from '../api/postVerifyEmail';
 import postLoginUser from '../api/postLoginUser';
@@ -6,10 +6,6 @@ import delParentAccount from '../api/delParentAccount';
 import { getDeviceToken } from '@/shared/api';
 import postResendVerifyCode from '../api/postResendVerifyCode';
 import getUserInfo from '../api/getUserInfo';
-
-export const setUserRole = createAction<'kid' | 'adult' | null>(
-  'auth/setUserRole'
-);
 
 export const getTokenThunk = createAsyncThunk('auth/token', getDeviceToken);
 
