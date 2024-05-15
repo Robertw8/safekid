@@ -18,10 +18,12 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      dispatch(getUserInfoThunk({ token: jwtToken as string }));
+      // dispatch(getUserInfoThunk({ token: jwtToken as string }));
 
       if (jwtToken && userRole === 'adult') {
         router.navigate('/adult/dashboard');
+      } else {
+        router.navigate('/auth/welcome');
       }
     })();
   }, []);
