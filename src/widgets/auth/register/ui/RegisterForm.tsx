@@ -23,7 +23,7 @@ import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
-import { selectToken, selectUserData } from '@/processes/auth/model/selectors';
+import { selectUserData } from '@/processes/auth/model/selectors';
 import { postRegisterUserThunk } from '@/processes/auth/model/operations';
 import { setUser } from '@/processes/auth/model/slice';
 

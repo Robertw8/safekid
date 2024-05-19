@@ -3,11 +3,11 @@ import postRegisterUser from '../api/postRegisterUser';
 import postVerifyEmail from '../api/postVerifyEmail';
 import postLoginUser from '../api/postLoginUser';
 import delParentAccount from '../api/delParentAccount';
-import { getDeviceToken } from '@/shared/api';
+// import { getDeviceToken } from '@/shared/api';
 import postResendVerifyCode from '../api/postResendVerifyCode';
 import getUserInfo from '../api/getUserInfo';
 
-export const getTokenThunk = createAsyncThunk('auth/token', getDeviceToken);
+// export const getTokenThunk = createAsyncThunk('auth/token', getDeviceToken);
 
 export const postRegisterUserThunk = createAsyncThunk(
   'auth/registerUser',

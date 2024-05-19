@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
 import {
   delParentAccountThunk,
-  getTokenThunk,
+  // getTokenThunk,
   getUserInfoThunk,
   postLoginUserThunk,
   postRegisterUserThunk,
@@ -45,12 +45,12 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
-        console.log('payload in getTokenThunk', payload);
-        state.isLoading = false;
-        state.token = payload;
-        state.error = null;
-      })
+      // .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
+      //   console.log('payload in getTokenThunk', payload);
+      //   state.isLoading = false;
+      //   state.token = payload;
+      //   state.error = null;
+      // })
       .addCase(postRegisterUserThunk.fulfilled, (state, { payload }) => {
         console.log('userData in slice', payload);
         state.isLoading = false;
