@@ -25,9 +25,12 @@ import {
 } from '@/processes/auth/model/operations';
 import {
   selectAuthenticated,
+  selectJwtToken,
   selectToken,
   selectUserId,
 } from '@/processes/auth/model/selectors';
+import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
+import { setToken } from '@/processes/auth/model/slice';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -36,9 +39,20 @@ const WrapperButton = styled(View);
 
 const LogInForm = () => {
   const dispatch = useAppDispatch();
+
   const isUserAuth = useAppSelector(selectAuthenticated);
   const userId = useAppSelector(selectUserId);
   const token = useAppSelector(selectToken);
+  const jwtToken = useAppSelector(selectJwtToken);
+  const { pushToken } = usePushNotifications();
+  const pushTokenData = pushToken?.data;
+
+  console.log('pushTokenData in loginscreen', pushTokenData);
+
+  console.log('isUserAuth in loginscreen', isUserAuth);
+  console.log('userId in loginscreen', userId);
+  console.log('token in loginscreen', token);
+  console.log('jwtToken in loginscreen', jwtToken);
 
   const [showPassword, setShowPassword] = useState(true);
 
@@ -55,11 +69,18 @@ const LogInForm = () => {
   });
 
   useEffect(() => {
+    if (token) {
+      return;
+    }
+    dispatch(setToken(pushTokenData))
+  }, [token, pushTokenData]);
+
+  useEffect(() => {
     if (!isUserAuth) {
       return;
     }
     if (!userId) {
-      dispatch(getUserInfoThunk({ token: token as unknown as string }));
+      dispatch(getUserInfoThunk({ jwtToken: jwtToken as string }));
       return;
     }
     router.navigate('/adult/dashboard' as `${string}:${string}`);

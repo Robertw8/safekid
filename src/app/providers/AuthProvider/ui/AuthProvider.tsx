@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { getUserInfoThunk } from '@/processes/auth/model/operations';
+// import { getUserInfoThunk } from '@/processes/auth/model/operations';
 import {
   selectJwtToken,
   selectUserRole,
@@ -12,7 +12,7 @@ interface AuthProviderProps {
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const jwtToken = useAppSelector(selectJwtToken);
   const userRole = useAppSelector(selectUserRole);
 

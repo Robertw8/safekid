@@ -12,7 +12,7 @@ import { styled } from 'nativewind';
 import { router } from 'expo-router';
 import { TouchableOpacity, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { selectEmail, selectIsLoading, selectUserData, selectVerifyEmail } from '@/processes/auth/model/selectors';
+import { selectEmail, selectIsLoading, selectVerifyEmail } from '@/processes/auth/model/selectors';
 import { postResendVerifyCodeThunk, postVerifyEmailThunk } from '@/processes/auth/model/operations';
 
 const Wrapper = styled(View);
@@ -22,7 +22,6 @@ const ConfirmRegisterScreen = () => {
   const dispatch = useAppDispatch();
 
   const [code, setCode] = useState(['', '', '', '']);
-  const regUserData = useAppSelector(selectUserData);
   const userEmail = useAppSelector(selectEmail);
   const isEmailVerify = useAppSelector(selectVerifyEmail);
   const isLoading = useAppSelector(selectIsLoading);
@@ -62,8 +61,8 @@ const ConfirmRegisterScreen = () => {
   };
 
   const resendCode = () => {
-    console.log(`Resending code to the ${regUserData?.dto.email}`);
-        dispatch(postResendVerifyCodeThunk(regUserData?.dto.email))
+    console.log(`Resending code to the ${userEmail}`);
+        dispatch(postResendVerifyCodeThunk(userEmail))
   };
 
   return (

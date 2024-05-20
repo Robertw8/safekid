@@ -22,10 +22,8 @@ import { Link, router } from 'expo-router';
 import { styled } from 'nativewind';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
-import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
-import { selectUserData } from '@/processes/auth/model/selectors';
+import { selectToken, selectUserId } from '@/processes/auth/model/selectors';
 import { postRegisterUserThunk } from '@/processes/auth/model/operations';
-import { setUser } from '@/processes/auth/model/slice';
 
 const WrapperInputs = styled(View);
 const TouchableOpacityStyled = styled(TouchableOpacity);
@@ -38,9 +36,10 @@ const RegisterForm = () => {
   const [showPasswordFirst, setShowPasswordFirst] = useState(true);
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
   const [check, setCheck] = useState(false);
+  const token = useAppSelector(selectToken);
+    const userId = useAppSelector(selectUserId);
 
-  const { pushToken } = usePushNotifications();
-  const regUserData = useAppSelector(selectUserData);
+    console.log('token in registerscreen', token);
 
   const {
     control,
@@ -56,21 +55,20 @@ const RegisterForm = () => {
   });
 
   useEffect(() => {
-    if (!regUserData) {
+    if (!userId) {
       return;
     }
     router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
-  }, [regUserData]);
+  }, [userId]);
 
   const onPressSend = ({ email, password }) => {
     if (check) {
       const userData = {
         email,
         password,
-        deviceToken: pushToken?.data,
+        deviceToken: token,
         privacyPolicyAgreement: check,
       };
-      dispatch(setUser(email));
       dispatch(postRegisterUserThunk(userData));
     } else {
       alert('Підтвердіть згоду з умовами конфіденційності');

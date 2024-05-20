@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import type AuthInitialState from '../types/initialState';
 import {
   delParentAccountThunk,
-  // getTokenThunk,
   getUserInfoThunk,
   postLoginUserThunk,
   postRegisterUserThunk,
@@ -12,7 +11,6 @@ import {
 
 const initialState: AuthInitialState = {
   userRole: null,
-  userData: null,
   verifyEmail: false,
   authenticated: false,
   token: null,
@@ -32,33 +30,25 @@ const slice = createSlice({
       state.isLoading = false;
       state.authenticated = false;
       state.userRole = null;
-      state.verifyEmail = false;
-      state.userData = null;
       state.jwtToken = null;
       state.error = null;
       state.userId = null;
     },
-    setUser(state, { payload }) {
-      console.log('email in setUser', payload);
-      state.email = payload;
+    setToken(state, { payload }) {
+      console.log('setToken in slice', payload);
+      state.token = payload;
     },
   },
   extraReducers: builder => {
     builder
-      // .addCase(getTokenThunk.fulfilled, (state, { payload }) => {
-      //   console.log('payload in getTokenThunk', payload);
-      //   state.isLoading = false;
-      //   state.token = payload;
-      //   state.error = null;
-      // })
       .addCase(postRegisterUserThunk.fulfilled, (state, { payload }) => {
-        console.log('userData in slice', payload);
+        console.log('userData in slicepostRegisterUserThunk', payload);
         state.isLoading = false;
         state.authenticated = false;
-        state.userData = payload;
-        state.error = null;
+        state.userRole = 'adult';
+        state.email = payload.dto.email;
         state.userId = payload.dto.id;
-        state.token = payload.deviceToken;
+        state.error = null;
         state.userRole = 'adult';
       })
       .addCase(postResendVerifyCodeThunk.fulfilled, (state, _) => {
@@ -80,7 +70,6 @@ const slice = createSlice({
         state.authenticated = true;
         state.jwtToken = payload;
         state.error = null;
-        state.token = payload.token;
         state.userRole = 'adult';
       })
       .addCase(getUserInfoThunk.fulfilled, (state, { payload }) => {
@@ -97,7 +86,6 @@ const slice = createSlice({
         state.authenticated = false;
         state.userRole = null;
         state.verifyEmail = false;
-        state.userData = null;
         state.token = null;
         state.jwtToken = null;
         state.error = null;
@@ -122,7 +110,7 @@ const slice = createSlice({
   },
 });
 
-export const { logOutUser, setUser } = slice.actions;
+export const { logOutUser, setToken } = slice.actions;
 
 const authReducer = slice.reducer;
 
