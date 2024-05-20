@@ -1,9 +1,5 @@
-import { useEffect } from 'react';
-import { useAppDispatch } from '@/shared/lib';
 import { styled } from 'nativewind';
 import { router } from 'expo-router';
-import { getTokenThunk } from '@/processes/auth/model/operations';
-
 import { View } from 'react-native';
 import { ClickableRoleCard } from '@/widgets/auth';
 import {
