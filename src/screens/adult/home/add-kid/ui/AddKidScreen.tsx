@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   BackButton,
@@ -10,8 +11,7 @@ import {
 import { AvatarsList } from '@/widgets/adult';
 
 import { registerKid } from '@/features/register-kids/model/operations';
-
-import useListening from '@/shared/lib/hooks/useListening';
+// import useListening from '@/shared/lib/hooks/useListening';
 import useAppSelector from '@/shared/lib/hooks/useAppSelector';
 import useAppDispatch from '@/shared/lib/hooks/useAppDispatch';
 import { selectUserId } from '@/processes/auth/model/selectors';
@@ -24,11 +24,12 @@ interface AddKidProps {
 
 const AddKidScreen: React.FC<AddKidProps> = ({ classNames }) => {
   const [name, setName] = useState('');
-  const { deviceToken } = useListening();
+  // const { deviceToken } = useListening();
   const userId = useAppSelector(selectUserId);
   const dispatch = useAppDispatch();
 
   const handlePress = async () => {
+    const deviceToken = uuidv4();
     console.log('add kid', name);
     console.log('User ID:', userId);
     console.log('Device Token:', deviceToken);
