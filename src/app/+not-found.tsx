@@ -15,7 +15,9 @@ const NotFound: React.FC = () => {
       <PrimaryButton
         text="Повернутись назад"
         classNames="mt-6"
-        onPress={() => router.back()}
+        onPress={() =>
+          router.canGoBack() ? router.back() : router.navigate('/auth/welcome')
+        }
       />
     </PrimaryContainer>
   );
