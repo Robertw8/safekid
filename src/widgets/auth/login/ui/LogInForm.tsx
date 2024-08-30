@@ -29,7 +29,7 @@ import {
   selectToken,
   selectUserId,
 } from '@/processes/auth/model/selectors';
-import { usePushNotifications } from '@/app/providers/NotificationsProvider/model/usePushNotifications';
+import { usePushNotifications } from '@app/providers/notifications-provider/model/usePushNotifications';
 import { setToken } from '@/processes/auth/model/slice';
 
 const WrapperInputs = styled(View);
@@ -72,7 +72,7 @@ const LogInForm = () => {
     if (token) {
       return;
     }
-    dispatch(setToken(pushTokenData))
+    dispatch(setToken(pushTokenData));
   }, [token, pushTokenData]);
 
   useEffect(() => {
