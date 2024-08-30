@@ -1,7 +1,7 @@
-import { AuthProvider } from '../../AuthProvider';
-import { ListeningProvider } from '../../ListeningProvider';
-import { NotificationsProvider } from '../../NotificationsProvider';
-import { StoreProvider } from '../../StoreProvider';
+import { AuthProvider } from '../../auth-provider';
+import { ListeningProvider } from '../../listening-provider';
+import { NotificationsProvider } from '../../notifications-provider';
+import { StoreProvider } from '../../store-provider';
 
 interface RootProviderProps {
   children: React.ReactNode;

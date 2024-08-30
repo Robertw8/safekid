@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { audioMode, audioSettings } from '../audioSettings';
+import { audioMode, audioSettings } from '../../config/audioSettings';
 
 import { Audio } from 'expo-av';
 import * as MediaLibrary from 'expo-media-library';

@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { SplashScreen, Stack } from 'expo-router';
-import { RootProvider } from './providers/RootProvider';
-
-// SplashScreen.preventAutoHideAsync(); // ! temp
+import { RootProvider } from '../providers/root-provider';
 
 const StackLayout: React.FC = () => {
   useEffect(() => {
-    SplashScreen.hideAsync(); // ! temp
+    SplashScreen.hideAsync();
   }, []);
 
   return (

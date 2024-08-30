@@ -4,7 +4,7 @@ import {
   PrimaryContainer,
   SecondaryTitle,
   errorIcon,
-} from '@/shared/ui';
+} from '@shared/ui';
 import { router } from 'expo-router';
 
 const NotFound: React.FC = () => {
