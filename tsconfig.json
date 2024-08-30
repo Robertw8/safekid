@@ -1,15 +1,21 @@
 {
-	"extends": "expo/tsconfig.base",
-	"compilerOptions": {
-		"strict": true,
-		"isolatedModules": true,
-		"incremental": true,
-		"noImplicitAny": false,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"paths": {
-			"@/*": ["./src/*"]
-		}
-	},
-	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@features/*": ["./src/features/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@widgets/*": ["./src/widgets/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
 }
