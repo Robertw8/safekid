@@ -24,7 +24,7 @@ const listKidsSlice = createSlice({
       })
       .addCase(getListKids.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error?.message ?? 'An error occurred';
+        state.error = (action.payload as string) || null;
       });
   },
 });
