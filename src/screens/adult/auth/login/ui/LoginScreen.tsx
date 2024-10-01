@@ -11,6 +11,7 @@ import { Link } from 'expo-router';
 import { BackButton, HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsLoading } from '@/processes/auth/model/selectors';
+import { InfoAfterRegistrationScreen } from '@/screens/adult';
 
 const Wrapper = styled(View);
 const ScrollWrapper = styled(ScrollView);
@@ -27,11 +28,12 @@ const LoginScreen: React.FC = () => {
           </Wrapper>
         ) : (
           <Wrapper className="px-4 pt-40 pb-12 h-screen bg-white flex items-center">
+            <InfoAfterRegistrationScreen></InfoAfterRegistrationScreen>
             <BackButton />
             <PrimaryTitle classNames="mb-8">Вхід</PrimaryTitle>
             <LogInForm />
             <Link href="/auth/adult/register">
-              <NormalText>Не маєте акаунту?</NormalText>{' '}
+              <NormalText>Не маєте акаунту?</NormalText>
               <HyperText>Створити</HyperText>
             </Link>
           </Wrapper>

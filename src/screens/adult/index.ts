@@ -20,3 +20,4 @@ export { default as CommunicationChildScreen } from './information/communication
 export { default as TestAppScreen } from './information/test-app/ui/TestAppScreen';
 export { default as PrivacyPolicyScreen } from './information/privacy-policy/ui/PrivacyPolicyScreen';
 export { default as ConfirmResetPasswordScreen } from './auth/resetpassword/ui/ConfirmResetPasswordScreen';
+export { default as InfoAfterRegistrationScreen } from './information/info-after-regist/ui/InfoAfterRegistrationScreen';

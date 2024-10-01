@@ -15,3 +15,4 @@ export { default as AvatarsList } from './home/avatars/ui/AvatarsList';
 export { default as CommunicationChild } from './home/informations/CommunicationChild';
 export { default as TestApp } from './home/informations/TestApp';
 export { default as PrivacyPolicy } from './home/informations/PrivacyPolicy';
+export { default as InfoAfterRegistration } from './home/informations/InfoAfterRegistration';

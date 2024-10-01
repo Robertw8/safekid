@@ -37,9 +37,9 @@ const RegisterForm = () => {
   const [showPasswordSecond, setShowPasswordSecond] = useState(true);
   const [check, setCheck] = useState(false);
   const token = useAppSelector(selectToken);
-    const userId = useAppSelector(selectUserId);
+  const userId = useAppSelector(selectUserId);
 
-    console.log('token in registerscreen', token);
+  console.log('token in registerscreen', token);
 
   const {
     control,
@@ -185,7 +185,7 @@ const RegisterForm = () => {
             classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}
           >
             Згоден з
-          </NormalText>{' '}
+          </NormalText>
           <HyperText classNames="font-normal text-xs  leading-normal">
             умовами та політикою конфіденційності
           </HyperText>
