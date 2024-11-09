@@ -1,45 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  TouchableOpacity,
-  View,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
-import {
-  CheckField,
-  HyperText,
-  Icon,
-  LabelInput,
-  NormalText,
-  PrimaryButton,
-  PrimaryInput,
-  closedEyeIcon,
-  openEyeIcon,
-} from '@/shared/ui';
-import { Link, router } from 'expo-router';
-import { styled } from 'nativewind';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
+import { PrimaryButton } from '@/shared/ui';
+import { router } from 'expo-router';
 import { validationRegisterSchema } from '@/entities/auth';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectToken, selectUserId } from '@/processes/auth/model/selectors';
 import { postRegisterUserThunk } from '@/processes/auth/model/operations';
-
-const WrapperInputs = styled(View);
-const TouchableOpacityStyled = styled(TouchableOpacity);
-const WrapperForm = styled(View);
-const WrapperButton = styled(View);
+import PrivacyPolicyCheck from '@/features/privacy-police/ui/PrivacyPolicyCheck';
+import { InputField } from '@/shared/ui/input/InputField';
 
 const RegisterForm = () => {
   const dispatch = useAppDispatch();
 
-  const [showPasswordFirst, setShowPasswordFirst] = useState(true);
-  const [showPasswordSecond, setShowPasswordSecond] = useState(true);
   const [check, setCheck] = useState(false);
-  const token = useAppSelector(selectToken);
-    const userId = useAppSelector(selectUserId);
 
-    console.log('token in registerscreen', token);
+  const token = useAppSelector(selectToken);
+  const userId = useAppSelector(selectUserId);
+
+  console.log('Token in RegisterScreen: ', token);
+  console.log('userId in RegisterScreen: ', userId);
 
   const {
     control,
@@ -76,132 +57,45 @@ const RegisterForm = () => {
   };
 
   return (
-    <WrapperForm className="grow mb-9 w-full flex">
+    <View>
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
-        <WrapperInputs className="flex justify-center gap-4 mb-6">
-          <View>
-            <LabelInput classNames="mb-2">Електронна пошта</LabelInput>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { onChange, value } }) => (
-                <PrimaryInput
-                  value={value}
-                  onChangeText={onChange}
-                  placeholder="example@email.com"
-                  keyboardType="email-address"
-                  classNames={`${errors.email && 'border border-rose-600 text-red'}`}
-                />
-              )}
-              name="email"
-            />
-            {errors.email && (
-              <LabelInput classNames="text-red">
-                {errors.email.message}
-              </LabelInput>
-            )}
-          </View>
-          <View>
-            <LabelInput classNames="mb-2">Пароль</LabelInput>
-            <View style={{ position: 'relative' }}>
-              <Controller
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <PrimaryInput
-                    value={value}
-                    onChangeText={onChange}
-                    placeholder="Password"
-                    secureTextEntry={showPasswordFirst}
-                    classNames={`${errors.password && 'border border-rose-600 text-red'}`}
-                  />
-                )}
-                name="password"
-              />
-              <TouchableOpacityStyled
-                className="absolute bottom-3.5 right-3.5"
-                onPress={() => setShowPasswordFirst(!showPasswordFirst)}
-              >
-                {showPasswordFirst ? (
-                  <Icon xml={closedEyeIcon} />
-                ) : (
-                  <Icon xml={openEyeIcon} />
-                )}
-              </TouchableOpacityStyled>
-            </View>
-            {errors.password && (
-              <LabelInput classNames="text-red">
-                {errors.password.message}
-              </LabelInput>
-            )}
-          </View>
-          <View>
-            <LabelInput classNames="mb-2">Повторіть пароль</LabelInput>
-            <View style={{ position: 'relative' }}>
-              <Controller
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, value } }) => (
-                  <PrimaryInput
-                    value={value || ''}
-                    onChangeText={onChange}
-                    placeholder="Confirm password"
-                    secureTextEntry={showPasswordSecond}
-                    classNames={`${errors.confirmPassword && 'border border-rose-600 text-red'}`}
-                  />
-                )}
-                name="confirmPassword"
-              />
-              <TouchableOpacityStyled
-                className="absolute bottom-3.5 right-3.5"
-                onPress={() => setShowPasswordSecond(!showPasswordSecond)}
-              >
-                {showPasswordSecond ? (
-                  <Icon xml={closedEyeIcon} />
-                ) : (
-                  <Icon xml={openEyeIcon} />
-                )}
-              </TouchableOpacityStyled>
-            </View>
-            {errors.confirmPassword && (
-              <LabelInput classNames="text-red">
-                {errors.confirmPassword.message}
-              </LabelInput>
-            )}
-          </View>
-        </WrapperInputs>
-      </KeyboardAvoidingView>
-      <CheckField checked={check} onPress={() => setCheck(!check)}>
-        <Link href="/auth/adult/privacy-police">
-          <NormalText
-            classNames={`font-normal text-xs leading-normal ${check ? 'text-black-100' : 'text-red'}`}
-          >
-            Згоден з
-          </NormalText>{' '}
-          <HyperText classNames="font-normal text-xs  leading-normal">
-            умовами та політикою конфіденційності
-          </HyperText>
-        </Link>
-      </CheckField>
-      <WrapperButton className="grow flex justify-end">
-        <PrimaryButton
-          text="Зареєструватися"
-          onPress={handleSubmit(onPressSend)}
-          hint="Зареєструвати ваш акаунт"
-          label="Зареєструватися"
-          role="button"
-          classNames="w-48 self-center"
+        <InputField
+          control={control}
+          name="email"
+          label="Електронна пошта"
+          errors={errors}
+          placeholder="poshta@i.ua"
+          keyboardType="email-address"
         />
-      </WrapperButton>
-    </WrapperForm>
+        <InputField
+          control={control}
+          name="password"
+          label="Пароль"
+          errors={errors}
+          placeholder="••••••••"
+          isPassword
+        />
+        <InputField
+          control={control}
+          name="confirmPassword"
+          label="Повторіть пароль"
+          errors={errors}
+          placeholder="••••••••"
+          isPassword
+        />
+      </KeyboardAvoidingView>
+      <PrivacyPolicyCheck checked={check} onToggle={() => setCheck(!check)} />
+      <PrimaryButton
+        text="Зареєструватися"
+        onPress={handleSubmit(onPressSend)}
+        hint="Зареєструвати ваш акаунт"
+        label="Зареєструватися"
+        role="button"
+        classNames="w-48 self-center mt-32 mb-8"
+      />
+    </View>
   );
 };
 

@@ -1,28 +1,23 @@
 import { View, KeyboardAvoidingView, Platform } from 'react-native';
-import { Controller, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '@/shared/lib';
 import { styled } from 'nativewind';
-import {
-  LabelInput,
-  NormalText,
-  PrimaryButton,
-  PrimaryInput,
-  SecondaryTitle,
-} from '@/shared/ui';
+import { NormalText, PrimaryButton, SecondaryTitle } from '@/shared/ui';
 import { router } from 'expo-router';
 import { validationLoginSchema } from '@/entities/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { InputField } from '@/shared/ui/input/InputField';
+import { postSendResetCodeThunk } from '@/processes/auth/model/operations';
 
-const WrapperInputs = styled(View);
-const WrapperForm = styled(View);
 const TextWrapper = styled(View);
 const WrapperButton = styled(View);
 
 const ResetPasswordForm = () => {
-  const [email, setEmail] = useState('');
+  const dispatch = useAppDispatch();
 
   const {
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationLoginSchema),
@@ -31,62 +26,42 @@ const ResetPasswordForm = () => {
     },
   });
 
-  const onSubmitForm = () => {
-    console.log('email =>', email);
-    setEmail('');
+  const onSubmit = ({ email }: { email: string }) => {
+    console.log('Email:', email);
     router.navigate('/auth/adult/confirm-reset');
   };
 
   return (
-    <WrapperForm className="grow mb-9 w-full">
+    <View>
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
-        <TextWrapper>
-          <SecondaryTitle> Забули пароль?</SecondaryTitle>
-          <NormalText classNames="mt-2 mb-6 ml-2">
+        <TextWrapper className="mb-6">
+          <SecondaryTitle>Забули пароль?</SecondaryTitle>
+          <NormalText classNames="mt-2">
             Введіть вашу електронну пошту
           </NormalText>
         </TextWrapper>
-        <WrapperInputs className="flex justify-center mb-40 ml-2">
-          <View>
-            <LabelInput classNames="mb-2">Електронна пошта</LabelInput>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { onChange, value } }) => (
-                <PrimaryInput
-                  value={value}
-                  onChangeText={onChange}
-                  placeholder="example@email.com"
-                  autoFocus
-                  keyboardType="email-address"
-                  classNames={`${errors.email && 'border border-rose-600 text-red'}`}
-                />
-              )}
-              name="email"
-            />
-            {errors.email && (
-              <LabelInput classNames="text-red">
-                {errors.email.message}
-              </LabelInput>
-            )}
-          </View>
-        </WrapperInputs>
+        <InputField
+          control={control}
+          name="email"
+          label="Електронна пошта"
+          errors={errors}
+          placeholder="poshta@i.ua"
+          keyboardType="email-address"
+        />
       </KeyboardAvoidingView>
       <WrapperButton className="grow flex justify-center">
         <PrimaryButton
           text="Відновити пароль"
-          onPress={onSubmitForm}
+          onPress={handleSubmit(onSubmit)}
           hint="Відновити пароль"
           label="Відновити пароль"
           role="button"
-          classNames="w-48 self-center"
+          classNames="w-48 self-center mt-24"
         />
       </WrapperButton>
-    </WrapperForm>
+    </View>
   );
 };
 

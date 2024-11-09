@@ -34,11 +34,11 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       accessibilityRole={role || 'button'}
       accessible={accessible || true}
       onPress={onPress}
-      className={`h-10 bg-purple px-4 py-2 rounded-lg flex flex-row justify-center items-center ${classNames}`}
+      className={`h-10 bg-gray-disabled px-4 py-2 rounded-lg flex flex-row justify-center items-center ${classNames}`}
       activeOpacity={activeOpacity || 0.75}
     >
       <StyledText
-        className={`font-semibold text-base text-white ${textClassNames}`}
+        className={`font-semibold text-base text-black ${textClassNames}`}
       >
         {text}
       </StyledText>

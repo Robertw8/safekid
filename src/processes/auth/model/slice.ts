@@ -7,6 +7,7 @@ import {
   postRegisterUserThunk,
   postResendVerifyCodeThunk,
   postVerifyEmailThunk,
+  postSendResetCodeThunk
 } from './operations';
 
 const initialState: AuthInitialState = {
@@ -19,6 +20,7 @@ const initialState: AuthInitialState = {
   email: null,
   error: null,
   isLoading: false,
+  resetCodeSent: false,
 };
 
 const slice = createSlice({
@@ -91,6 +93,12 @@ const slice = createSlice({
         state.error = null;
         state.userId = null;
         state.email = null;
+      })
+      .addCase(postSendResetCodeThunk.fulfilled, (state) => {
+        state.isLoading = false;
+        state.resetCodeSent = true;
+        state.error = null;
+        state.userRole = 'adult';
       })
       .addMatcher(
         action => action.type.endsWith('/pending'),
