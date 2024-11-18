@@ -8,7 +8,8 @@ import {
   NormalText,
 } from '@/shared/ui';
 import { ScrollView } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 const WrapperText = styled(ScrollView);
 
@@ -16,11 +17,22 @@ const InfoAfterRegistration: React.FC = () => {
   const [check, setCheck] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const handlePress = () => {
+  useEffect(() => {
+    const checkFirstLaunch = async () => {
+      const isFirstLaunch = await AsyncStorage.getItem('hasShownInfo');
+      if (isFirstLaunch) {
+        router.back();
+      }
+    };
+    checkFirstLaunch();
+  }, []);
+
+  const handlePress = async () => {
     if (!check) {
       setShowError(true);
     } else {
       setShowError(false);
+      await AsyncStorage.setItem('hasShownInfo', 'true');
       router.back();
     }
   };
