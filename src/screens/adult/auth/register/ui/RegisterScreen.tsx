@@ -7,13 +7,21 @@ import {
   ScrollView,
 } from 'react-native';
 import { Link } from 'expo-router';
-import { BackButton, HyperText, NormalText, PrimaryTitle } from '@/shared/ui';
+import {
+  BackButton,
+  chatIcon,
+  HyperText,
+  Icon,
+  NormalText,
+  PrimaryTitle,
+} from '@/shared/ui';
 import { RegisterForm } from '@/widgets/auth';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsLoading } from '@/processes/auth/model/selectors';
 
 const Wrapper = styled(View);
 const ScrollWrapper = styled(ScrollView);
+const TextWrapper = styled(View);
 
 const RegisterScreen: React.FC = () => {
   const isLoading = useAppSelector(selectIsLoading);
@@ -26,14 +34,19 @@ const RegisterScreen: React.FC = () => {
             <ActivityIndicator size={100} color="#3D33E2" />
           </Wrapper>
         ) : (
-          <Wrapper className="px-4 pt-40 pb-12 h-screen bg-white flex items-center">
+          <Wrapper className="px-4 pt-40">
             <BackButton />
-            <PrimaryTitle classNames="mb-8">Реєстрація</PrimaryTitle>
+            <Icon xml={chatIcon} classNames={`absolute top-16 right-6`} />
+            <PrimaryTitle classNames="mb-8 text-center">
+              Реєстрація
+            </PrimaryTitle>
             <RegisterForm />
-            <Link href="/auth/adult/login">
-              <NormalText>Вже є акаунт?</NormalText>{' '}
-              <HyperText>Увійти</HyperText>
-            </Link>
+            <TextWrapper className="flex flex-row justify-center">
+              <NormalText classNames="mr-1">Вже є акаунт?</NormalText>
+              <Link href="/auth/adult/login">
+                <HyperText>Увійти</HyperText>
+              </Link>
+            </TextWrapper>
           </Wrapper>
         )}
       </ScrollWrapper>

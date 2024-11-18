@@ -5,6 +5,7 @@ import postLoginUser from '../api/postLoginUser';
 import delParentAccount from '../api/delParentAccount';
 import postResendVerifyCode from '../api/postResendVerifyCode';
 import getUserInfo from '../api/getUserInfo';
+import postSendResetCode from '../api/postSendResetCode';
 
 export const postRegisterUserThunk = createAsyncThunk(
   'auth/registerUser',
@@ -34,4 +35,9 @@ export const delParentAccountThunk = createAsyncThunk(
 export const getUserInfoThunk = createAsyncThunk(
   'auth/getUserInfo',
   getUserInfo
+);
+
+export const postSendResetCodeThunk  = createAsyncThunk(
+  'auth/sendResetCode',
+  postSendResetCode
 );

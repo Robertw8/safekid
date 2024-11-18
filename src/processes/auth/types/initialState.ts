@@ -10,4 +10,5 @@ export default interface AuthInitialState {
   jwtToken: null | string;
   userId: null | string;
   email: null | string;
+  resetCodeSent: boolean;
 }
