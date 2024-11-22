@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { View, KeyboardAvoidingView, Platform } from 'react-native';
@@ -13,14 +13,13 @@ import { InputField } from '@/shared/ui/input/InputField';
 
 const RegisterForm = () => {
   const dispatch = useAppDispatch();
-
   const [check, setCheck] = useState(false);
 
   const token = useAppSelector(selectToken);
   const userId = useAppSelector(selectUserId);
 
-  console.log('Token in RegisterScreen: ', token);
-  console.log('userId in RegisterScreen: ', userId);
+  console.log('Token in RegisterScreen:', token);
+  console.log('userId in RegisterScreen:', userId);
 
   const {
     control,
@@ -35,31 +34,41 @@ const RegisterForm = () => {
     },
   });
 
-  useEffect(() => {
-    if (!userId) {
+  const onPressSend = async ({ email, password }) => {
+    if (!check) {
+      alert('Підтвердіть згоду з умовами конфіденційності');
       return;
     }
-    router.navigate('/auth/adult/confirm-register' as `${string}:${string}`);
-  }, [userId]);
 
-  const onPressSend = ({ email, password }) => {
-    if (check) {
-      const userData = {
-        email,
-        password,
-        deviceToken: token,
-        privacyPolicyAgreement: check,
-      };
-      dispatch(postRegisterUserThunk(userData));
-    } else {
-      alert('Підтвердіть згоду з умовами конфіденційності');
+    const userData = {
+      email,
+      password,
+      deviceToken: token,
+      privacyPolicyAgreement: check,
+    };
+
+    console.log('Дані для реєстрації:', userData);
+
+    try {
+      const resultAction = await dispatch(
+        postRegisterUserThunk(userData)
+      ).unwrap();
+      console.log('Результат реєстрації:', resultAction); // Використовуйте для логування
+      if (resultAction.success) {
+        // Приклад перевірки (залежить від структури відповіді сервера)
+        router.push('/auth/adult/confirm-register');
+      }
+    } catch (error) {
+      if (typeof error === 'object' && error !== null) {
+        console.error('Повна відповідь про помилку:', error);
+      }
     }
   };
 
   return (
     <View>
       <KeyboardAvoidingView
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <InputField
           control={control}

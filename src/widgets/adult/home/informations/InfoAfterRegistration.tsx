@@ -1,5 +1,4 @@
 import { styled } from 'nativewind';
-import { router } from 'expo-router';
 import {
   InstructionText,
   TertiaryTitle,
@@ -8,35 +7,15 @@ import {
   NormalText,
 } from '@/shared/ui';
 import { ScrollView } from 'react-native';
-import { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import { router } from 'expo-router';
 
 const WrapperText = styled(ScrollView);
+interface CheckProps {
+  checked: boolean;
+  onToggle: () => void;
+}
 
-const InfoAfterRegistration: React.FC = () => {
-  const [check, setCheck] = useState(false);
-  const [showError, setShowError] = useState(false);
-
-  useEffect(() => {
-    const checkFirstLaunch = async () => {
-      const isFirstLaunch = await AsyncStorage.getItem('hasShownInfo');
-      if (isFirstLaunch) {
-        router.back();
-      }
-    };
-    checkFirstLaunch();
-  }, []);
-
-  const handlePress = async () => {
-    if (!check) {
-      setShowError(true);
-    } else {
-      setShowError(false);
-      await AsyncStorage.setItem('hasShownInfo', 'true');
-      router.back();
-    }
-  };
-
+const InfoAfterRegistration: React.FC<CheckProps> = ({ checked, onToggle }) => {
   return (
     <>
       <WrapperText className="mt-6">
@@ -61,39 +40,27 @@ const InfoAfterRegistration: React.FC = () => {
           дитиною хтось спілкується. Сам додаток, при цьому, працює в активному
           режимі моніторінгу потенційних загроз.
         </InstructionText>
-        <InstructionText classNames="mt-5">
+        <InstructionText classNames="mt-5 mb-5">
           Рекомендуємо перевірити процес роботи обох частин додатку на своєму
           пристрої. Щоб потренуватися промовте три умовні тригерні фрази:
           “жовто-полосата валізка”, “блакитний гвинтокрил”, “рожевий єдиноріг”,
           на які додаток буде реагувати. Так ви зрозумієте, як саме додаток
           реагує на небезпеку.
         </InstructionText>
-
-        <CheckField
-          classNames={`ml-1 mt-6`}
-          checked={check}
-          onPress={() => {
-            setCheck(!check);
-            setShowError(false);
-          }}
-        >
+        <CheckField checked={checked} onPress={onToggle}>
           <NormalText
-            classNames={`font-normal text-xs leading-normal ml-3 ${
-              showError ? 'text-red' : 'text-black-100'
-            }`}
+            classNames={`font-normal text-xs leading-normal pl-2 pr-1`}
           >
-            Ознайомленний
+            Ознайомлений
           </NormalText>
         </CheckField>
-
         <PrimaryButton
           text="Перейти до додатку"
-          onPress={handlePress}
+          onPress={() => router.back()}
           hint="Перейти до додатку"
           label="Перейти до додатку"
           role="button"
-          classNames="w-48 self-center mt-auto mt-4 bg-gray-button"
-          textClassNames="text-black-100"
+          classNames="w-48 self-center mx-auto mt-20"
         />
       </WrapperText>
     </>
